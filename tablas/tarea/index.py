@@ -10,8 +10,7 @@ def obtener_tareas_usuario(id_usuario):
 def crear_tarea(tarea):
     return 'success'
 
-def modificar_tarea(tarea):
-    return 'success'
+def modificar_tarea(tarea):  return 'success'
 
 def asignar_usuario_tarea(id_tarea, id_usuario):
     return 'success'
