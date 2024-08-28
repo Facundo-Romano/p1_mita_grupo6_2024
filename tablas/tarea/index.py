@@ -16,5 +16,8 @@ def modificar_tarea(tarea):
 def asignar_usuario_tarea(id_tarea, id_usuario):
     return 'success'
 
+def asignar_proyecto_tarea(id_proyecto):
+    return 'success'
+
 def eliminar_tarea(id_tarea):
     return 'success'
