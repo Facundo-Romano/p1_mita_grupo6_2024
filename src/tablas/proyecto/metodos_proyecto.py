@@ -1,13 +1,6 @@
-import os
-import sys
-
-current_file_directory = os.path.dirname(__file__)
-relative_path_to_misc = os.path.join(current_file_directory, '..', '..', 'misc')
-full_path_to_misc = os.path.abspath(relative_path_to_misc)
-
-sys.path.insert(0, full_path_to_misc)
-
-from metodos_uuid import generar_uuid
+from datetime import datetime
+from ...misc.metodos_uuid import generar_uuid
+from ...misc.metodos_validacion import validar_fecha
 
 def obtener_proyectos(id_equipo):
     return 'proyectos'
@@ -17,22 +10,29 @@ def obtener_proyecto(id_proyecto):
 
 def crear_proyecto():
     """
-    Funciones para crear proyecto
+        Funcion para crear un proyecto
+
+        Retorna:
+            string: uuid del proyecto creado
     """
-    nombre_proyecto = input("Ingresar nombre del proyecto: ")
-    end_date = int(input("Ingrese fecha finalizacion proyecto: "))
 
     id_proyecto = generar_uuid()
+    nombre_proyecto = input("Ingresar nombre del proyecto: ")
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
 
-    print(id_proyecto)
+    while validar_fecha(end_date) == False:
+        end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
+
     
     #Diccionario proyecto
     proyecto = {
         "id": id_proyecto,
         "nombre": nombre_proyecto,
-        "created_at": 'created_at',
+        "created_at": created_at,
         "end_date": end_date
     }
+
     return proyecto
 
 def modificar_proyecto(proyecto):
@@ -40,6 +40,3 @@ def modificar_proyecto(proyecto):
 
 def eliminar_proyecto(id_proyecto):
     return 'success'
-
-
-crear_proyecto()
