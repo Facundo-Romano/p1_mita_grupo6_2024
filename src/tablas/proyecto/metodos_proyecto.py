@@ -3,7 +3,26 @@ from ...misc.metodos_uuid import generar_uuid
 from ...misc.metodos_validacion import validar_fecha
 
 def obtener_proyectos(id_equipo):
-    return 'proyectos'
+    proyectos = [
+        {
+            'uuid': 'test1',
+            'nombre': 'proyecto1',
+            'uuid_equipo': 'equipo1',
+            'end_date': '09-08-2025',
+            'created_at': '2021-08-09 12:00:00',
+            'deleted_at': None
+        },
+        {
+            'uuid': 'test2',
+            'nombre': 'proyecto2',
+            'uuid_equipo': 'equipo1',
+            'end_date': '09-08-2025',
+            'created_at': '2021-08-09 12:00:00',
+            'deleted_at': None
+        }
+    ]
+
+    return proyectos
 
 def obtener_proyecto(id_proyecto):
     return 'proyecto'

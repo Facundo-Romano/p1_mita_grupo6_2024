@@ -1,3 +1,6 @@
+from ..equipo.metodos_equipo import obtener_equipo_por_usuario
+from ..proyecto.metodos_proyecto import obtener_proyectos
+
 def obtener_tareas():
     return 'tareas'
 
@@ -9,33 +12,42 @@ def obtener_tareas_usuario(id_usuario):
 
 def crear_tarea(tarea):
     """
-    Creacion de tarea usando diccionario, contiene el id, nombre, la fecha de creacion, 
-    la fecha de fin. 
-    """
-    #Esta es una funcion para validar que haya un proyecto al cual asignar la tarea.
-    #Porque no puede existir una tarea sin que exista un proyecto a la cual asignarle.
-    id_proyecto = int(input("Ingrese id del proyecto al cual le va a asignar la tarea: "))
-    while id_proyecto not in proyectos: #Tenemos que importar la lista de proyectos
-        id_proyecto = int(input("Ese proyecto no existe, Ingrese id del proyecto al cual le va a asignar la tarea: "))
-    else:
-        id_tarea = int(input("Ingrese id proyecto: "))
-        titulo_tarea = input("Ingresar nombre del proyecto: ")
-        descripcion_tarea = input("Ingresar nombre del proyecto: ")
-        id_usuario = int(input("Ingrese ID del usuario asignado a la tarea: "))
-        created_at = int(input("Ingrese fecha de creacion de proyecto: "))
-        end_date = int(input("Ingrese fecha finalizacion proyecto: "))
+        Funcion para crear una tarea
 
-    #Diccionario tarea
-    tarea = {
-        "id": id_tarea,
-        "titulo": titulo_tarea,
-        "descripcion": descripcion_tarea,
-        "id_proyecto": id_proyecto,
-        "id_usuario": id_usuario,
-        "created_at": created_at,
-        "end_date": end_date
-    }
-    return tarea
+        Retorna:
+            string: uuid de la tarea creada
+    """
+
+    """ TODO: Definir de donde se saca el id del usuario """
+    id_usuario = 1
+    equipo_del_usuario = obtener_equipo_por_usuario(id_usuario)
+    id_equipo = equipo_del_usuario["uuid"]
+    proyectos_del_equipo = obtener_proyectos(id_equipo)
+
+    proyecto_seleccionado = None
+    
+    while proyecto_seleccionado == None:
+        print("Seleccione el proyecto al que desea asignar la tarea: ")
+
+        for proyecto in proyectos_del_equipo:
+            print(f"Proyecto: {proyecto['nombre']}")
+
+        nombre_proyecto = input("Ingrese el nombre del proyecto: ")
+
+        for proyecto in proyectos_del_equipo:
+            if proyecto['nombre'] == nombre_proyecto:
+                proyecto_seleccionado = proyecto
+                break
+        
+        if proyecto_seleccionado == None:
+            print("Proyecto no encontrado.")
+    
+    print("Creando tarea para el proyecto: ", proyecto_seleccionado)
+
+    
+
+
+
 
 def modificar_tarea(tarea):  
     """
