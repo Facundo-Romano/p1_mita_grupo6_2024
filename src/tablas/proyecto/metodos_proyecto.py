@@ -1,4 +1,13 @@
-from ..misc.metodos_uuid import generar_uuid
+import os
+import sys
+
+current_file_directory = os.path.dirname(__file__)
+relative_path_to_misc = os.path.join(current_file_directory, '..', '..', 'misc')
+full_path_to_misc = os.path.abspath(relative_path_to_misc)
+
+sys.path.insert(0, full_path_to_misc)
+
+from metodos_uuid import generar_uuid
 
 def obtener_proyectos(id_equipo):
     return 'proyectos'
@@ -21,7 +30,7 @@ def crear_proyecto():
     proyecto = {
         "id": id_proyecto,
         "nombre": nombre_proyecto,
-        "created_at": created_at,
+        "created_at": 'created_at',
         "end_date": end_date
     }
     return proyecto
