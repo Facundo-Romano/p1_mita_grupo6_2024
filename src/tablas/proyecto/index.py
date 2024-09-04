@@ -1,3 +1,5 @@
+from ..misc.metodos_uuid import generar_uuid
+
 def obtener_proyectos(id_equipo):
     return 'proyectos'
 
@@ -8,10 +10,12 @@ def crear_proyecto():
     """
     Funciones para crear proyecto
     """
-    id_proyecto = int(input("Ingrese id proyecto: "))
     nombre_proyecto = input("Ingresar nombre del proyecto: ")
-    created_at = int(input("Ingrese fecha de creacion de proyecto: "))
     end_date = int(input("Ingrese fecha finalizacion proyecto: "))
+
+    id_proyecto = generar_uuid()
+
+    print(id_proyecto)
     
     #Diccionario proyecto
     proyecto = {
@@ -27,3 +31,6 @@ def modificar_proyecto(proyecto):
 
 def eliminar_proyecto(id_proyecto):
     return 'success'
+
+
+crear_proyecto()
