@@ -88,3 +88,5 @@ def asignar_equipo_usuario(id_usuario, id_equipo):
 
 def eliminar_usuario(id_usuario):  
     return 'success'
+
+print(crear_usuario())
