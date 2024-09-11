@@ -1,6 +1,7 @@
-from misc.metodos_uuid import generar_uuid
-from datetime import datetime
 from equipo.metodos_equipo import obtener_equipo
+from misc.metodos_uuid import generar_uuid
+import re
+from datetime import datetime
 
 def obtener_usuarios():
     return 'usuarios'
@@ -19,8 +20,13 @@ def crear_usuario():
     equipo_usuario = obtener_equipo()
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     mail_usuario = input("Ingresar mail del usuario: ")
+    email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    if not re.match(email_regex, mail_usuario):
+        print("Email no válido. Por favor, ingrese un email válido.")
     contrasena_usuario = input("Ingresar contraseña del usuario: ")
     
+
+
     equipo_usuario = None
     
     while equipo_usuario == None:
@@ -82,5 +88,3 @@ def asignar_equipo_usuario(id_usuario, id_equipo):
 
 def eliminar_usuario(id_usuario):  
     return 'success'
-
-print(crear_usuario())

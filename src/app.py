@@ -1,5 +1,5 @@
-from tablas.tarea.metodos_tarea import crear_tarea
+from tablas.usuario.metodos_usuario import crear_usuario
 
 def init():
-    print(crear_tarea('hola'))
+    print(crear_usuario('hola'))
     

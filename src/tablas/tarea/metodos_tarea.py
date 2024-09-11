@@ -1,5 +1,10 @@
 from ..equipo.metodos_equipo import obtener_equipo_por_usuario
+from misc.metodos_uuid import generar_uuid
+from misc.metodos_validacion import validar_fecha
 from ..proyecto.metodos_proyecto import obtener_proyectos
+from datetime import datetime
+
+matriz_tareas = []
 
 def obtener_tareas():
     return 'tareas'
@@ -19,6 +24,15 @@ def crear_tarea():
     """
 
     """ TODO: Definir de donde se saca el id del usuario """
+    id_tarea = generar_uuid()
+    titulo_tarea = input("Ingrese titulo de la tarea: ")
+    descripcion_tarea = input("Ingrese descripcion de la tarea: ")
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
+
+    while validar_fecha(end_date) == False:
+        end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
+    
     id_usuario = 1
     equipo_del_usuario = obtener_equipo_por_usuario(id_usuario)
     id_equipo = equipo_del_usuario["uuid"]
@@ -43,9 +57,19 @@ def crear_tarea():
             print("Proyecto no encontrado.")
 
     #Almacenar en matrices 
-    
-    print("Creando tarea para el proyecto: ", proyecto_seleccionado)
-
+    tarea = [
+        id_tarea,
+        titulo_tarea,
+        descripcion_tarea,
+        id_usuario,
+        proyecto_seleccionado,
+        created_at,
+        end_date,
+    ]
+    matriz_tareas.append(tarea)
+    print(f"Creando tarea para el proyecto: {proyecto_seleccionado}")
+    show_matrix = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
+    show_matrix(matriz_tareas)
     
 
 
