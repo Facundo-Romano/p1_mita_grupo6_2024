@@ -1,3 +1,7 @@
+from misc.metodos_uuid import generar_uuid
+from datetime import datetime
+from equipo.metodos_equipo import obtener_equipo
+
 def obtener_usuarios():
     return 'usuarios'
 
@@ -7,17 +11,41 @@ def obtener_usuario(id_usuario):
 def crear_usuario():
     """
     Funcion para crear usuario usando diccionario, le ingresamos el nombre y la contrasena y 
-    la funcion devuelve la lista usuario con su id, nombre, mail y contrasena
+    la funcion devuelve la lista usuario con su id, nombre, apellido, equipo, mail y contrasena
     """
-    id_usuario = int(input("Ingrese id usuario: "))
+    id_usuario = generar_uuid()
     nombre_usuario = input("Ingresar nombre del usuario: ")
+    apellido_usuario = input("Ingresar apellido del usuario: ")
+    equipo_usuario = obtener_equipo()
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     mail_usuario = input("Ingresar mail del usuario: ")
     contrasena_usuario = input("Ingresar contraseña del usuario: ")
     
+    equipo_usuario = None
+    
+    while equipo_usuario == None:
+        print("Seleccione el equipo al que desea asignar al usuario: ")
+
+        for equipo in obtener_equipo:
+            print(f"equipo: {equipo['nombre']}")
+
+        nombre_equipo = input("Ingrese el nombre del equipo: ")
+
+        for equipo in obtener_equipo:
+            if equipo['nombre'] == nombre_equipo:
+                equipo_usuario = equipo
+                break
+        
+        if equipo_usuario == None:
+            print("Equipo no encontrado.")
+
     #Diccionario usuario
     usuario = {
         "id": id_usuario,
         "nombre": nombre_usuario,
+        "apellido": apellido_usuario,
+        "equipo" : equipo_usuario,
+        "created_at": created_at,
         "mail": mail_usuario,
         "contrasena": contrasena_usuario
     }
@@ -33,6 +61,10 @@ def modificar_usuario(usuario):
 
     if opcion == "nombre":
         usuario["nombre"] = input("Ingresar nuevo nombre del usuario: ")
+    elif opcion == "apellido":
+        usuario["apellido"] = input("Ingresar nuevo apellido del usuario: ")
+    elif opcion == "equipo":
+        usuario["equipo"] = input("Ingresar nuevo equipo del usuario: ")
     elif opcion == "mail":
         usuario["mail"] = input("Ingresar nuevo mail del usuario: ")
     elif opcion == "contrasena":
@@ -50,3 +82,5 @@ def asignar_equipo_usuario(id_usuario, id_equipo):
 
 def eliminar_usuario(id_usuario):  
     return 'success'
+
+print(crear_usuario())

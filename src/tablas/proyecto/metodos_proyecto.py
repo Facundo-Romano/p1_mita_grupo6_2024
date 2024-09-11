@@ -1,6 +1,6 @@
 from datetime import datetime
-from ...misc.metodos_uuid import generar_uuid
-from ...misc.metodos_validacion import validar_fecha
+from misc.metodos_uuid import generar_uuid
+from misc.metodos_validacion import validar_fecha
 
 def obtener_proyectos(id_equipo):
     proyectos = [

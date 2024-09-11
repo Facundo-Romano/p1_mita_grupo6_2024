@@ -10,7 +10,7 @@ def obtener_tarea(id_tarea):
 def obtener_tareas_usuario(id_usuario):
     return 'tareas'
 
-def crear_tarea(tarea):
+def crear_tarea():
     """
         Funcion para crear una tarea
 
@@ -41,6 +41,8 @@ def crear_tarea(tarea):
         
         if proyecto_seleccionado == None:
             print("Proyecto no encontrado.")
+
+    #Almacenar en matrices 
     
     print("Creando tarea para el proyecto: ", proyecto_seleccionado)
 
@@ -80,3 +82,5 @@ def asignar_proyecto_tarea(id_proyecto):
 
 def eliminar_tarea(id_tarea):
     return 'success'
+
+print(crear_tarea())
