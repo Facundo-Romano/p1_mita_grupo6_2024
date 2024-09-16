@@ -70,10 +70,6 @@ def crear_tarea():
     print(f"Creando tarea para el proyecto: {proyecto_seleccionado}")
     show_matrix = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
     show_matrix(matriz_tareas)
-    
-
-
-
 
 def modificar_tarea(tarea):  
     """

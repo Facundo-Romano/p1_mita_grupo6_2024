@@ -1,6 +1,6 @@
-from equipo.metodos_equipo import obtener_equipo
+from tablas.equipo.metodos_equipo import obtener_equipos
 from misc.metodos_uuid import generar_uuid
-import re
+from misc.metodos_validacion import validar_mail, validar_contraseña
 from datetime import datetime
 
 def obtener_usuarios():
@@ -14,35 +14,38 @@ def crear_usuario():
     Funcion para crear usuario usando diccionario, le ingresamos el nombre y la contrasena y 
     la funcion devuelve la lista usuario con su id, nombre, apellido, equipo, mail y contrasena
     """
+
     id_usuario = generar_uuid()
+    equipos = obtener_equipos()
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    equipo_usuario = None
+
     nombre_usuario = input("Ingresar nombre del usuario: ")
     apellido_usuario = input("Ingresar apellido del usuario: ")
-    equipo_usuario = obtener_equipo()
-    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     mail_usuario = input("Ingresar mail del usuario: ")
-    email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-    if not re.match(email_regex, mail_usuario):
-        print("Email no válido. Por favor, ingrese un email válido.")
-    contrasena_usuario = input("Ingresar contraseña del usuario: ")
+
+    while (not validar_mail(mail_usuario)):
+        mail_usuario = input("Ingresar mail del usuario: ")
+
+    contraseña_usuario = input("Ingresar contraseña del usuario\n (La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un caracter especial):")
     
-
-
-    equipo_usuario = None
+    while (not validar_contraseña(contraseña_usuario)):
+        contraseña_usuario = input("Ingresar contraseña del usuario: ")
     
-    while equipo_usuario == None:
-        print("Seleccione el equipo al que desea asignar al usuario: ")
+    print("Seleccione el equipo al que desea asignar al usuario: ")
 
-        for equipo in obtener_equipo:
-            print(f"equipo: {equipo['nombre']}")
+    while not equipo_usuario:
+        for equipo in equipos:
+            print(f"Equipo: {equipo['nombre']}")
 
         nombre_equipo = input("Ingrese el nombre del equipo: ")
 
-        for equipo in obtener_equipo:
+        for equipo in equipos:
             if equipo['nombre'] == nombre_equipo:
                 equipo_usuario = equipo
                 break
         
-        if equipo_usuario == None:
+        if not equipo_usuario:
             print("Equipo no encontrado.")
 
     #Diccionario usuario
@@ -50,11 +53,12 @@ def crear_usuario():
         "id": id_usuario,
         "nombre": nombre_usuario,
         "apellido": apellido_usuario,
-        "equipo" : equipo_usuario,
-        "created_at": created_at,
+        "equipo" : equipo_usuario['uuid'],
         "mail": mail_usuario,
-        "contrasena": contrasena_usuario
+        "contraseña": contraseña_usuario,
+        "created_at": created_at,
     }
+
     return usuario
 
 def modificar_usuario(usuario):
@@ -88,5 +92,3 @@ def asignar_equipo_usuario(id_usuario, id_equipo):
 
 def eliminar_usuario(id_usuario):  
     return 'success'
-
-print(crear_usuario())
