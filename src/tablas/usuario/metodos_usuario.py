@@ -1,6 +1,6 @@
 from tablas.equipo.metodos_equipo import obtener_equipos
 from misc.metodos_uuid import generar_uuid
-from misc.metodos_validacion import validar_mail, validar_contraseña
+from misc.metodos_validacion import validar_mail, validar_contraseña, validar_texto
 from datetime import datetime
 
 def obtener_usuarios():
@@ -21,7 +21,15 @@ def crear_usuario():
     equipo_usuario = None
 
     nombre_usuario = input("Ingresar nombre del usuario: ")
+
+    while (validar_texto(nombre_usuario, "nombre")):
+        nombre_usuario = input("Ingresar nombre del usuario: ")
+
     apellido_usuario = input("Ingresar apellido del usuario: ")
+
+    while (validar_texto(apellido_usuario, "apellido")):
+        apellido_usuario = input("Ingresar apellido del usuario: ")
+        
     mail_usuario = input("Ingresar mail del usuario: ")
 
     while (not validar_mail(mail_usuario)):
@@ -66,6 +74,7 @@ def modificar_usuario(usuario):
     Función para modificar los datos de un usuario existente.
     Se puede modificar el nombre, mail y contraseña.
     """
+
     print(f"Datos actuales del usuario: {usuario}")
     opcion = input("¿Qué desea modificar? (nombre/mail/contrasena): ").lower()
 

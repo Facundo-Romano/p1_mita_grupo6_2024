@@ -48,3 +48,23 @@ def validar_contraseña(contraseña):
         return False
 
     return True
+
+def validar_texto(texto, tipo):
+    """
+        Funcion para validar texto,
+        si el texto es alfabético retorna True, si no, retorna False
+        si texto no es formato string retorna False
+
+        Retorna:
+            booleano
+    """
+
+    try:
+        if texto.isalpha():
+            return True
+    
+        print(f"Error: Formato de {tipo} incorrecto")
+        return False
+    except:
+        print(f"Error: Formato de {tipo} incorrecto")
+        return False
