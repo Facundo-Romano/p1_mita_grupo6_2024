@@ -1,4 +1,4 @@
-from tablas.tarea.metodos_tarea import crear_tarea, modificar_tarea, obtener_tarea, eliminar_tarea
+from tablas.tarea.metodos_tarea import crear_tarea, modificar_tarea, obtener_tareas, eliminar_tarea
 
 usuarios = [
     ['uuid', 'nombre', 'apellido', 'equipo', 'mail', 'contraseña', 'created_at'],
@@ -23,7 +23,9 @@ def menu_principal():
             modificar_tarea()
         elif opcion == "3":
             # Llamar a la función para obtener tarea
-            obtener_tarea()
+            tareas = obtener_tareas()
+            for tarea in tareas:
+                print(tarea)
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
             eliminar_tarea()
