@@ -18,7 +18,8 @@ def menu_principal():
             crear_tarea()
         elif opcion == "2":
             # Llamar a la función para modificar tarea
-            modificar_tarea('9p8uwheqc97g48d1v')
+            uuid = input("Ingrese el uuid de la tarea a modificar: ")
+            modificar_tarea(uuid)
         elif opcion == "3":
             print()
             # Llamar a la función para obtener tarea
@@ -26,7 +27,8 @@ def menu_principal():
             mostrar_tareas(tareas)
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
-            eliminar_tarea('9p8uwheqc97g48d1v')
+            uuid = input("Ingrese el uuid de la tarea a eliminar: ")
+            eliminar_tarea(uuid)
         elif opcion == "5":
             print("Adiós!")
             break
