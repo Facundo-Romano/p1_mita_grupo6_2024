@@ -22,12 +22,12 @@ def crear_usuario():
 
     nombre_usuario = input("Ingresar nombre del usuario: ")
 
-    while (validar_texto(nombre_usuario, "nombre")):
+    while (not validar_texto(nombre_usuario, "nombre")):
         nombre_usuario = input("Ingresar nombre del usuario: ")
 
     apellido_usuario = input("Ingresar apellido del usuario: ")
 
-    while (validar_texto(apellido_usuario, "apellido")):
+    while (not validar_texto(apellido_usuario, "apellido")):
         apellido_usuario = input("Ingresar apellido del usuario: ")
         
     mail_usuario = input("Ingresar mail del usuario: ")
