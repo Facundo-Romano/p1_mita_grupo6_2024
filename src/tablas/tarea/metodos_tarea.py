@@ -9,7 +9,15 @@ MATRIZ_TAREAS = [
 ]
 
 def obtener_tareas():
-    return 'tareas'
+    headers = MATRIZ_TAREAS[0]  # Headers de la matriz
+    tareas = MATRIZ_TAREAS[1:]  # Filas de la matriz, excluyendo headers
+    
+    tareas_dict = []
+    for tarea in tareas:
+        tarea_dict = dict(zip(headers, tarea))  # Crea un diccionario para cada tarea
+        tareas_dict.append(tarea_dict)
+    
+    return tareas_dict
 
 def obtener_tarea(uuid_tarea):
     for tarea in MATRIZ_TAREAS:
