@@ -116,4 +116,3 @@ def asignar_proyecto_tarea(id_proyecto):
 
 def eliminar_tarea(id_tarea):
     return 'success'
-
