@@ -1,9 +1,5 @@
 from tablas.tarea.metodos_tarea import crear_tarea, modificar_tarea, obtener_tarea, eliminar_tarea
 
-usuarios = [
-    ['uuid', 'nombre', 'apellido', 'equipo', 'mail', 'contraseña', 'created_at'],
-]
-
 def menu_principal():
     while True:
         print("Menú principal")
@@ -20,13 +16,13 @@ def menu_principal():
             crear_tarea()
         elif opcion == "2":
             # Llamar a la función para modificar tarea
-            modificar_tarea()
+            modificar_tarea('9p8uwheqc97g48d1v')
         elif opcion == "3":
             # Llamar a la función para obtener tarea
             obtener_tarea()
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
-            eliminar_tarea()
+            eliminar_tarea('9p8uwheqc97g48d1v')
         elif opcion == "5":
             print("Adiós!")
             break
