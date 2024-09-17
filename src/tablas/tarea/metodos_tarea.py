@@ -74,14 +74,12 @@ def crear_tarea():
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
-        proyecto_seleccionado,
+        proyecto_seleccionado['uuid'],
         created_at,
         end_date,
     ]
 
     MATRIZ_TAREAS.append(tarea)
-
-    print(f"Creando tarea para el proyecto: {proyecto_seleccionado}")
 
     visualizar_matriz(MATRIZ_TAREAS)
 
