@@ -8,7 +8,7 @@ from datetime import datetime
 
 MATRIZ_TAREAS = [
     ['uuid_prueba', 'titulo', 'descripcion', 'uuid_usuario', 'uuid_proyecto', 'created_at', 'end_date'],
-    ['uuid_prueba', 'titulo_prueba', 'descripcion_prueba', 'uuid_usuario_prueba', 'uuid_proyecto_prueba', 'created_at_prueba', 'end_date_prueba'],
+    ['9p8uwheqc97g48d1v', 'primer tarea', 'la mejor tarea', 'erv234v2t2t', '4t5gb254bv4twv4tw ', '2024-09-17 18:35:11', '12-12-2024'],
 ]
 
 def obtener_tareas():
