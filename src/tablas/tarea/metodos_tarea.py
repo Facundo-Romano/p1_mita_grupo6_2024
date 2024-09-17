@@ -7,7 +7,8 @@ from misc.metodos_visualizacion import visualizar_matriz
 from datetime import datetime
 
 MATRIZ_TAREAS = [
-    ['uuid', 'titulo', 'descripcion', 'uuid_usuario', 'uuid_proyecto', 'created_at', 'end_date'],
+    ['uuid_prueba', 'titulo', 'descripcion', 'uuid_usuario', 'uuid_proyecto', 'created_at', 'end_date'],
+    ['uuid_prueba', 'titulo_prueba', 'descripcion_prueba', 'uuid_usuario_prueba', 'uuid_proyecto_prueba', 'created_at_prueba', 'end_date_prueba'],
 ]
 
 def obtener_tareas():
@@ -83,11 +84,12 @@ def crear_tarea():
 
     visualizar_matriz(MATRIZ_TAREAS)
 
-def modificar_tarea(tarea):  
+def modificar_tarea(uuid_tarea):  
     """
     Función para modificar los datos de una tarea existente.
     Se puede modificar el titulo, descripcion, el proyecto asignado, usuario asignado y fecha de finalizacion.
     """
+    
     print(f"Datos actuales del usuario: {tarea}")
     opcion = input("¿Qué desea modificar? (titulo/descripcion/id_proyecto/id_usuario/end_date): ").lower()
 
