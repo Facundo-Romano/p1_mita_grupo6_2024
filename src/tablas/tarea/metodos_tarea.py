@@ -2,9 +2,13 @@ from ..equipo.metodos_equipo import obtener_equipo_por_usuario
 from misc.metodos_uuid import generar_uuid
 from misc.metodos_validacion import validar_fecha
 from ..proyecto.metodos_proyecto import obtener_proyectos
+from misc.metodos_validacion import validar_texto
+from misc.metodos_visualizacion import visualizar_matriz
 from datetime import datetime
 
-matriz_tareas = []
+MATRIZ_TAREAS = [
+    ['uuid', 'titulo', 'descripcion', 'uuid_usuario', 'uuid_proyecto', 'created_at', 'end_date'],
+]
 
 def obtener_tareas():
     return 'tareas'
@@ -23,24 +27,32 @@ def crear_tarea():
             string: uuid de la tarea creada
     """
 
-    """ TODO: Definir de donde se saca el id del usuario """
     id_tarea = generar_uuid()
-    titulo_tarea = input("Ingrese titulo de la tarea: ")
-    descripcion_tarea = input("Ingrese descripcion de la tarea: ")
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    titulo_tarea = input("Ingrese titulo de la tarea: ")
+
+    while (validar_texto(titulo_tarea, "titulo")):
+        titulo_tarea = input("Ingresar titulo de la tarea: ")
+        
+    descripcion_tarea = input("Ingrese descripcion de la tarea: ")
+
+    while (validar_texto(descripcion_tarea, "descripción")):
+        descripcion_tarea = input("Ingresar descripción de la tarea: ")
+
     end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
 
     while validar_fecha(end_date) == False:
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
-    id_usuario = 1
-    equipo_del_usuario = obtener_equipo_por_usuario(id_usuario)
-    id_equipo = equipo_del_usuario["uuid"]
-    proyectos_del_equipo = obtener_proyectos(id_equipo)
+    uuid_usuario = 1
+    equipo_del_usuario = obtener_equipo_por_usuario(uuid_usuario)
+    uuid_equipo = equipo_del_usuario["uuid"]
+    proyectos_del_equipo = obtener_proyectos(uuid_equipo)
 
     proyecto_seleccionado = None
     
-    while proyecto_seleccionado == None:
+    while not proyecto_seleccionado:
         print("Seleccione el proyecto al que desea asignar la tarea: ")
 
         for proyecto in proyectos_del_equipo:
@@ -61,15 +73,17 @@ def crear_tarea():
         id_tarea,
         titulo_tarea,
         descripcion_tarea,
-        id_usuario,
+        uuid_usuario,
         proyecto_seleccionado,
         created_at,
         end_date,
     ]
-    matriz_tareas.append(tarea)
+
+    MATRIZ_TAREAS.append(tarea)
+
     print(f"Creando tarea para el proyecto: {proyecto_seleccionado}")
-    show_matrix = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
-    show_matrix(matriz_tareas)
+
+    visualizar_matriz(MATRIZ_TAREAS)
 
 def modificar_tarea(tarea):  
     """
@@ -103,4 +117,3 @@ def asignar_proyecto_tarea(id_proyecto):
 def eliminar_tarea(id_tarea):
     return 'success'
 
-print(crear_tarea())
