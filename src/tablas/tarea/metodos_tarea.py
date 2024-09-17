@@ -99,5 +99,3 @@ def eliminar_tarea(uuid_tarea):
     index = MATRIZ_TAREAS.index(tarea)
 
     MATRIZ_TAREAS.pop(index)
-
-    print(MATRIZ_TAREAS)
