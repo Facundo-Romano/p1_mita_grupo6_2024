@@ -32,17 +32,17 @@ def crear_tarea():
 
     titulo_tarea = input("Ingrese titulo de la tarea: ")
 
-    while (validar_texto(titulo_tarea, "titulo")):
+    while (not validar_texto(titulo_tarea, "titulo")):
         titulo_tarea = input("Ingresar titulo de la tarea: ")
         
     descripcion_tarea = input("Ingrese descripcion de la tarea: ")
 
-    while (validar_texto(descripcion_tarea, "descripción")):
+    while (not validar_texto(descripcion_tarea, "descripción")):
         descripcion_tarea = input("Ingresar descripción de la tarea: ")
 
     end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
 
-    while validar_fecha(end_date) == False:
+    while not validar_fecha(end_date):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
     uuid_usuario = 1
