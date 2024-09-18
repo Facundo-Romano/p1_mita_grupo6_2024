@@ -21,6 +21,11 @@ def obtener_tareas():
     tareas = MATRIZ_TAREAS[1:]  # Filas de la matriz, excluyendo headers
     
     tareas_dict = []
+    '''
+    la variable zip toma las listas headers y tarea y las empareja en tuplas.
+    Luego dict covierte las tuplas generadas por zip en pares clave-valor para crear un diccionario.
+
+    '''
     for tarea in tareas:
         tarea_dict = dict(zip(headers, tarea))  # Crea un diccionario para cada tarea
         tareas_dict.append(tarea_dict)
