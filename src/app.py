@@ -21,7 +21,7 @@ def menu_principal():
             uuid = input("Ingrese el uuid de la tarea a modificar: ")
             modificar_tarea(uuid)
         elif opcion == "3":
-            print()
+            print("Tareas: ")
             # Llamar a la función para obtener tarea
             tareas = obtener_tareas()
             mostrar_tareas(tareas)
