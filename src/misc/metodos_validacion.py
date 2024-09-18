@@ -3,10 +3,14 @@ import re
 
 def validar_fecha(fecha):
     """
-        Funcion para validar fecha
+    Convierte una cadena de texto con formato 'dd-mm-YYYY' en un objeto datetime.
 
-        Retorna:
-            booleano
+    Parámetros:
+    - fecha (str): Cadena de texto que contiene la fecha, en formato 'día-mes-año' (por ejemplo, '18-09-2024').
+
+    Retorna:
+    - datetime: Un objeto datetime que representa la fecha proporcionada.
+
     """
 
     try:
@@ -60,7 +64,7 @@ def validar_texto(texto, tipo):
     """
 
     try:
-        if texto.isalpha():
+        if texto.replace(" ", "").isalpha():
             return True
     
         print(f"Error: Formato de {tipo} incorrecto")

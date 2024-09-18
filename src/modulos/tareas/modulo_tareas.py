@@ -3,6 +3,15 @@ from tablas.equipo.metodos_equipo import obtener_equipo_por_usuario
 from tablas.proyecto.metodos_proyecto import obtener_proyectos
 
 def obtener_datos_tarea():
+    """
+    Obtiene los datos necesarios para crear una tarea, incluyendo título, descripción, 
+    fecha de finalización, usuario asignado y proyecto asociado. La función solicita la 
+    entrada del usuario para cada campo, validando la entrada para asegurarse de que sea 
+    válida. Luego, selecciona el proyecto asociado a partir de una lista de proyectos 
+    disponibles para el usuario y devuelve un arreglo con todos los datos recopilados. 
+
+    """
+
     titulo_tarea = input("Ingrese titulo de la tarea: ")
 
     while (not validar_texto(titulo_tarea, "titulo")):
