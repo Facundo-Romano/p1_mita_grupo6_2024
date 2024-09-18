@@ -9,6 +9,14 @@ MATRIZ_TAREAS = [
 ]
 
 def obtener_tareas():
+    """
+    Convierte una matriz de tareas en una lista de diccionarios, donde 
+    cada diccionario representa una tarea. La función toma la matriz de 
+    tareas, separa los headers de las filas, y luego itera sobre cada 
+    fila para crear un diccionario que asigna cada valor de la fila a su 
+    respectivo header. Finalmente, devuelve una lista de estos diccionarios, 
+    permitiendo un acceso más fácil y legible a los datos de las tareas. 
+    """
     headers = MATRIZ_TAREAS[0]  # Headers de la matriz
     tareas = MATRIZ_TAREAS[1:]  # Filas de la matriz, excluyendo headers
     
@@ -20,6 +28,14 @@ def obtener_tareas():
     return tareas_dict
 
 def obtener_tarea(uuid_tarea):
+    """
+    Busca una tarea por el UUID, itera  sobre la lista de tareas 
+    y verifica si el primer elemento de la fila (UUID) coincide 
+    con el UUID de la tarea buscada. Si se encuentra una coincidencia,
+    devuelve la tarea completa. Si no se encuentra ninguna tarea que 
+    coincida, devuelve None.
+
+    """
     for tarea in MATRIZ_TAREAS:
         if tarea[0] == uuid_tarea:
             return tarea
@@ -31,10 +47,12 @@ def obtener_tareas_usuario(id_usuario):
 
 def crear_tarea():
     """
-        Funcion para crear una tarea
-
-        Retorna:
-            string: uuid de la tarea creada
+    Crea una nueva tarea y la agrega a la matriz de tareas. La función genera un 
+    UUID único para la tarea y se genera la fecha de creacion, y luego solicita 
+    los datos de la tarea mediante la función obtener_datos_tarea(). Luego, crea 
+    una nueva fila en la matriz de tareas con los datos proporcionados y la agrega 
+    a la matriz. Finalmente, llama a la función visualizar_matriz() para mostrar la 
+    matriz de tareas actualizada.
     """
 
     id_tarea = generar_uuid()
@@ -60,7 +78,8 @@ def crear_tarea():
 def modificar_tarea(uuid_tarea):  
     """
         Función para modificar los datos de una tarea existente.
-        Se puede modificar el titulo, descripcion, el proyecto asignado, usuario asignado y fecha de finalizacion.
+        Se puede modificar el titulo, descripcion, el proyecto 
+        asignado, usuario asignado y fecha de finalizacion.
     """
 
     tarea = obtener_tarea(uuid_tarea)
@@ -91,6 +110,10 @@ def asignar_proyecto_tarea(id_proyecto):
     return 'success'
 
 def eliminar_tarea(uuid_tarea):
+    """
+    Elimina una tarea de la matriz de tareas,  si la tarea no existe
+    se muestra un mensaje de error.
+    """
     tarea = obtener_tarea(uuid_tarea)
 
     if not tarea:
@@ -99,3 +122,4 @@ def eliminar_tarea(uuid_tarea):
     index = MATRIZ_TAREAS.index(tarea)
 
     MATRIZ_TAREAS.pop(index)
+    print("Tarea eliminada exitosamente")
