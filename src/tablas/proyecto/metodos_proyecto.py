@@ -3,10 +3,7 @@ from misc.metodos_uuid import generar_uuid
 from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto
 
 #Contiene la Lista de Diccionarios (lista de todos los proyectos)
-proyectos = []
-
-def obtener_proyectos(id_equipo):
-    proyectos = [
+proyectos = [
         {
             'uuid': 'test1',
             'nombre': 'proyecto1',
@@ -25,6 +22,7 @@ def obtener_proyectos(id_equipo):
         }
     ]
 
+def obtener_proyectos(id_equipo):
     return proyectos
 
 def obtener_proyecto(id_proyecto):
@@ -84,6 +82,3 @@ def modificar_proyecto(id_proyecto):
 
 def eliminar_proyecto(id_proyecto):
     return 'success'
-
-#Prueba de Código
-modificar_proyecto('test2') #Borrar más tarde

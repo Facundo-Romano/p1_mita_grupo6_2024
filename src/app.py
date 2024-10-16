@@ -1,5 +1,8 @@
 from tablas.tarea.metodos_tarea import crear_tarea, modificar_tarea, obtener_tareas, eliminar_tarea
 from misc.metodos_visualizacion import mostrar_tareas
+from tablas.proyecto.metodos_proyecto import  modificar_proyecto
+
+
 
 def menu_principal():
     while True:
@@ -29,6 +32,8 @@ def menu_principal():
             # Llamar a la función para eliminar tarea
             uuid = input("Ingrese el uuid de la tarea a eliminar: ")
             eliminar_tarea(uuid)
+        elif opcion == "6":
+            modificar_proyecto('test2')
         elif opcion == "5":
             print("Adiós!")
             break
