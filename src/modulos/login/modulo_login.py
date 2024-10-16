@@ -1,5 +1,8 @@
 import os
+from datetime import datetime
+from misc.metodos_uuid import generar_uuid
 from misc.metodos_visualizacion import limpiar_consola
+from misc.metodos_validacion import validar_texto, validar_contraseña, validar_mail
 
 def menu_login():
     limpiar_consola()
@@ -54,4 +57,47 @@ def login():
     
 
 def registrar():
-    return
+    directorio_actual = os.getcwd()
+    ruta_absoluta = os.path.join(directorio_actual, 'assets', 'usuarios.txt')
+
+    archivo_usuarios = open(ruta_absoluta, 'a', encoding='UTF-8')
+
+    datos_usuario = obtener_datos_usuario()
+
+    #pendiente terminar
+
+
+
+def obtener_datos_usuario():
+    nombre = input("Ingrese nombre: ")
+
+    while (not validar_texto(nombre, "nombre")):
+        nombre = input("Ingrese nombre: ")
+
+    apellido = input("Ingrese apellido: ")
+
+    while (not validar_texto(apellido, "apellido")):
+        apellido = input("Ingrese apellido: ")
+
+    mail = input("Ingrese mail: ")
+
+    while (not validar_mail(mail)):
+        mail = input("Ingrese mail: ")
+        
+    contraseña = input("Ingrese contraseña: ")
+
+    while (not validar_contraseña(contraseña)):
+        contraseña = input("Ingrese contraseña: ")
+
+    #Logica de eleccion de equipo
+
+
+    return [
+        generar_uuid(),
+        nombre,
+        apellido,
+        mail,
+        contraseña,
+        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        None,
+    ]
