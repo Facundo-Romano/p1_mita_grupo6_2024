@@ -8,8 +8,8 @@ def obtener_datos_proyecto():
 
     nombre_proyecto = input("Ingresar nombre del proyecto: ")
 
-    while (not validar_texto(nombre_proyecto, "titulo")):
-        nombre_proyecto = input("Ingresar titulo de la tarea: ")
+    while (not validar_texto(nombre_proyecto, "nombre")):
+        nombre_proyecto = input("Ingresar nombre del proyecto: ")
     
     end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
 
