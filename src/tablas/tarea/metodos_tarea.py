@@ -50,7 +50,7 @@ def obtener_tarea(uuid_tarea):
 def obtener_tareas_usuario(id_usuario):
     return 'tareas'
 
-def crear_tarea():
+def crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date):
     """
     Crea una nueva tarea y la agrega a la matriz de tareas. La función genera un 
     UUID único para la tarea y se genera la fecha de creacion, y luego solicita 
@@ -60,19 +60,14 @@ def crear_tarea():
     matriz de tareas actualizada.
     """
 
-    id_tarea = generar_uuid()
-    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea()
-
     #Almacenar en matrices 
     tarea = [
-        id_tarea,
+        generar_uuid(),
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
         uuid_proyecto,
-        created_at,
+        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         end_date,
     ]
 
@@ -80,27 +75,20 @@ def crear_tarea():
 
     visualizar_matriz(MATRIZ_TAREAS)
 
-def modificar_tarea(uuid_tarea):  
+def modificar_tarea(uuid_tarea, titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, created_at, end_date):  
     """
         Función para modificar los datos de una tarea existente.
         Se puede modificar el titulo, descripcion, el proyecto 
         asignado, usuario asignado y fecha de finalizacion.
     """
 
-    tarea = obtener_tarea(uuid_tarea)
-
-    if not tarea:
-        return print("Error: tarea no encontrada.")
-
-    [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea()
-
     nueva_tarea = [
-        tarea[0],
+        uuid_tarea,
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
         uuid_proyecto,
-        tarea[5],
+        created_at,
         end_date,
     ]
 

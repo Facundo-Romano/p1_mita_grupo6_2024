@@ -1,3 +1,11 @@
+import os
+
+def limpiar_consola():
+    if os.name == 'nt':  # Para Windows
+        os.system('cls')
+    else:  # Para Linux y macOS
+        os.system('clear')
+
 def mostrar_tareas(tareas):
     for tarea in tareas:
         print()
