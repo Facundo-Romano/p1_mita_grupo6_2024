@@ -1,6 +1,7 @@
 from datetime import datetime
 from misc.metodos_uuid import generar_uuid
 from misc.metodos_validacion import validar_fecha
+from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto
 
 def obtener_proyectos(id_equipo):
     proyectos = [
@@ -36,14 +37,11 @@ def crear_proyecto():
     """
 
     id_proyecto = generar_uuid()
-    nombre_proyecto = input("Ingresar nombre del proyecto: ")
     created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
-
-    while validar_fecha(end_date) == False:
-        end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
-
     
+    [nombre_proyecto, end_date] = obtener_datos_proyecto()
+    """Para reutilizar código"""
+
     #Diccionario proyecto
     proyecto = {
         "id": id_proyecto,
