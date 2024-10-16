@@ -68,11 +68,10 @@ def modificar_proyecto(id_proyecto):
     
     [nombre_proyecto, end_date] = obtener_datos_proyecto()
 
-#Ver de si faltan o no campos (o atributos)
     nuevo_proyecto = [
-        proyecto[0], #uuid
+        proyecto['uuid'], #uuid
         nombre_proyecto,
-        proyecto[2],
+        proyecto['uuid_equipo'],
         end_date
     ]
 
