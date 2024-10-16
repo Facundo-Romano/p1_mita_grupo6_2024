@@ -10,6 +10,8 @@ def menu_principal():
     #Llamar a login
     usuario = menu_login()
 
+    print(usuario)
+
     limpiar_consola()
 
     if not usuario:

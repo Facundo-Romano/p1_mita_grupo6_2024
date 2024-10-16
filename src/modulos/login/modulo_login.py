@@ -1,3 +1,4 @@
+import os
 from misc.metodos_visualizacion import limpiar_consola
 
 def menu_login():
@@ -11,7 +12,7 @@ def menu_login():
         opcion = input('Elija una opción: ')
 
         if opcion == '1':
-            login()
+            return login()
         elif opcion == '2':
             registrar()
         elif opcion == '3':
@@ -22,7 +23,10 @@ def menu_login():
 
 def login():
     try:
-        archivo_usuarios = open(r'd:/usuarios.txt', 'r', encoding='UTF-8')
+        directorio_actual = os.getcwd()
+        ruta_absoluta = os.path.join(directorio_actual, 'assets', 'usuarios.txt')
+
+        archivo_usuarios = open(ruta_absoluta, 'r', encoding='UTF-8')
 
         mail = input('Ingrese su mail: ')
 
@@ -51,4 +55,3 @@ def login():
 
 def registrar():
     return
-
