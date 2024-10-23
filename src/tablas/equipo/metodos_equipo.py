@@ -1,45 +1,84 @@
+import json
+from misc.metodos_os import obtener_ruta 
+
+RUTA_ABSOLUTA_EQUIPOS = obtener_ruta('equipos.json')
+
 def obtener_equipos():
-    equipo = [
-        {
-            'uuid': 'uuid_equipo1',
-            'nombre': 'equipo1',
-            'created_at': '2020-09-11 11:00:00',
-            'deleted_at': None
-        },
-        {
-            'uuid': 'uuid_equipo2',
-            'nombre': 'equipo2',
-            'created_at': '2020-09-11 11:00:00',
-            'deleted_at': None
-        }
-    ]
+    try:
+        equipos_json = open(RUTA_ABSOLUTA_EQUIPOS, 'r', encoding='UTF-8')
 
-    return equipo
+        equipos = json.load(equipos_json)
 
-def obtener_equipo(id_equipo):
-    equipo = [
-        {
-            'uuid': 'prueba1',
-            'nombre': 'equipo1',
-            'created_at': '2020-09-11 11:00:00',
-            'deleted_at': None
-        },
-        {
-            'uuid': 'prueba2',
-            'nombre': 'equipo2',
-            'created_at': '2020-09-11 11:00:00',
-            'deleted_at': None
-        }
-    ]
+        equipos_json.close()
 
-    return equipo
-
-def obtener_equipo_por_usuario(id_usuario):
-    equipo = {
-        'uuid': 'prueba1',
-        'nombre': 'equipo1',
-        'created_at': '2020-09-11 11:00:00',
-        'deleted_at': None
-    }
+        return equipos
+    except Exception as e:
+        raise Exception('Error al obtener los equipos: \n', e)
     
-    return equipo
+def obtener_equipo(uuid_equipo):
+    try:
+        equipos = obtener_equipos()
+
+        for equipo in equipos:
+            if equipo['uuid'] == uuid_equipo:
+                return equipo
+            
+        return None
+    except Exception as e:
+        raise Exception('Error al obtener el equipo: \n', e)
+
+def crear_equipo(equipo):
+    try:
+        equipos_json = open(RUTA_ABSOLUTA_EQUIPOS, 'r+', encoding='UTF-8')
+
+        equipos = json.load(equipos_json)
+
+        equipos.append(equipo)
+        
+        equipos_json.seek(0)
+
+        json.dump(equipos, equipos_json, indent=4)
+
+        return True
+    except Exception as e:
+        raise Exception('Error al crear el equipo: \n', e)
+    
+def modificar_equipo(uuid_equipo, equipo):
+    try:
+        equipos_json = open(RUTA_ABSOLUTA_EQUIPOS, 'r+', encoding='UTF-8')
+
+        equipos = json.load(equipos_json)
+
+        equipo = next((equipo for equipo in equipos if equipo['uuid'] == uuid_equipo), None)
+
+        if (not equipo):
+            raise Exception('No se encontró el equipo')
+
+        equipos_json.seek(0)
+
+        json.dump(equipos, equipos_json, indent=4)
+
+        return True
+    except Exception as e:
+        raise Exception('Error al modificar el equipo: \n', e)
+    
+def eliminar_equipo(uuid_equipo):
+    try:
+        equipos_json = open(RUTA_ABSOLUTA_EQUIPOS, 'r+', encoding='UTF-8')
+
+        equipos = json.load(equipos_json)
+
+        equipo = next((equipo for equipo in equipos if equipo['uuid'] == uuid_equipo), None)
+
+        if (not equipo):
+            raise Exception('No se encontró el equipo')
+
+        equipos.remove(equipo)
+
+        equipos_json.seek(0)
+
+        json.dump(equipos, equipos_json, indent=4)
+
+        return True
+    except Exception as e:
+        raise Exception('Error al eliminar el equipo: \n', e)
