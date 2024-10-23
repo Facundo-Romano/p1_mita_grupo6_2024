@@ -41,7 +41,16 @@ def login():
             usuario = linea.strip().split(';')
 
             if mail == usuario[3] and contraseña == usuario[4]:
-                return usuario
+                return {
+                    "uuid": usuario[0],
+                    "nombre": usuario[1],
+                    "apellido": usuario[2],
+                    "mail": usuario[3],
+                    "contraseña": usuario[4],
+                    "uuid_equipo": usuario[5],
+                    "created_at": usuario[6],
+                    "deleted_at": usuario[7]
+                }
             
             linea = archivo_usuarios.readline()
 
