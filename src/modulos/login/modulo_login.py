@@ -1,8 +1,10 @@
-import os
+from misc.metodos_os import obtener_ruta
 from datetime import datetime
 from misc.metodos_uuid import generar_uuid
 from misc.metodos_visualizacion import limpiar_consola
 from misc.metodos_validacion import validar_texto, validar_contraseña, validar_mail
+
+RUTA_USUARIOS = obtener_ruta('usuarios.txt')
 
 def menu_login():
     limpiar_consola()
@@ -38,10 +40,7 @@ def menu_login():
 
 def login():
     try:
-        directorio_actual = os.getcwd()
-        ruta_absoluta = os.path.join(directorio_actual, 'assets', 'usuarios.txt')
-
-        archivo_usuarios = open(ruta_absoluta, 'r', encoding='UTF-8')
+        archivo_usuarios = open(RUTA_USUARIOS, 'r', encoding='UTF-8')
 
         mail = input('Ingrese su mail: ')
 

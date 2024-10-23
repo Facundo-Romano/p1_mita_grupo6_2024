@@ -14,6 +14,12 @@ def mostrar_tareas(tareas):
               f"Fecha de Creación: {tarea['created_at']}, Fecha de Fin: {tarea['end_date']}")
         print()  # Salto de línea para separar cada tarea
 
+def mostrar_equipos(equipos):
+    for i in range(len(equipos)):
+        print()
+        print(f"{i+1}. Nombre: {equipos[i]['nombre']}, Fecha de Creación: {equipos[i]['created_at']}")
+        print()
+
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.
 #Une los elementos de la fila en una sola cadena, separándolos por |.

@@ -1,60 +1,97 @@
-from misc.metodos_visualizacion import limpiar_consola
+import datetime
+from misc.metodos_visualizacion import limpiar_consola, mostrar_equipos
+from misc.metodos_uuid import generar_uuid 
+from tablas.equipo.metodos_equipo import obtener_equipos, obtener_equipo, crear_equipo, modificar_equipo, eliminar_equipo
 
 def menu_equipos(usuario):
+    limpiar_consola()
     while True:
-        """ limpiar_consola()
-        print("Menú de tareas")
-        print("1. Mis tareas")
-        print("2. Crear nueva tarea")
-        print("2. Editar tarea")
-        print("4. Eliminar tarea")
-        print("5. Salir")
+        print("Menú de equipos")
+        print("1. Equipos")
+        print("2. Mi equipo")
+        print("3. Crear nuevo equipo")
+        print("4. Editar equipo")
+        print("5. Eliminar equipo")
+        print("6. Salir")
 
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Tareas: ")
-            # Llamar a la función para obtener tarea
-            tareas = obtener_tareas(usuario)
-            mostrar_tareas(tareas)
+            print("Equipos: ")
+            equipos = obtener_equipos()
+            mostrar_equipos(equipos)
         elif opcion == "2":
-            # Llamar a la función para crear tarea
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
-            
-            crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date)
+            equipo = obtener_equipo(usuario["uuid_equipo"])
+
+            if (equipo == None):
+                print("No perteneces a ningún equipo.")
+                continue
+
+            mostrar_equipos([equipo])
         elif opcion == "3":
-            # Llamar a la función para modificar tarea
-            tareas = obtener_tareas(usuario)
-            mostrar_tareas(tareas)
-            numero = input("Ingrese el numero de la tarea a modificar: ")
+            uuid = generar_uuid()
+            nombre = obtener_datos_equipo()
+            created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+            deleted_at = None
 
-            tarea_a_modificar = tareas[numero]
+            equipo = {
+                uuid,
+                nombre,
+                created_at,
+                deleted_at
+            }
 
-            print(tarea_a_modificar)
-
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
-
-            modificar_tarea(tarea_a_modificar['uuid'], titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, tarea_a_modificar['created_at'], end_date)
+            crear_equipo(equipo)
         elif opcion == "4":
-            # Llamar a la función para eliminar tarea
-            tareas = obtener_tareas(usuario)
+            print("Equipos: ")
+            equipos = obtener_equipos()
+            mostrar_equipos(equipos)
+
+            #El número del equipo seleccionado por el usuario es la posición en la lista de equipos + 1
+            numero_equipo = int(input("Seleccione el número del equipo que desea editar: "))
             
-            mostrar_tareas(tareas)
+            if numero_equipo < 1 or numero_equipo > len(equipos):
+                print("Número de equipo inválido. Intente nuevamente.")
+                continue
+
+            equipo = equipos[numero_equipo - 1]
+
+            print("Nuevos datos de equipo: \n")
+
+            uuid = equipo["uuid"]
+            nombre = obtener_datos_equipo()
+            created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+            deleted_at = input("Ingrese la fecha de eliminación del equipo: ")
+
+            equipo = {
+                uuid,
+                nombre,
+                created_at,
+                deleted_at
+            }
+
+            modificar_equipo(equipo)
+        elif opcion == '5':
+            print("Equipos: ")
+            equipos = obtener_equipos()
+            mostrar_equipos(equipos)
+
+            #El número del equipo seleccionado por el usuario es la posición en la lista de equipos + 1
+            numero_equipo = int(input("Seleccione el número del equipo que desea eliminar: "))
             
-            numero = input("Ingrese el numero de la tarea a modificar: ")
+            if numero_equipo < 1 or numero_equipo > len(equipos):
+                print("Número de equipo inválido. Intente nuevamente.")
+                continue
 
-            tarea_a_eliminar = tareas[numero]
+            equipo = equipos[numero_equipo - 1]
 
-            print('Se va a eliminar la tarea: ')
-            print(tarea_a_eliminar)
-            confirmacion = input('¿Está seguro que desea eliminar la tarea? (s/n)')
-
-            if confirmacion == 's':
-                eliminar_tarea(tarea_a_eliminar['uuid'])
-        elif opcion == "5":
+            eliminar_equipo(equipo["uuid"])
+        elif opcion == "6":
             print("Adiós!")
             break
         else:
-            print("Opción inválida. Intente nuevamente.") """
+            print("Opción inválida. Intente nuevamente.")
 
-menu_equipos()
+def obtener_datos_equipo():
+    nombre = input("Ingrese el nombre del equipo: ")
+    return nombre
