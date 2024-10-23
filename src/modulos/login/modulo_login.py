@@ -12,6 +12,7 @@ def menu_login():
         print('1. Iniciar sesión')
         print('2. Registrarse')
         print('3. Salir')
+        print('4. Saltear login')
         opcion = input('Elija una opción: ')
 
         if opcion == '1':
@@ -20,6 +21,17 @@ def menu_login():
             registrar()
         elif opcion == '3':
             break
+        elif opcion == '4':
+            return {
+                "uuid": "1",
+                "nombre": "Usuario",
+                "apellido": "De Prueba",
+                "mail": "asd@asd.com",
+                "contraseña": "123456",
+                "uuid_equipo": "1",
+                "created_at": "2021-09-01 00:00:00",
+                "deleted_at": None
+            }
         else:
             print('Opción no válida')
 
