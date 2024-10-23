@@ -1,8 +1,10 @@
 from misc.metodos_validacion import validar_fecha, validar_texto
+from misc.metodos_uuid import generar_uuid
 from misc.metodos_visualizacion import mostrar_tareas, limpiar_consola
-from tablas.equipo.metodos_equipo import obtener_equipo_por_usuario
+from tablas.equipo.metodos_equipo import obtener_equipo
 from tablas.proyecto.metodos_proyecto import obtener_proyectos
-from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea
+from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
+import datetime
 
 def menu_tareas(usuario):
     while True:
@@ -19,12 +21,22 @@ def menu_tareas(usuario):
         if opcion == "1":
             print("Tareas: ")
             # Llamar a la función para obtener tarea
-            tareas = obtener_tareas(usuario)
+            tareas = obtener_tareas_usuario(usuario["uuid"])
             mostrar_tareas(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
+            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario["uuid"])
             
+            tarea = {
+                "uuid" :  generar_uuid,
+                "titulo": titulo_tarea,
+                "descripcion": descripcion_tarea,
+                "uuid_usuario": uuid_usuario,
+                "uuid_proyecto": uuid_proyecto,
+                "created_at":  datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
+                "end_date": end_date
+            }
+
             crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date)
         elif opcion == "3":
             # Llamar a la función para modificar tarea
@@ -38,7 +50,18 @@ def menu_tareas(usuario):
 
             [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
 
-            modificar_tarea(tarea_a_modificar['uuid'], titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, tarea_a_modificar['created_at'], end_date)
+            tarea = {
+                "uuid" :  tarea_a_modificar["uuid"],
+                "titulo": titulo_tarea,
+                "descripcion": descripcion_tarea,
+                "uuid_usuario": uuid_usuario,
+                "uuid_proyecto": uuid_proyecto,
+                "created_at":  tarea_a_modificar["created_at"],
+                "end_date": end_date
+                
+            }
+
+            modificar_tarea(tarea)
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
             tareas = obtener_tareas(usuario)
@@ -60,8 +83,6 @@ def menu_tareas(usuario):
             break
         else:
             print("Opción inválida. Intente nuevamente.")
-
-menu_tareas()
 
 def obtener_datos_tarea(usuario):
     """
@@ -89,9 +110,7 @@ def obtener_datos_tarea(usuario):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
     uuid_usuario = usuario['uuid']
-    equipo_del_usuario = obtener_equipo_por_usuario(uuid_usuario)
-    uuid_equipo = equipo_del_usuario["uuid"]
-    proyectos_del_equipo = obtener_proyectos(uuid_equipo)
+    proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
 
     proyecto_seleccionado = None
     
