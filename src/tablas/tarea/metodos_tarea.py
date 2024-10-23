@@ -1,14 +1,26 @@
 from misc.metodos_uuid import generar_uuid
-from modulos.tareas.modulo_tareas import obtener_datos_tarea
+# from modulos.tareas.modulo_tareas import obtener_datos_tarea
 from misc.metodos_visualizacion import visualizar_matriz
 from datetime import datetime
+import json
+import os
+  
+def leertareas():
+    try:
+        directorio_actual = os.getcwd()
+        ruta_absoluta = os.path.join(directorio_actual, 'assets', 'tareas.json')
+        archivo = open (ruta_absoluta, "r")
+    except:
+        print("No se puede abrir el archivo")
+    else:
+        TAREAS = json.load(archivo) # Leemos el contenido del archivo
+                                    # y lo cargamos en un diccionario
+        for tarea in TAREAS:
+            print(f'{tarea["uuid_prueba"]}') 
+    finally:
+        archivo.close()
 
-MATRIZ_TAREAS = [
-    ['uuid_prueba', 'titulo', 'descripcion', 'uuid_usuario', 'uuid_proyecto', 'created_at', 'end_date'],
-    ['9p8uwheqc97g48d1v', 'primer tarea', 'la mejor tarea', 'erv234v2t2t', '4t5gb254bv4twv4tw ', '2024-09-17 18:35:11', '12-12-2024'],
-]
-
-def obtener_tareas():
+def obtener_tareas(usuario):
     """
     Convierte una matriz de tareas en una lista de diccionarios, donde 
     cada diccionario representa una tarea. La función toma la matriz de 
@@ -96,7 +108,7 @@ def modificar_tarea(uuid_tarea, titulo_tarea, descripcion_tarea, uuid_usuario, u
 
     MATRIZ_TAREAS[index] = nueva_tarea
     
-def asignar_usuario_tarea(id_tarea, id_usuario):
+def asignar_usuario_tarea(uuid_tarea, id_usuario):
     return 'success'
 
 def asignar_proyecto_tarea(id_proyecto):
