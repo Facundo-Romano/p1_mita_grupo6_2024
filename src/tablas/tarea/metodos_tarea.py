@@ -1,113 +1,82 @@
-from misc.metodos_uuid import generar_uuid
-# from modulos.tareas.modulo_tareas import obtener_datos_tarea
 from misc.metodos_visualizacion import visualizar_matriz
-from datetime import datetime
+from misc.metodos_os import  obtener_ruta
 import json
-import os
   
-def leertareas():
+RUTA_ABSOLUTA_TAREAS = obtener_ruta('tareas.json')
+
+def obtener_tareas():
     try:
-        directorio_actual = os.getcwd()
-        ruta_absoluta = os.path.join(directorio_actual, 'assets', 'tareas.json')
-        archivo = open (ruta_absoluta, "r")
-    except:
-        print("No se puede abrir el archivo")
-    else:
-        TAREAS = json.load(archivo) # Leemos el contenido del archivo
-                                    # y lo cargamos en un diccionario
-        for tarea in TAREAS:
-            print(f'{tarea["uuid_prueba"]}') 
-    finally:
-        archivo.close()
+        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r', encoding='UTF-8')
 
-def obtener_tareas(usuario):
-    """
-    Convierte una matriz de tareas en una lista de diccionarios, donde 
-    cada diccionario representa una tarea. La función toma la matriz de 
-    tareas, separa los headers de las filas, y luego itera sobre cada 
-    fila para crear un diccionario que asigna cada valor de la fila a su 
-    respectivo header. Finalmente, devuelve una lista de estos diccionarios, 
-    permitiendo un acceso más fácil y legible a los datos de las tareas. 
-    """
-    headers = MATRIZ_TAREAS[0]  # Headers de la matriz
-    tareas = MATRIZ_TAREAS[1:]  # Filas de la matriz, excluyendo headers
-    
-    tareas_dict = []
-    '''
-    la variable zip toma las listas headers y tarea y las empareja en tuplas.
-    Luego dict covierte las tuplas generadas por zip en pares clave-valor para crear un diccionario.
+        tareas = json.load(tareas_json)
 
-    '''
-    for tarea in tareas:
-        tarea_dict = dict(zip(headers, tarea))  # Crea un diccionario para cada tarea
-        tareas_dict.append(tarea_dict)
-    
-    return tareas_dict
+        tareas_json.close()
+
+        return  tareas
+    except Exception as e:
+        raise Exception('Error al obtener las tareas: \n', e)
 
 def obtener_tarea(uuid_tarea):
-    """
-    Busca una tarea por el UUID, itera  sobre la lista de tareas 
-    y verifica si el primer elemento de la fila (UUID) coincide 
-    con el UUID de la tarea buscada. Si se encuentra una coincidencia,
-    devuelve la tarea completa. Si no se encuentra ninguna tarea que 
-    coincida, devuelve None.
+    try:
+        tareas = obtener_tareas()
 
-    """
-    for tarea in MATRIZ_TAREAS:
-        if tarea[0] == uuid_tarea:
-            return tarea
+        for tarea in tareas:
+            if tarea['uuid'] == uuid_tarea:
+                return tarea
+            
+        return None
+    except Exception as e:
+        raise Exception('Error al obtener la tarea: \n', e)
 
-    return None
+def obtener_tareas_usuario(uuid_usuario):
+    try:
+        tareas = obtener_tareas()
 
-def obtener_tareas_usuario(id_usuario):
-    return 'tareas'
+        for tarea in tareas:
+            if tarea['uuid_usuario'] == uuid_usuario:
+                return tarea
+            
+        return None
+    except Exception as e:
+        raise Exception('Error al obtener la tarea: \n', e)
 
-def crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date):
-    """
-    Crea una nueva tarea y la agrega a la matriz de tareas. La función genera un 
-    UUID único para la tarea y se genera la fecha de creacion, y luego solicita 
-    los datos de la tarea mediante la función obtener_datos_tarea(). Luego, crea 
-    una nueva fila en la matriz de tareas con los datos proporcionados y la agrega 
-    a la matriz. Finalmente, llama a la función visualizar_matriz() para mostrar la 
-    matriz de tareas actualizada.
-    """
+def crear_tarea(tarea):
+    try:
+        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
 
-    #Almacenar en matrices 
-    tarea = [
-        generar_uuid(),
-        titulo_tarea,
-        descripcion_tarea,
-        uuid_usuario,
-        uuid_proyecto,
-        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        end_date,
-    ]
+        tareas = json.load(tareas_json)
 
-    MATRIZ_TAREAS.append(tarea)
+        tareas.append(tarea)
+        
+        tareas_json.seek(0)
 
-    visualizar_matriz(MATRIZ_TAREAS)
+        json.dump(tareas, tareas_json, indent=4)
 
-def modificar_tarea(uuid_tarea, titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, created_at, end_date):  
-    """
-        Función para modificar los datos de una tarea existente.
-        Se puede modificar el titulo, descripcion, el proyecto 
-        asignado, usuario asignado y fecha de finalizacion.
-    """
+        return True
+    except Exception as e:
+        raise Exception('Error al crear la tarea: \n', e)
 
-    nueva_tarea = [
-        uuid_tarea,
-        titulo_tarea,
-        descripcion_tarea,
-        uuid_usuario,
-        uuid_proyecto,
-        created_at,
-        end_date,
-    ]
+def modificar_tarea(nueva_tarea):  
+    try:
+        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
 
-    index = MATRIZ_TAREAS.index(tarea)
+        tareas = json.load(tareas_json)
 
-    MATRIZ_TAREAS[index] = nueva_tarea
-    
+        tarea = next((equipo for equipo in tareas if equipo['uuid'] == nueva_tarea["uuid"]), None)
+
+        if (not tarea):
+            raise Exception('No se encontró el equipo')
+        
+        tareas[tareas.index(tarea)] = nueva_tarea
+
+        tareas_json.seek(0)
+
+        json.dump(tareas, tareas_json, indent=4)
+
+        return True
+    except Exception as e:
+        raise Exception('Error al modificar la tarea: \n', e)
+
 def asignar_usuario_tarea(uuid_tarea, id_usuario):
     return 'success'
 
@@ -115,16 +84,22 @@ def asignar_proyecto_tarea(id_proyecto):
     return 'success'
 
 def eliminar_tarea(uuid_tarea):
-    """
-    Elimina una tarea de la matriz de tareas,  si la tarea no existe
-    se muestra un mensaje de error.
-    """
-    tarea = obtener_tarea(uuid_tarea)
+    try:
+        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
 
-    if not tarea:
-        return print("Error: tarea no encontrada.")
+        tareas = json.load(tareas_json)
 
-    index = MATRIZ_TAREAS.index(tarea)
+        tarea = next((tarea for equipo in tareas if equipo['uuid'] == uuid_tarea), None)
 
-    MATRIZ_TAREAS.pop(index)
-    print("Tarea eliminada exitosamente")
+        if (not tarea):
+            raise Exception('No se encontró la tarea')
+
+        tareas.remove(tarea)
+
+        tareas_json.seek(0)
+
+        json.dump(tareas, tareas_json, indent=4)
+
+        return True
+    except Exception as e:
+        raise Exception('Error al eliminar la tarea: \n', e)
