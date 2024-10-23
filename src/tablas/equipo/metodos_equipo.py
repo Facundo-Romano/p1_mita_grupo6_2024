@@ -43,16 +43,18 @@ def crear_equipo(equipo):
     except Exception as e:
         raise Exception('Error al crear el equipo: \n', e)
     
-def modificar_equipo(uuid_equipo, equipo):
+def modificar_equipo(nuevo_equipo):
     try:
         equipos_json = open(RUTA_ABSOLUTA_EQUIPOS, 'r+', encoding='UTF-8')
 
         equipos = json.load(equipos_json)
 
-        equipo = next((equipo for equipo in equipos if equipo['uuid'] == uuid_equipo), None)
+        equipo = next((equipo for equipo in equipos if equipo['uuid'] == nuevo_equipo["uuid"]), None)
 
         if (not equipo):
             raise Exception('No se encontró el equipo')
+        
+        equipos[equipos.index(equipo)] = nuevo_equipo
 
         equipos_json.seek(0)
 
