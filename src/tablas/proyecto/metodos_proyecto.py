@@ -1,6 +1,6 @@
 from datetime import datetime
 from misc.metodos_uuid import generar_uuid
-from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto
+"""from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto"""
 
 #Contiene la Lista de Diccionarios (lista de todos los proyectos)
 proyectos = [
@@ -31,19 +31,15 @@ def obtener_proyecto(id_proyecto):
             return proyecto
     return None
 
-def crear_proyecto():
+def crear_proyecto(nombre_proyecto, end_date):
     """
         Funcion para crear un proyecto
-
         Retorna:
-            string: uuid del proyecto creado
+            Diccionario con la información del proyecto creado.
     """
 
     id_proyecto = generar_uuid()
-    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    [nombre_proyecto, end_date] = obtener_datos_proyecto()
-    """Para reutilizar código"""
+    created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
     #Diccionario proyecto
     proyecto = {
@@ -66,7 +62,8 @@ def modificar_proyecto(id_proyecto):
     if not proyecto:
         return print("Error: proyecto no encontrado.")
     
-    [nombre_proyecto, end_date] = obtener_datos_proyecto()
+    # Eliminar obtener datos
+    """[nombre_proyecto, end_date] = obtener_datos_proyecto()"""
 
     nuevo_proyecto = [
         proyecto['uuid'], #uuid

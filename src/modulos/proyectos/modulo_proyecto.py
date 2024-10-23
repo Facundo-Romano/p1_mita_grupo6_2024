@@ -1,5 +1,6 @@
 from misc.metodos_validacion import validar_texto, validar_fecha
 from misc.metodos_visualizacion import limpiar_consola
+from tablas.proyecto.metodos_proyecto import crear_proyecto
 
 def menu_proyectos(usuario):
     while True:
@@ -7,22 +8,22 @@ def menu_proyectos(usuario):
         print("Menú de proyectos")
         print("1. Mis proyectos")
         print("2. Crear nuevo proyecto")
-        print("2. Editar proyecto")
+        print("3. Editar proyecto")
         print("4. Eliminar proyecto")
-        print("5. Salir")
+        print("5. Volver")
 
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Poryectos: ")
+            print("Proyectos: ")
             # Llamar a la función para obtener tarea
             """ tareas = obtener_tareas(usuario)
             mostrar_tareas(tareas) """
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            """ [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
-            
-            crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date) """
+            [nombre_proyecto, end_date] = obtener_datos_proyecto(usuario)
+
+            crear_proyecto(nombre_proyecto, end_date)
         elif opcion == "3":
             # Llamar a la función para modificar tarea
            """  tareas = obtener_tareas(usuario)
@@ -58,9 +59,9 @@ def menu_proyectos(usuario):
         else:
             print("Opción inválida. Intente nuevamente.")
 
-menu_proyectos()
+def obtener_datos_proyecto(usuario):
 
-def obtener_datos_proyecto():
+    # Ver que pedir con Usuario
     """
     Obtiene los datos necesarios para crear un proyecto.
     Retorna una lista con los elementos introducidos.

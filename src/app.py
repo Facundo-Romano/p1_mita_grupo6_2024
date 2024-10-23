@@ -3,6 +3,7 @@ from modulos.login.modulo_login import menu_login
 """ from modulos.tareas.modulo_tareas import menu_tareas
 from modulos.proyectos.modulo_proyecto import menu_proyectos
 from modulos.equipos.modulo_equipos import menu_equipos """
+from modulos.proyectos.modulo_proyecto import menu_proyectos
 
 def menu_principal():
     print('Hola')
@@ -27,14 +28,14 @@ def menu_principal():
         print('3. Tareas')
         print('4. Salir')
 
-        opcion = input('Selecciona una opción')
+        opcion = input('Seleccione una opción: ')
 
         if opcion == '1':
             #Llamar menu equipos
             """ menu_equipos(usuario) """
         elif opcion == '2':
             #Llamar menu proyectos
-            """ menu_proyectos(usuario) """
+            menu_proyectos(usuario)
         elif opcion == '3':
             #Llamar menu tareas
             """ menu_tareas(usuario) """

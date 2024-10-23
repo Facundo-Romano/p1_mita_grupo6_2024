@@ -6,7 +6,7 @@ from misc.metodos_validacion import validar_texto, validar_contraseña, validar_
 
 def menu_login():
     limpiar_consola()
-    print('menu login')
+    print('Menú login')
 
     while True:
         print('1. Iniciar sesión')
