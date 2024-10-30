@@ -1,6 +1,6 @@
 from misc.metodos_validacion import validar_fecha, validar_texto
 from misc.metodos_uuid import generar_uuid
-from misc.metodos_visualizacion import mostrar_tareas, limpiar_consola
+from misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
 from tablas.equipo.metodos_equipo import obtener_equipo
 from tablas.proyecto.metodos_proyecto import obtener_proyectos
 from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
@@ -8,7 +8,7 @@ import datetime
 
 def menu_tareas(usuario):
     while True:
-        limpiar_consola()
+        #limpiar_consola()
         print("Menú de tareas")
         print("1. Mis tareas")
         print("2. Crear nueva tarea")
@@ -22,7 +22,8 @@ def menu_tareas(usuario):
             print("Tareas: ")
             # Llamar a la función para obtener tarea
             tareas = obtener_tareas_usuario(usuario["uuid"])
-            mostrar_tareas(tareas)
+            print(type(tareas))
+            mostrar_tareas_matriz(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
             [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario["uuid"])

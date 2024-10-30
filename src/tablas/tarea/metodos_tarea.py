@@ -6,13 +6,9 @@ RUTA_ABSOLUTA_TAREAS = obtener_ruta('tareas.json')
 
 def obtener_tareas():
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r', encoding='UTF-8')
-
-        tareas = json.load(tareas_json)
-
-        tareas_json.close()
-
-        return  tareas
+        with open(RUTA_ABSOLUTA_TAREAS, 'r', encoding='UTF-8') as tareas_json:
+            tareas = json.load(tareas_json)
+            return tareas
     except Exception as e:
         raise Exception('Error al obtener las tareas: \n', e)
 
@@ -31,14 +27,15 @@ def obtener_tarea(uuid_tarea):
 def obtener_tareas_usuario(uuid_usuario):
     try:
         tareas = obtener_tareas()
+        tareas_usuario = []  # Lista para almacenar las tareas del usuario
 
         for tarea in tareas:
             if tarea['uuid_usuario'] == uuid_usuario:
-                return tarea
-            
-        return None
+                tareas_usuario.append(tarea)  # Agregar la tarea a la lista
+
+        return tareas_usuario  # Devolver la lista de tareas del usuario
     except Exception as e:
-        raise Exception('Error al obtener la tarea: \n', e)
+        raise Exception('Error al obtener las tareas del usuario: \n', e)
 
 def crear_tarea(tarea):
     try:
