@@ -61,6 +61,8 @@ def crear_tarea(tarea):
 
             tareas_json.truncate()  # Asegúrate de truncar el archivo después de escribir
 
+            print("Tarea creada con exito.")
+            
         return True
     except json.JSONDecodeError:
         print("El archivo JSON está corrupto. Inicializando con una lista vacía.")
@@ -87,6 +89,8 @@ def modificar_tarea(nueva_tarea):
 
         json.dump(tareas, tareas_json, indent=4)
 
+        print("Tarea modificada con exito.")
+        
         return True
     except Exception as e:
         raise Exception('Error al modificar la tarea: \n', e)
@@ -99,21 +103,29 @@ def asignar_proyecto_tarea(id_proyecto):
 
 def eliminar_tarea(uuid_tarea):
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
+        with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:
+            tareas = json.load(tareas_json)
 
-        tareas = json.load(tareas_json)
+            # Busca la tarea con el UUID proporcionado
+            tarea = next((tarea for tarea in tareas if tarea['uuid'] == uuid_tarea), None)
 
-        tarea = next((tarea for equipo in tareas if equipo['uuid'] == uuid_tarea), None)
+            if tarea is None:
+                raise Exception('No se encontró la tarea')
 
-        if (not tarea):
-            raise Exception('No se encontró la tarea')
+            # Elimina la tarea de la lista
+            tareas.remove(tarea)
 
-        tareas.remove(tarea)
+            # Volver al principio del archivo para escribir
+            tareas_json.seek(0)
 
-        tareas_json.seek(0)
+            # Guardar las tareas actualizadas en el archivo
+            json.dump(tareas, tareas_json, indent=4)
 
-        json.dump(tareas, tareas_json, indent=4)
-
+            # Truncar el archivo para eliminar el contenido restante
+            tareas_json.truncate()
+            
+            print("Tarea eliminada con exito.")
+            
         return True
     except Exception as e:
         raise Exception('Error al eliminar la tarea: \n', e)

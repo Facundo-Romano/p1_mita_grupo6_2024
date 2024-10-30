@@ -12,7 +12,7 @@ def menu_tareas(usuario):
         print("Menú de tareas")
         print("1. Mis tareas")
         print("2. Crear nueva tarea")
-        print("2. Editar tarea")
+        print("3. Editar tarea")
         print("4. Eliminar tarea")
         print("5. Salir")
 
@@ -71,15 +71,23 @@ def menu_tareas(usuario):
                 }
 
                 modificar_tarea(tarea)
+                
         elif opcion == "4":
-            # Llamar a la función para eliminar tarea
-            tareas = obtener_tareas(usuario)
-            
+            tareas = obtener_tareas_usuario(usuario["uuid"])
             mostrar_tareas(tareas)
-            
+
+            # Obtener el número de la tarea a modificar
             numero = input("Ingrese el numero de la tarea a modificar: ")
 
-            tarea_a_eliminar = tareas[numero]
+            # Verificar que el input sea un número entero válido
+            try:
+                numero = int(numero)  # Convertir a entero
+                if numero < 0 or numero >= len(tareas):
+                    raise ValueError("Número fuera de rango.")
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+            else:
+                tarea_a_eliminar = tareas[numero]
 
             print('Se va a eliminar la tarea: ')
             print(tarea_a_eliminar)
