@@ -22,9 +22,9 @@ def menu_proyectos(usuario):
             mostrar_proyectos(proyectos)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            [nombre_proyecto, end_date] = obtener_datos_proyecto(usuario)
+            datos_proyecto = obtener_datos_proyecto(usuario)
 
-            crear_proyecto(nombre_proyecto, end_date)
+            crear_proyecto(datos_proyecto)
         elif opcion == "3":
             # Llamar a la función para modificar tarea
            """  tareas = obtener_tareas(usuario)
@@ -78,4 +78,5 @@ def obtener_datos_proyecto(usuario):
     while validar_fecha(end_date) == False:
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
-    return [nombre_proyecto, end_date]
+    datos_proyecto = nombre_proyecto, end_date
+    return datos_proyecto

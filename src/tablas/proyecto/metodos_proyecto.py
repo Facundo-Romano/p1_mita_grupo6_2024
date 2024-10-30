@@ -56,23 +56,45 @@ def obtener_proyecto(id_proyecto):
 
 def crear_proyecto(nombre_proyecto, end_date):
     """
-        Funcion para crear un proyecto
-        Retorna:
-            Diccionario con la información del proyecto creado.
+        Función para crear un proyecto y guardarlo en un archivo JSON.
+        
     """
 
     id_proyecto = generar_uuid()
     created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
     #Diccionario proyecto
+    # Revisar si agregar equipo o no / pedir asignar equipo al proyecto
     proyecto = {
         "id": id_proyecto,
         "nombre": nombre_proyecto,
         "created_at": created_at,
-        "end_date": end_date
+        "end_date": end_date,
+        "deleted_at": None
     }
-    proyectos.append(proyecto)
-    return proyecto
+    
+    try:
+
+        #  Abre el archivo y carga los proyectos desde el archivo JSON
+        with open(RUTA_ABSOLUTA_PROYECTOS, 'r', encoding='UTF-8') as archivo_json:
+            proyectos = json.load(archivo_json)
+            if not isinstance(proyectos, list):
+                print("Error: El archivo JSON no contiene una lista de proyectos.")
+                proyectos = []
+
+        proyectos.append(proyecto)
+
+        # Agregar el nuevo proyecto a la lista de proyectos
+        with open(RUTA_ABSOLUTA_PROYECTOS, 'w', encoding='UTF-8') as archivo_json:
+            json.dump(proyectos, archivo_json, ensure_ascii=False, indent =4) # "ensure_ascii" para evitar la codificación de los caracteres en formato Unicode
+
+    except json.JSONDecodeError as e:
+        print("El archivo JSON está mal formateado:", e)    
+    except (FileNotFoundError, OSError) as e:
+        print("Ocurrió un error:", e)
+    
+    else:
+        print("El proyecto se ha creado y guardado correctamente")
 
 def modificar_proyecto(id_proyecto):
     """
