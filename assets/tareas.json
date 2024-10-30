@@ -46,11 +46,20 @@
     },
     {
         "uuid": "91e671d0-6bb7-4f05-8926-afd2ab8883fb",
-        "titulo": "tareaaa",
-        "descripcion": "asdasdasd",
+        "titulo": "tarea numero mil",
+        "descripcion": "ihkujasbdiuabs",
         "uuid_usuario": "1",
         "uuid_proyecto": "4t5gb254bv4twv4tw ",
         "created_at": "30-10-2024 15:53:08",
-        "end_date": "11-11-1111"
+        "end_date": "12-12-1212"
+    },
+    {
+        "uuid": "e0ad61e3-97db-4130-98c3-70b0bcfc8d4a",
+        "titulo": "septima tarea",
+        "descripcion": "nose si la mejor tarea",
+        "uuid_usuario": "uuid2",
+        "uuid_proyecto": "4t5gb254bv4twv4tw ",
+        "created_at": "30-10-2024 16:12:52",
+        "end_date": "11-11-1234"
     }
 ]

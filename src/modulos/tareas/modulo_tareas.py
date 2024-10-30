@@ -40,29 +40,37 @@ def menu_tareas(usuario):
             print("Datos de la tarea a guardar:", tarea)
             crear_tarea(tarea)
         elif opcion == "3":
-            # Llamar a la función para modificar tarea
-            tareas = obtener_tareas(usuario)
+            tareas = obtener_tareas_usuario(usuario["uuid"])
             mostrar_tareas(tareas)
+
+            # Obtener el número de la tarea a modificar
             numero = input("Ingrese el numero de la tarea a modificar: ")
 
-            tarea_a_modificar = tareas[numero]
+            # Verificar que el input sea un número entero válido
+            try:
+                numero = int(numero)  # Convertir a entero
+                if numero < 0 or numero >= len(tareas):
+                    raise ValueError("Número fuera de rango.")
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+            else:
+                tarea_a_modificar = tareas[numero]
 
-            print(tarea_a_modificar)
+                print(tarea_a_modificar)
 
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
+                [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
 
-            tarea = {
-                "uuid" :  tarea_a_modificar["uuid"],
-                "titulo": titulo_tarea,
-                "descripcion": descripcion_tarea,
-                "uuid_usuario": uuid_usuario,
-                "uuid_proyecto": uuid_proyecto,
-                "created_at":  tarea_a_modificar["created_at"],
-                "end_date": end_date
-                
-            }
+                tarea = {
+                    "uuid": tarea_a_modificar["uuid"],
+                    "titulo": titulo_tarea,
+                    "descripcion": descripcion_tarea,
+                    "uuid_usuario": uuid_usuario,
+                    "uuid_proyecto": uuid_proyecto,
+                    "created_at": tarea_a_modificar["created_at"],
+                    "end_date": end_date
+                }
 
-            modificar_tarea(tarea)
+                modificar_tarea(tarea)
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
             tareas = obtener_tareas(usuario)
