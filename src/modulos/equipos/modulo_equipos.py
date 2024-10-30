@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from misc.metodos_visualizacion import limpiar_consola, mostrar_equipos
 from misc.metodos_uuid import generar_uuid 
 from tablas.equipo.metodos_equipo import obtener_equipos, obtener_equipo, crear_equipo, modificar_equipo, eliminar_equipo
@@ -35,10 +35,10 @@ def menu_equipos(usuario):
             deleted_at = None
 
             equipo = {
-                uuid,
-                nombre,
-                created_at,
-                deleted_at
+                "uuid": uuid,
+                "nombre": nombre,
+                "created_at": created_at,
+                "deleted_at": deleted_at
             }
 
             crear_equipo(equipo)
