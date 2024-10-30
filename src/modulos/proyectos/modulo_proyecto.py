@@ -1,6 +1,6 @@
-from misc.metodos_validacion import validar_texto, validar_fecha
-from misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos
-from tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos
+from src.misc.metodos_validacion import validar_texto, validar_fecha
+from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos
+from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos
 
 
 def menu_proyectos(usuario):

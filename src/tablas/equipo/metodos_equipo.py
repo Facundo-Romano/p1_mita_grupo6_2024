@@ -1,6 +1,6 @@
 import json
-from misc.metodos_os import obtener_ruta 
-from misc.metodos_formateo_datos import convertir_a_lista 
+from src.misc.metodos_os import obtener_ruta 
+from src.misc.metodos_formateo_datos import convertir_a_lista 
 
 RUTA_ABSOLUTA_EQUIPOS = obtener_ruta('equipos.json')
 

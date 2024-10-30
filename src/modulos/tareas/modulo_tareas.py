@@ -1,9 +1,9 @@
-from misc.metodos_validacion import validar_fecha, validar_texto
-from misc.metodos_uuid import generar_uuid
-from misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
-from tablas.equipo.metodos_equipo import obtener_equipo
-from tablas.proyecto.metodos_proyecto import obtener_proyectos
-from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
+from src.misc.metodos_validacion import validar_fecha, validar_texto
+from src.misc.metodos_uuid import generar_uuid
+from src.misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
+from src.tablas.equipo.metodos_equipo import obtener_equipo
+from src.tablas.proyecto.metodos_proyecto import obtener_proyectos
+from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
 import datetime
 
 def menu_tareas(usuario):

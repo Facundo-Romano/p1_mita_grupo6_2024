@@ -1,5 +1,5 @@
-from misc.metodos_visualizacion import visualizar_matriz
-from misc.metodos_os import  obtener_ruta
+from src.misc.metodos_visualizacion import visualizar_matriz
+from src.misc.metodos_os import  obtener_ruta
 import json
   
 RUTA_ABSOLUTA_TAREAS = obtener_ruta('tareas.json')
