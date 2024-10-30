@@ -105,7 +105,7 @@ def obtener_datos_tarea(usuario):
     fecha de finalización, usuario asignado y proyecto asociado. La función solicita la 
     entrada del usuario para cada campo, validando la entrada para asegurarse de que sea 
     válida. Luego, selecciona el proyecto asociado a partir de una lista de proyectos 
-    disponibles para el usuario y devuelve un arreglo con todos los datos recopilados. 
+    disponibles para el usuario y devuelve un arreglo con todos los datos recopiladoss. 
 
     """
 
