@@ -4,7 +4,7 @@ from misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
 from tablas.equipo.metodos_equipo import obtener_equipo
 from tablas.proyecto.metodos_proyecto import obtener_proyectos
 from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
-import datetime
+from datetime import datetime
 
 def menu_tareas(usuario):
     while True:
@@ -26,10 +26,10 @@ def menu_tareas(usuario):
             mostrar_tareas_matriz(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario["uuid"])
+            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
             
             tarea = {
-                "uuid" :  generar_uuid,
+                "uuid" :  generar_uuid(),
                 "titulo": titulo_tarea,
                 "descripcion": descripcion_tarea,
                 "uuid_usuario": uuid_usuario,
@@ -37,8 +37,8 @@ def menu_tareas(usuario):
                 "created_at":  datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
                 "end_date": end_date
             }
-
-            crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date)
+            print("Datos de la tarea a guardar:", tarea)
+            crear_tarea(tarea)
         elif opcion == "3":
             # Llamar a la función para modificar tarea
             tareas = obtener_tareas(usuario)
@@ -111,31 +111,30 @@ def obtener_datos_tarea(usuario):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
     uuid_usuario = usuario['uuid']
-    proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
+    #proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
 
-    proyecto_seleccionado = None
+    #proyecto_seleccionado = None
     
-    while not proyecto_seleccionado:
-        print("Seleccione el proyecto al que desea asignar la tarea: ")
+    #while not proyecto_seleccionado:
+     #   print("Seleccione el proyecto al que desea asignar la tarea: ")
 
-        for proyecto in proyectos_del_equipo:
-            print(f"Proyecto: {proyecto['nombre']}")
+      #  for proyecto in proyectos_del_equipo:
+       #     print(f"Proyecto: {proyecto['nombre']}")
 
-        nombre_proyecto = input("Ingrese el nombre del proyecto: ")
+        #nombre_proyecto = input("Ingrese el nombre del proyecto: ")
 
-        for proyecto in proyectos_del_equipo:
-            if proyecto['nombre'] == nombre_proyecto:
-                proyecto_seleccionado = proyecto
-                break
+        #for proyecto in proyectos_del_equipo:
+         ##      proyecto_seleccionado = proyecto
+           #     break
         
-        if proyecto_seleccionado == None:
-            print("Proyecto no encontrado.")
+       # if proyecto_seleccionado == None:
+        #    print("Proyecto no encontrado.")
 
     return [
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
-        proyecto_seleccionado['uuid'],
+        "4t5gb254bv4twv4tw ",
         end_date,
     ]
 

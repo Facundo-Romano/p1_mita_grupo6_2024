@@ -11,6 +11,8 @@ def obtener_tareas():
             return tareas
     except Exception as e:
         raise Exception('Error al obtener las tareas: \n', e)
+    finally:
+        tareas_json.close()
 
 def obtener_tarea(uuid_tarea):
     try:
@@ -39,18 +41,33 @@ def obtener_tareas_usuario(uuid_usuario):
 
 def crear_tarea(tarea):
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
+        # Abrir el archivo en modo lectura y escritura
+        with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:
+            # Leer el contenido del archivo y verificar que no esté vacío
+            contenido = tareas_json.read().strip()  # Leer y eliminar espacios en blanco
 
-        tareas = json.load(tareas_json)
+            if contenido == "":
+                print("El archivo está vacío.")
+            else:
+                # Intentar cargar las tareas existentes
+                tareas_json.seek(0)  # Asegúrate de estar al principio para leer
+                tareas = json.load(tareas_json)
 
-        tareas.append(tarea)
-        
-        tareas_json.seek(0)
+            tareas.append(tarea)  # Agregar la nueva tarea
 
-        json.dump(tareas, tareas_json, indent=4)
+            # Volver al principio del archivo para escribir
+            tareas_json.seek(0)  
+            json.dump(tareas, tareas_json, indent=4)  # Guardar las tareas
+
+            tareas_json.truncate()  # Asegúrate de truncar el archivo después de escribir
 
         return True
+    except json.JSONDecodeError:
+        print("El archivo JSON está corrupto. Inicializando con una lista vacía.")
+        with open(RUTA_ABSOLUTA_TAREAS, 'w', encoding='UTF-8') as tareas_json:
+            tareas_json.write("[]")  # Inicializar con una lista vacía
     except Exception as e:
+        print(f"Error: {e}")  # Imprimir el error para mayor claridad
         raise Exception('Error al crear la tarea: \n', e)
 
 def modificar_tarea(nueva_tarea):  
