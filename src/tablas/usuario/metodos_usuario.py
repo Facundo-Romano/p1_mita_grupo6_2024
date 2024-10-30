@@ -1,7 +1,7 @@
-from tablas.equipo.metodos_equipo import obtener_equipos
-from misc.metodos_uuid import generar_uuid
-from misc.metodos_validacion import validar_mail, validar_contraseña, validar_texto
 from datetime import datetime
+from src.tablas.equipo.metodos_equipo import obtener_equipos
+from src.misc.metodos_uuid import generar_uuid
+from src.misc.metodos_validacion import validar_mail, validar_contraseña, validar_texto
 
 def obtener_usuarios():
     return 'usuarios'

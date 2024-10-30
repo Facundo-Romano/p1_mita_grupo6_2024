@@ -1,6 +1,6 @@
 import json
-from misc.metodos_os import obtener_ruta 
-from misc.metodos_formateo_datos import convertir_a_lista 
+from src.misc.metodos_os import obtener_ruta 
+from src.misc.metodos_formateo_datos import convertir_a_lista 
 
 RUTA_ABSOLUTA_EQUIPOS = obtener_ruta('equipos.json')
 
@@ -79,8 +79,11 @@ def eliminar_equipo(uuid_equipo):
             raise Exception('No se encontró el equipo')
 
         equipos.remove(equipo)
+        
+        equipos = convertir_a_lista(equipos)
 
         equipos_json.seek(0)
+        equipos_json.truncate()
 
         json.dump(equipos, equipos_json, indent=4)
 

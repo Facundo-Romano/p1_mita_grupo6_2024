@@ -1,8 +1,8 @@
 import json
 from datetime import datetime
-from misc.metodos_uuid import generar_uuid
-from misc.metodos_os import obtener_ruta
-"""from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto"""
+from src.misc.metodos_uuid import generar_uuid
+from src.misc.metodos_os import obtener_ruta
+"""from src.modulos.proyectos.modulo_proyecto import obtener_datos_proyecto"""
 
 RUTA_ABSOLUTA_PROYECTOS = obtener_ruta('proyectos.json')
 

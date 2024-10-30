@@ -1,5 +1,5 @@
-from misc.metodos_visualizacion import visualizar_matriz
-from misc.metodos_os import  obtener_ruta
+from src.misc.metodos_visualizacion import visualizar_matriz
+from src.misc.metodos_os import  obtener_ruta
 import json
   
 RUTA_ABSOLUTA_TAREAS = obtener_ruta('tareas.json')
@@ -11,6 +11,8 @@ def obtener_tareas():
             return tareas
     except Exception as e:
         raise Exception('Error al obtener las tareas: \n', e)
+    finally:
+        tareas_json.close()
 
 def obtener_tarea(uuid_tarea):
     try:
@@ -39,18 +41,35 @@ def obtener_tareas_usuario(uuid_usuario):
 
 def crear_tarea(tarea):
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
+        # Abrir el archivo en modo lectura y escritura
+        with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:
+            # Leer el contenido del archivo y verificar que no esté vacío
+            contenido = tareas_json.read().strip()  # Leer y eliminar espacios en blanco
 
-        tareas = json.load(tareas_json)
+            if contenido == "":
+                print("El archivo está vacío.")
+            else:
+                # Intentar cargar las tareas existentes
+                tareas_json.seek(0)  # Asegúrate de estar al principio para leer
+                tareas = json.load(tareas_json)
 
-        tareas.append(tarea)
-        
-        tareas_json.seek(0)
+            tareas.append(tarea)  # Agregar la nueva tarea
 
-        json.dump(tareas, tareas_json, indent=4)
+            # Volver al principio del archivo para escribir
+            tareas_json.seek(0)  
+            json.dump(tareas, tareas_json, indent=4)  # Guardar las tareas
 
+            tareas_json.truncate()  # Asegúrate de truncar el archivo después de escribir
+
+            print("Tarea creada con exito.")
+            
         return True
+    except json.JSONDecodeError:
+        print("El archivo JSON está corrupto. Inicializando con una lista vacía.")
+        with open(RUTA_ABSOLUTA_TAREAS, 'w', encoding='UTF-8') as tareas_json:
+            tareas_json.write("[]")  # Inicializar con una lista vacía
     except Exception as e:
+        print(f"Error: {e}")  # Imprimir el error para mayor claridad
         raise Exception('Error al crear la tarea: \n', e)
 
 def modificar_tarea(nueva_tarea):  
@@ -70,6 +89,8 @@ def modificar_tarea(nueva_tarea):
 
         json.dump(tareas, tareas_json, indent=4)
 
+        print("Tarea modificada con exito.")
+        
         return True
     except Exception as e:
         raise Exception('Error al modificar la tarea: \n', e)
@@ -82,21 +103,29 @@ def asignar_proyecto_tarea(id_proyecto):
 
 def eliminar_tarea(uuid_tarea):
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
+        with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:
+            tareas = json.load(tareas_json)
 
-        tareas = json.load(tareas_json)
+            # Busca la tarea con el UUID proporcionado
+            tarea = next((tarea for tarea in tareas if tarea['uuid'] == uuid_tarea), None)
 
-        tarea = next((tarea for equipo in tareas if equipo['uuid'] == uuid_tarea), None)
+            if tarea is None:
+                raise Exception('No se encontró la tarea')
 
-        if (not tarea):
-            raise Exception('No se encontró la tarea')
+            # Elimina la tarea de la lista
+            tareas.remove(tarea)
 
-        tareas.remove(tarea)
+            # Volver al principio del archivo para escribir
+            tareas_json.seek(0)
 
-        tareas_json.seek(0)
+            # Guardar las tareas actualizadas en el archivo
+            json.dump(tareas, tareas_json, indent=4)
 
-        json.dump(tareas, tareas_json, indent=4)
-
+            # Truncar el archivo para eliminar el contenido restante
+            tareas_json.truncate()
+            
+            print("Tarea eliminada con exito.")
+            
         return True
     except Exception as e:
         raise Exception('Error al eliminar la tarea: \n', e)

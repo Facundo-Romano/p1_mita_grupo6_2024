@@ -1,8 +1,8 @@
-from misc.metodos_os import obtener_ruta
 from datetime import datetime
-from misc.metodos_uuid import generar_uuid
-from misc.metodos_visualizacion import limpiar_consola
-from misc.metodos_validacion import validar_texto, validar_contraseña, validar_mail
+from src.misc.metodos_os import obtener_ruta
+from src.misc.metodos_uuid import generar_uuid
+from src.misc.metodos_visualizacion import limpiar_consola
+from src.misc.metodos_validacion import validar_texto, validar_contraseña, validar_mail
 
 RUTA_USUARIOS = obtener_ruta('usuarios.txt')
 

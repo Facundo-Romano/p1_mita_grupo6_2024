@@ -1,9 +1,9 @@
-from misc.metodos_visualizacion import limpiar_consola
-from modulos.login.modulo_login import menu_login
-from modulos.tareas.modulo_tareas import menu_tareas
-from modulos.proyectos.modulo_proyecto import menu_proyectos 
-from modulos.equipos.modulo_equipos import menu_equipos
-from modulos.proyectos.modulo_proyecto import menu_proyectos
+from src.misc.metodos_visualizacion import limpiar_consola
+from src.modulos.login.modulo_login import menu_login
+from src.modulos.tareas.modulo_tareas import menu_tareas
+from src.modulos.proyectos.modulo_proyecto import menu_proyectos 
+from src.modulos.equipos.modulo_equipos import menu_equipos
+from src.modulos.proyectos.modulo_proyecto import menu_proyectos
 
 def menu_principal():
     print('Hola')
@@ -42,5 +42,3 @@ def menu_principal():
             break
         else:
             print('Opción inválida')
-    
-menu_principal()

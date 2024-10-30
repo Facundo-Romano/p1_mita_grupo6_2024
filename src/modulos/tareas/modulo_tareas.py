@@ -1,10 +1,8 @@
-from misc.metodos_validacion import validar_fecha, validar_texto
-from misc.metodos_uuid import generar_uuid
-from misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
-from tablas.equipo.metodos_equipo import obtener_equipo
-from tablas.proyecto.metodos_proyecto import obtener_proyectos
-from tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
-import datetime
+from datetime import datetime
+from src.misc.metodos_validacion import validar_fecha, validar_texto
+from src.misc.metodos_uuid import generar_uuid
+from src.misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
+from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
 
 def menu_tareas(usuario):
     while True:
@@ -12,7 +10,7 @@ def menu_tareas(usuario):
         print("Menú de tareas")
         print("1. Mis tareas")
         print("2. Crear nueva tarea")
-        print("2. Editar tarea")
+        print("3. Editar tarea")
         print("4. Eliminar tarea")
         print("5. Salir")
 
@@ -26,10 +24,10 @@ def menu_tareas(usuario):
             mostrar_tareas_matriz(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario["uuid"])
+            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
             
             tarea = {
-                "uuid" :  generar_uuid,
+                "uuid" :  generar_uuid(),
                 "titulo": titulo_tarea,
                 "descripcion": descripcion_tarea,
                 "uuid_usuario": uuid_usuario,
@@ -37,41 +35,57 @@ def menu_tareas(usuario):
                 "created_at":  datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
                 "end_date": end_date
             }
-
-            crear_tarea(titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date)
+            print("Datos de la tarea a guardar:", tarea)
+            crear_tarea(tarea)
         elif opcion == "3":
-            # Llamar a la función para modificar tarea
-            tareas = obtener_tareas(usuario)
+            tareas = obtener_tareas_usuario(usuario["uuid"])
             mostrar_tareas(tareas)
+
+            # Obtener el número de la tarea a modificar
             numero = input("Ingrese el numero de la tarea a modificar: ")
 
-            tarea_a_modificar = tareas[numero]
+            # Verificar que el input sea un número entero válido
+            try:
+                numero = int(numero)  # Convertir a entero
+                if numero < 0 or numero >= len(tareas):
+                    raise ValueError("Número fuera de rango.")
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+            else:
+                tarea_a_modificar = tareas[numero]
 
-            print(tarea_a_modificar)
+                print(tarea_a_modificar)
 
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
+                [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
 
-            tarea = {
-                "uuid" :  tarea_a_modificar["uuid"],
-                "titulo": titulo_tarea,
-                "descripcion": descripcion_tarea,
-                "uuid_usuario": uuid_usuario,
-                "uuid_proyecto": uuid_proyecto,
-                "created_at":  tarea_a_modificar["created_at"],
-                "end_date": end_date
+                tarea = {
+                    "uuid": tarea_a_modificar["uuid"],
+                    "titulo": titulo_tarea,
+                    "descripcion": descripcion_tarea,
+                    "uuid_usuario": uuid_usuario,
+                    "uuid_proyecto": uuid_proyecto,
+                    "created_at": tarea_a_modificar["created_at"],
+                    "end_date": end_date
+                }
+
+                modificar_tarea(tarea)
                 
-            }
-
-            modificar_tarea(tarea)
         elif opcion == "4":
-            # Llamar a la función para eliminar tarea
-            tareas = obtener_tareas(usuario)
-            
+            tareas = obtener_tareas_usuario(usuario["uuid"])
             mostrar_tareas(tareas)
-            
+
+            # Obtener el número de la tarea a modificar
             numero = input("Ingrese el numero de la tarea a modificar: ")
 
-            tarea_a_eliminar = tareas[numero]
+            # Verificar que el input sea un número entero válido
+            try:
+                numero = int(numero)  # Convertir a entero
+                if numero < 0 or numero >= len(tareas):
+                    raise ValueError("Número fuera de rango.")
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
+            else:
+                tarea_a_eliminar = tareas[numero]
 
             print('Se va a eliminar la tarea: ')
             print(tarea_a_eliminar)
@@ -91,7 +105,7 @@ def obtener_datos_tarea(usuario):
     fecha de finalización, usuario asignado y proyecto asociado. La función solicita la 
     entrada del usuario para cada campo, validando la entrada para asegurarse de que sea 
     válida. Luego, selecciona el proyecto asociado a partir de una lista de proyectos 
-    disponibles para el usuario y devuelve un arreglo con todos los datos recopilados. 
+    disponibles para el usuario y devuelve un arreglo con todos los datos recopiladoss. 
 
     """
 
@@ -111,31 +125,30 @@ def obtener_datos_tarea(usuario):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
     uuid_usuario = usuario['uuid']
-    proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
+    #proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
 
-    proyecto_seleccionado = None
+    #proyecto_seleccionado = None
     
-    while not proyecto_seleccionado:
-        print("Seleccione el proyecto al que desea asignar la tarea: ")
+    #while not proyecto_seleccionado:
+     #   print("Seleccione el proyecto al que desea asignar la tarea: ")
 
-        for proyecto in proyectos_del_equipo:
-            print(f"Proyecto: {proyecto['nombre']}")
+      #  for proyecto in proyectos_del_equipo:
+       #     print(f"Proyecto: {proyecto['nombre']}")
 
-        nombre_proyecto = input("Ingrese el nombre del proyecto: ")
+        #nombre_proyecto = input("Ingrese el nombre del proyecto: ")
 
-        for proyecto in proyectos_del_equipo:
-            if proyecto['nombre'] == nombre_proyecto:
-                proyecto_seleccionado = proyecto
-                break
+        #for proyecto in proyectos_del_equipo:
+         ##      proyecto_seleccionado = proyecto
+           #     break
         
-        if proyecto_seleccionado == None:
-            print("Proyecto no encontrado.")
+       # if proyecto_seleccionado == None:
+        #    print("Proyecto no encontrado.")
 
     return [
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
-        proyecto_seleccionado['uuid'],
+        "4t5gb254bv4twv4tw ",
         end_date,
     ]
 
