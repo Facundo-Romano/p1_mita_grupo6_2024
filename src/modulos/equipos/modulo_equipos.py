@@ -64,10 +64,10 @@ def menu_equipos(usuario):
             deleted_at = input("Ingrese la fecha de eliminación del equipo: ")
 
             equipo = {
-                uuid,
-                nombre,
-                created_at,
-                deleted_at
+                "uuid": uuid,
+                "nombre": nombre,
+                "created_at": created_at,
+                "deleted_at": deleted_at
             }
 
             modificar_equipo(equipo)
