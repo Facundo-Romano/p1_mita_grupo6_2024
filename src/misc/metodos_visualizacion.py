@@ -5,13 +5,26 @@ def limpiar_consola():
         os.system('cls')
     else:  # Para Linux y macOS
         os.system('clear')
+        
+def mostrar_tareas_matriz(tareas):
+    if not tareas:  # Si la lista de tareas está vacía
+        print("No hay tareas para mostrar.")
+        return
+
+    # Imprimir encabezados
+    print(f"{'UUID':<36} {'Título':<20} {'Descripción':<30} {'UUID Usuario':<15} {'UUID Proyecto':<25} {'Fecha de Creación':<20} {'Fecha de Fin':<25}")
+    print("=" * 165)  # Línea de separación
+
+    # Imprimir cada tarea
+    for tarea in tareas:
+        print(f"{tarea['uuid']:<36} {tarea['titulo']:<20} {tarea['descripcion']:<30} {tarea['uuid_usuario']:<15} {tarea['uuid_proyecto']:<25} {tarea['created_at']:<20} {tarea['end_date']:<15}")
 
 def mostrar_tareas(tareas):
     for tarea in tareas:
         print()
-        print(f"UUID: {tarea['uuid_prueba']}, Título: {tarea['titulo']}, Descripción: {tarea['descripcion']}, "
-              f"UUID Usuario: {tarea['uuid_usuario']}, UUID Proyecto: {tarea['uuid_proyecto']}, "
-              f"Fecha de Creación: {tarea['created_at']}, Fecha de Fin: {tarea['end_date']}")
+        print(f"UUID: {tarea['uuid']}, Título: {tarea['titulo']}, Descripción: {tarea['descripcion']}, "
+      f"UUID Usuario: {tarea['uuid_usuario']}, UUID Proyecto: {tarea['uuid_proyecto']}, "
+      f"Fecha de Creación: {tarea['created_at']}, Fecha de Fin: {tarea['end_date']}")
         print()  # Salto de línea para separar cada tarea
 
 def mostrar_equipos(equipos):
