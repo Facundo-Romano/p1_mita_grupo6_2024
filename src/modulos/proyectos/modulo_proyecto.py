@@ -1,10 +1,11 @@
 from misc.metodos_validacion import validar_texto, validar_fecha
-from misc.metodos_visualizacion import limpiar_consola
-from tablas.proyecto.metodos_proyecto import crear_proyecto
+from misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos
+from tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos
+
 
 def menu_proyectos(usuario):
+    limpiar_consola()
     while True:
-        limpiar_consola()
         print("Menú de proyectos")
         print("1. Mis proyectos")
         print("2. Crear nuevo proyecto")
@@ -16,9 +17,9 @@ def menu_proyectos(usuario):
 
         if opcion == "1":
             print("Proyectos: ")
-            # Llamar a la función para obtener tarea
-            """ tareas = obtener_tareas(usuario)
-            mostrar_tareas(tareas) """
+            # Llamar a la función para obtener todos los proyectos
+            proyectos = obtener_proyectos()
+            mostrar_proyectos(proyectos)
         elif opcion == "2":
             # Llamar a la función para crear tarea
             [nombre_proyecto, end_date] = obtener_datos_proyecto(usuario)

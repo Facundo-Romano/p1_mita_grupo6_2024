@@ -29,6 +29,7 @@ def menu_principal():
         opcion = input('Seleccione una opción: ')
 
         if opcion == '1':
+            #Llamar menu equipos
             menu_equipos(usuario)
         elif opcion == '2':
             #Llamar menu proyectos
@@ -37,6 +38,7 @@ def menu_principal():
             #Llamar menu tareas
             """ menu_tareas(usuario) """
         elif opcion == '4':
+            #Salir del programa
             break
         else:
             print('Opción inválida')

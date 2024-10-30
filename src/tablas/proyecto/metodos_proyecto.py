@@ -1,8 +1,13 @@
+import json
 from datetime import datetime
 from misc.metodos_uuid import generar_uuid
+from misc.metodos_os import obtener_ruta
 """from modulos.proyectos.modulo_proyecto import obtener_datos_proyecto"""
 
+RUTA_ABSOLUTA_PROYECTOS = obtener_ruta('proyectos.json')
+
 #Contiene la Lista de Diccionarios (lista de todos los proyectos)
+"""
 proyectos = [
         {
             'uuid': 'test1',
@@ -21,15 +26,33 @@ proyectos = [
             'deleted_at': None
         }
     ]
+"""
 
-def obtener_proyectos(id_equipo):
-    return proyectos
+def obtener_proyectos():
+    try:
+        with open(RUTA_ABSOLUTA_PROYECTOS, 'r', encoding='UTF-8') as archivo_json:
+            proyectos = json.load(archivo_json)
+            return proyectos
+
+    except FileNotFoundError as e:
+        print("No se ha encontrado el archivo:",e)
+        return [] # Retorna una lista vacia en vez de None para que no ocurra error en otra funcion (obtener_proyecto).
+    except OSError as e:
+        print("Ha ocurrido un error:",e)
+        return []
 
 def obtener_proyecto(id_proyecto):
-    for proyecto in proyectos:
-        if proyecto['uuid'] == id_proyecto and proyecto['deleted_at'] is None:
-            return proyecto
-    return None
+    try:
+        proyectos = obtener_proyectos()
+    
+    except:
+        print("Error inesperado")
+
+    else:
+        for proyecto in proyectos:
+            if proyecto['uuid'] == id_proyecto and proyecto['deleted_at'] is None:
+                return proyecto
+        return None
 
 def crear_proyecto(nombre_proyecto, end_date):
     """

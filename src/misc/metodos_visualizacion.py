@@ -20,6 +20,11 @@ def mostrar_equipos(equipos):
         print(f"{i+1}. Nombre: {equipos[i]['nombre']}, Fecha de Creación: {equipos[i]['created_at']}")
         print()
 
+def mostrar_proyectos(proyectos):
+    for index, proyecto in enumerate(proyectos, start = 1):
+        print(f"{index}. Nombre: {proyecto['nombre']}, Creado: {proyecto['created_at']}, Finaliza: {proyecto['end_date']}")
+        print()
+
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.
 #Une los elementos de la fila en una sola cadena, separándolos por |.
