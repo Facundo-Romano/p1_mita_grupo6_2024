@@ -79,8 +79,11 @@ def eliminar_equipo(uuid_equipo):
             raise Exception('No se encontró el equipo')
 
         equipos.remove(equipo)
+        
+        equipos = convertir_a_lista(equipos)
 
         equipos_json.seek(0)
+        equipos_json.truncate()
 
         json.dump(equipos, equipos_json, indent=4)
 
