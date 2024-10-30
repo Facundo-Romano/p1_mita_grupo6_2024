@@ -1,7 +1,7 @@
 from misc.metodos_visualizacion import limpiar_consola
 from modulos.login.modulo_login import menu_login
-""" from modulos.tareas.modulo_tareas import menu_tareas
-from modulos.proyectos.modulo_proyecto import menu_proyectos """
+from modulos.tareas.modulo_tareas import menu_tareas
+from modulos.proyectos.modulo_proyecto import menu_proyectos 
 from modulos.equipos.modulo_equipos import menu_equipos
 from modulos.proyectos.modulo_proyecto import menu_proyectos
 
@@ -36,7 +36,7 @@ def menu_principal():
             menu_proyectos(usuario)
         elif opcion == '3':
             #Llamar menu tareas
-            """ menu_tareas(usuario) """
+            menu_tareas(usuario)
         elif opcion == '4':
             #Salir del programa
             break
