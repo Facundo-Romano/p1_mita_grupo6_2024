@@ -96,29 +96,39 @@ def crear_proyecto(nombre_proyecto, end_date, uuid_equipo):
     else:
         print("El proyecto se ha creado y guardado correctamente")
 
-def modificar_proyecto(id_proyecto):
+def modificar_proyecto(proyecto_nuevo):
     """
-        Función para modificar los datos de un proyecto existente.
-        Se puede modificar el titulo, descripcion, el proyecto 
-        asignado, usuario asignado y fecha de finalizacion.
+        Función para sobreescribir un proyecto especifico en la base de datos(JSON)
     """
-    proyecto = obtener_proyecto(id_proyecto)
+    try:
+        #Abro el archivo en modo lectura y escritura
+        with open(RUTA_ABSOLUTA_PROYECTOS, 'r+', encoding='UTF-8') as archivo_json:
+            proyectos = json.load(archivo_json)
+        
+            #Comparo los uuid
+            proyecto = next((proyecto for proyecto in proyectos if proyecto["uuid"]==proyecto_nuevo["uuid"]), None)
 
-    if not proyecto:
-        return print("Error: proyecto no encontrado.")
-    
-    # Eliminar obtener datos
-    """[nombre_proyecto, end_date] = obtener_datos_proyecto()"""
+            if not proyecto:
+                raise Exception("No se encontró el proyecto")
 
-    nuevo_proyecto = [
-        proyecto['uuid'], #uuid
-        nombre_proyecto,
-        proyecto['uuid_equipo'],
-        end_date
-    ]
+            proyectos[proyectos.index(proyecto)] = proyecto_nuevo
 
-    index = proyectos.index(proyecto)
-    proyectos[index] = nuevo_proyecto
+            #Seek mueve el cursor ([cant bytes a moverse],[0=start; 1=cursor; 2=final])
+            archivo_json.seek(0)
+            
+            # Escribo de nuevo la lista de proyectos en el archivo
+            json.dump(proyectos, archivo_json, ensure_ascii=False, indent=4)
+            print("El proyecto se modificó correctamente")
+
+            # Truncar el archivo para eliminar contenido restante
+            archivo_json.truncate()
+            
+    except FileNotFoundError:
+        print("Error: El archivo no fue encontrado.")
+    except json.JSONDecodeError:
+        print("Error: El archivo JSON está mal formado.")
+    except Exception as e:
+        print(f'Error al modificar el proyecto: {e}')
     
 
 def eliminar_proyecto(id_proyecto):

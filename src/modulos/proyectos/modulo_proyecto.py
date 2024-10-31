@@ -1,6 +1,6 @@
 from src.misc.metodos_validacion import validar_texto, validar_fecha
 from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos, mostrar_equipos
-from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos
+from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos, modificar_proyecto
 from src.tablas.equipo.metodos_equipo import obtener_equipos
 
 def menu_proyectos(usuario):
@@ -26,18 +26,31 @@ def menu_proyectos(usuario):
 
             crear_proyecto(nombre_proyecto, end_date, uuid_equipo_seleccionado)
         elif opcion == "3":
-            # Llamar a la función para modificar tarea
-           """  tareas = obtener_tareas(usuario)
-            mostrar_tareas(tareas)
-            numero = input("Ingrese el numero de la tarea a modificar: ")
+            # Llamar a la función para modificar un proyecto dado el uuid
+            proyectos = obtener_proyectos()
+            print("Proyectos: ")
+            mostrar_proyectos(proyectos)
 
-            tarea_a_modificar = tareas[numero]
+            eleccion = int(input("Seleccione el número de proyecto que desea elegir: "))
+            if 1 <= eleccion <= len(proyectos):
+                proyecto_a_editar = proyectos[eleccion - 1]
+                print("Editando proyecto")
+                uuid_proyecto = proyecto_a_editar["uuid"]
+                nombre_proyecto, end_date, uuid_equipo_seleccionado = obtener_datos_proyecto(usuario)
+                created_at = proyecto_a_editar["created_at"]
+                deleted_at = proyecto_a_editar["deleted_at"]
+                proyecto_a_editar = {
+                                    "uuid": uuid_proyecto,
+                                    "nombre": nombre_proyecto,
+                                    "uuid_equipo": uuid_equipo_seleccionado,
+                                    "created_at": created_at,
+                                    "end_date": end_date,
+                                    "deleted_at": deleted_at
+                                    }
+                modificar_proyecto(proyecto_a_editar)
+            else:
+                print(f"Por favor, ingrese un número entre 1 y {len(proyectos)}.")
 
-            print(tarea_a_modificar)
-
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
-
-            modificar_tarea(tarea_a_modificar['uuid'], titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, tarea_a_modificar['created_at'], end_date) """
         elif opcion == "4":
             # Llamar a la función para eliminar tarea
             """ tareas = obtener_tareas(usuario)

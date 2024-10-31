@@ -17,18 +17,18 @@
     },
     {
         "uuid": "063c68b1-b7d8-496e-84ee-da5eca96fea5",
-        "nombre": "PruebaMatiProyecto",
-        "uuid_equipo": "a405e61d-d971-4f72-903f-8758e12baa2e",
+        "nombre": "pruebaConEquipo",
+        "uuid_equipo": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
         "created_at": "30-10-2024 23:55:41",
-        "end_date": "29-11-2024",
+        "end_date": "19-08-1938",
         "deleted_at": null
     },
     {
         "uuid": "faaf0183-682f-4ead-9ff8-08b0584ea70c",
-        "nombre": "pruebaSinEquipo",
-        "uuid_equipo": null,
+        "nombre": "pruebaMil",
+        "uuid_equipo": "5988d299-8407-45f7-acfa-c74d5c04e401",
         "created_at": "30-10-2024 23:56:37",
-        "end_date": "29-11-2024",
+        "end_date": "06-09-2001",
         "deleted_at": null
     }
 ]
