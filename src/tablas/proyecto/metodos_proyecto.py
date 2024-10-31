@@ -122,7 +122,7 @@ def modificar_proyecto(proyecto_nuevo):
 
             # Truncar el archivo para eliminar contenido restante
             archivo_json.truncate()
-            
+
     except FileNotFoundError:
         print("Error: El archivo no fue encontrado.")
     except json.JSONDecodeError:
@@ -131,5 +131,32 @@ def modificar_proyecto(proyecto_nuevo):
         print(f'Error al modificar el proyecto: {e}')
     
 
-def eliminar_proyecto(id_proyecto):
-    return 'success'
+def eliminar_proyecto(proyecto_elim):
+    try:
+        #Abro el archivo en modo lectura y escritura
+        with open(RUTA_ABSOLUTA_PROYECTOS, 'r+', encoding='UTF-8') as archivo_json:
+            proyectos = json.load(archivo_json)
+        
+            #Comparo los uuid
+            proyecto = next((proyecto for proyecto in proyectos if proyecto["uuid"]==proyecto_elim["uuid"]), None)
+
+            if not proyecto:
+                raise Exception("No se encontró el proyecto")
+            
+            #Elimino el proyecto
+            proyectos.remove(proyecto)
+
+            # Voy al inicio del archivo
+            archivo_json.seek(0)
+
+            json.dump(proyectos, archivo_json, ensure_ascii=False, indent=4)
+            print("El proyecto se eliminó exitosamente")
+
+            archivo_json.truncate()
+        
+    except FileNotFoundError:
+        print("Error: El archivo no fue encontrado.")
+    except json.JSONDecodeError:
+        print("Error: El archivo JSON está mal formado.")
+    except Exception as e:
+        print(f'Error al modificar el proyecto: {e}')

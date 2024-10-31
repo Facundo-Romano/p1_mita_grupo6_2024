@@ -1,6 +1,6 @@
 from src.misc.metodos_validacion import validar_texto, validar_fecha
 from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos, mostrar_equipos
-from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos, modificar_proyecto
+from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos, modificar_proyecto, eliminar_proyecto
 from src.tablas.equipo.metodos_equipo import obtener_equipos
 
 def menu_proyectos(usuario):
@@ -52,23 +52,20 @@ def menu_proyectos(usuario):
                 print(f"Por favor, ingrese un número entre 1 y {len(proyectos)}.")
 
         elif opcion == "4":
-            # Llamar a la función para eliminar tarea
-            """ tareas = obtener_tareas(usuario)
-            
-            mostrar_tareas(tareas)
-            
-            numero = input("Ingrese el numero de la tarea a modificar: ")
+            # Llamar a la función para eliminar un proyecto
+            proyectos = obtener_proyectos()
+            print("Proyectos: ")
+            mostrar_proyectos(proyectos)
 
-            tarea_a_eliminar = tareas[numero]
+            eleccion = int(input("Seleccione el número de proyecto que desea elegir: "))
+            if 1 <= eleccion <= len(proyectos):
+                proyecto_a_eliminar = proyectos[eleccion - 1]
+                eliminar_proyecto(proyecto_a_eliminar)
+            else:
+                print(f"Por favor, ingrese un número entre 1 y {len(proyectos)}.")
 
-            print('Se va a eliminar la tarea: ')
-            print(tarea_a_eliminar)
-            confirmacion = input('¿Está seguro que desea eliminar la tarea? (s/n)')
-
-            if confirmacion == 's':
-                eliminar_tarea(tarea_a_eliminar['uuid']) """
         elif opcion == "5":
-            print("Adiós!")
+            print("Volviendo")
             break
         else:
             print("Opción inválida. Intente nuevamente.")

@@ -24,11 +24,11 @@
         "deleted_at": null
     },
     {
-        "uuid": "faaf0183-682f-4ead-9ff8-08b0584ea70c",
-        "nombre": "pruebaMil",
-        "uuid_equipo": "5988d299-8407-45f7-acfa-c74d5c04e401",
-        "created_at": "30-10-2024 23:56:37",
-        "end_date": "06-09-2001",
+        "uuid": "cdedd944-1181-4f53-9a31-7abb4e6f69d9",
+        "nombre": "pruebaSinEquipo",
+        "uuid_equipo": null,
+        "created_at": "31-10-2024 01:52:04",
+        "end_date": "24-10-1995",
         "deleted_at": null
     }
 ]
