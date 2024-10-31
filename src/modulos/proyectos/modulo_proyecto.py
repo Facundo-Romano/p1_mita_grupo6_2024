@@ -1,7 +1,7 @@
 from src.misc.metodos_validacion import validar_texto, validar_fecha
-from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos
+from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos, mostrar_equipos
 from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos
-
+from src.tablas.equipo.metodos_equipo import obtener_equipos
 
 def menu_proyectos(usuario):
     limpiar_consola()
@@ -22,9 +22,9 @@ def menu_proyectos(usuario):
             mostrar_proyectos(proyectos)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            datos_proyecto = obtener_datos_proyecto(usuario)
+            nombre_proyecto, end_date, uuid_equipo_seleccionado = obtener_datos_proyecto(usuario)
 
-            crear_proyecto(datos_proyecto)
+            crear_proyecto(nombre_proyecto, end_date, uuid_equipo_seleccionado)
         elif opcion == "3":
             # Llamar a la función para modificar tarea
            """  tareas = obtener_tareas(usuario)
@@ -77,6 +77,40 @@ def obtener_datos_proyecto(usuario):
 
     while validar_fecha(end_date) == False:
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
-    
-    datos_proyecto = nombre_proyecto, end_date
-    return datos_proyecto
+
+    uuid_equipo_seleccionado = None
+    while True:
+        add_equipo = input("Desea agregar un equipo?(s/n):").strip().lower()
+        if add_equipo == 's':
+            equipos = obtener_equipos()
+            print("Equipos: ")
+            mostrar_equipos(equipos)
+
+            uuid_equipo_seleccionado = elegir_equipo(equipos)
+            if uuid_equipo_seleccionado:
+                break
+            else:
+                print("Volviendo")
+        
+        elif add_equipo == 'n':
+            print("No se seleccionó ningún equipo.")
+            break
+        else:
+            print("Opción inválida. Debe ingresar 's' o 'n'.")    
+    #Fin while
+
+    return nombre_proyecto, end_date, uuid_equipo_seleccionado
+
+def elegir_equipo(equipos):
+    while True:
+        try:
+            eleccion = int(input("Seleccione el número del equipo que desea elegir(-1 para volver): "))
+            if 1 <= eleccion <= len(equipos):
+                equipo_seleccionado = equipos[eleccion - 1]
+                return equipo_seleccionado["uuid"]
+            elif eleccion == -1:
+                return None
+            else:
+                print(f"Por favor, ingrese un número entre 1 y {len(equipos)}.")
+        except ValueError:
+            print("Entrada inválida. Por favor, ingrese un número.")

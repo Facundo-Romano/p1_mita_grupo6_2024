@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_os import obtener_ruta
-"""from src.modulos.proyectos.modulo_proyecto import obtener_datos_proyecto"""
 
 RUTA_ABSOLUTA_PROYECTOS = obtener_ruta('proyectos.json')
 
@@ -54,20 +53,21 @@ def obtener_proyecto(id_proyecto):
                 return proyecto
         return None
 
-def crear_proyecto(nombre_proyecto, end_date):
+def crear_proyecto(nombre_proyecto, end_date, uuid_equipo):
     """
         Función para crear un proyecto y guardarlo en un archivo JSON.
         
     """
 
-    id_proyecto = generar_uuid()
+    uuid_proyecto = generar_uuid()
     created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
 
     #Diccionario proyecto
     # Revisar si agregar equipo o no / pedir asignar equipo al proyecto
     proyecto = {
-        "id": id_proyecto,
+        "uuid": uuid_proyecto,
         "nombre": nombre_proyecto,
+        "uuid_equipo": uuid_equipo,
         "created_at": created_at,
         "end_date": end_date,
         "deleted_at": None
