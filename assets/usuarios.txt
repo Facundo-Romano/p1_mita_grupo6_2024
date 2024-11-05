@@ -1,3 +1,4 @@
 uuid;mati;fernandez;asd@asd.com;password;uuid_equipo;12-12-1999;None
 uuid2;santi;wein;asd2@asd.com;password;uuid_equipo;12-12-1999;None
 uuid3;facu;roamno;asd3@asd.com;password;uuid_equipo;12-12-1999;None
+a5f779c6-24e8-4b90-af79-88b2e98bd37b;Paolo;Maffei;polo@magnetico.com;password;12331;05-11-2024;None

@@ -77,14 +77,44 @@ def login():
     
 
 def registrar():
-    directorio_actual = os.getcwd()
-    ruta_absoluta = os.path.join(directorio_actual, 'assets', 'usuarios.txt')
-
-    archivo_usuarios = open(ruta_absoluta, 'a', encoding='UTF-8')
-
-    datos_usuario = obtener_datos_usuario()
-
-    #pendiente terminar
+    # Solicitar los datos al usuario
+    nombre = input("Ingrese su nombre: ")
+    apellido = input("Ingrese su apellido: ")
+    mail = input("Ingrese su correo electrónico: ")
+    contraseña = input("Ingrese su contraseña: ")
+    uuid_equipo = input("Ingrese el UUID del equipo: ")
+    
+    # Generar un UUID para el nuevo usuario
+    nuevo_uuid = str(generar_uuid())
+    
+    # Obtener la fecha actual para 'created_at'
+    created_at = datetime.now().strftime("%d-%m-%Y")
+    
+    # 'deleted_at' se establece como None por defecto
+    deleted_at = None
+    
+    # Crear el diccionario del nuevo usuario
+    nuevo_usuario = {
+        "uuid": nuevo_uuid,
+        "nombre": nombre,
+        "apellido": apellido,
+        "mail": mail,
+        "contraseña": contraseña,
+        "uuid_equipo": uuid_equipo,
+        "created_at": created_at,
+        "deleted_at": deleted_at
+    }
+    
+    # Guardar el usuario en el archivo txt
+    with open(RUTA_USUARIOS, 'a', encoding='UTF-8') as archivo:
+        archivo.write("\n")  # Agrega un salto de línea antes de la nueva entrada
+        archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
+                      f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
+                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}\n")
+        archivo.close()
+    
+    print("Usuario registrado exitosamente.")
+    return nuevo_usuario
 
 
 
