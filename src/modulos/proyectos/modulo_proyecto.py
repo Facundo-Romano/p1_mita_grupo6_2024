@@ -1,6 +1,6 @@
 from src.misc.metodos_validacion import validar_texto, validar_fecha
 from src.misc.metodos_visualizacion import limpiar_consola, mostrar_proyectos, mostrar_equipos
-from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos, modificar_proyecto, eliminar_proyecto
+from src.tablas.proyecto.metodos_proyecto import crear_proyecto, obtener_proyectos, modificar_proyecto, eliminar_proyecto, obtener_proyectos_por_usuario
 from src.tablas.equipo.metodos_equipo import obtener_equipos
 
 def menu_proyectos(usuario):
@@ -18,7 +18,7 @@ def menu_proyectos(usuario):
         if opcion == "1":
             print("Proyectos: ")
             # Llamar a la función para obtener todos los proyectos
-            proyectos = obtener_proyectos()
+            proyectos = obtener_proyectos_por_usuario(usuario["uuid_equipo"])
             mostrar_proyectos(proyectos)
         elif opcion == "2":
             # Llamar a la función para crear tarea

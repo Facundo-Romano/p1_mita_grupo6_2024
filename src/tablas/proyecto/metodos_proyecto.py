@@ -5,28 +5,6 @@ from src.misc.metodos_os import obtener_ruta
 
 RUTA_ABSOLUTA_PROYECTOS = obtener_ruta('proyectos.json')
 
-#Contiene la Lista de Diccionarios (lista de todos los proyectos)
-"""
-proyectos = [
-        {
-            'uuid': 'test1',
-            'nombre': 'proyecto1',
-            'uuid_equipo': 'equipo1',
-            'end_date': '09-08-2025',
-            'created_at': '2021-08-09 12:00:00',
-            'deleted_at': None
-        },
-        {
-            'uuid': 'test2',
-            'nombre': 'proyecto2',
-            'uuid_equipo': 'equipo1',
-            'end_date': '09-08-2025',
-            'created_at': '2021-08-09 12:00:00',
-            'deleted_at': None
-        }
-    ]
-"""
-
 def obtener_proyectos():
     try:
         with open(RUTA_ABSOLUTA_PROYECTOS, 'r', encoding='UTF-8') as archivo_json:
@@ -39,6 +17,19 @@ def obtener_proyectos():
     except OSError as e:
         print("Ha ocurrido un error:",e)
         return []
+
+def obtener_proyectos_por_usuario(uuid_equipo):
+    try:
+        proyectos = obtener_proyectos()
+        proyectos_usuario = []  # Lista para almacenar las proyectos del usuario
+
+        for proyecto in proyectos:
+            if proyecto['uuid_equipo'] == uuid_equipo:
+                proyectos_usuario.append(proyecto)  # Agregar la proyecto a la lista
+
+        return proyectos_usuario  # Devolver la lista de proyectos del usuario
+    except Exception as e:
+        raise Exception('Error al obtener las proyectos del usuario: \n', e)
 
 def obtener_proyecto(id_proyecto):
     try:

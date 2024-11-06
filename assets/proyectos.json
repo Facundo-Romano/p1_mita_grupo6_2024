@@ -2,7 +2,7 @@
     {
         "uuid": "test1",
         "nombre": "proyecto1",
-        "uuid_equipo": "equipo1",
+        "uuid_equipo": "uuid_equipo_1",
         "end_date": "09-08-2025",
         "created_at": "2021-08-09 12:00:00",
         "deleted_at": null
@@ -10,7 +10,7 @@
     {
         "uuid": "test2",
         "nombre": "proyecto2",
-        "uuid_equipo": "equipo1",
+        "uuid_equipo": "uuid_equipo_1",
         "end_date": "09-08-2025",
         "created_at": "2021-08-09 12:00:00",
         "deleted_at": null
@@ -29,6 +29,14 @@
         "uuid_equipo": null,
         "created_at": "31-10-2024 01:52:04",
         "end_date": "24-10-1995",
+        "deleted_at": null
+    },
+    {
+        "uuid": "74e25360-d970-4d4e-81e7-cc0993fdb9b6",
+        "nombre": "proyecto bla bla",
+        "uuid_equipo": "a405e61d-d971-4f72-903f-8758e12baa2e",
+        "created_at": "06-11-2024 15:11:00",
+        "end_date": "11-11-2393",
         "deleted_at": null
     }
 ]
