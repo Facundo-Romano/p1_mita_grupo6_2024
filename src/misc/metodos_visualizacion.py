@@ -1,5 +1,13 @@
 import os
 
+def acceder_subtareas(tarea):
+    # Imprimir la tarea actual
+    print(f"Tarea: {tarea['titulo']} - UUID: {tarea['uuid']}")
+    
+    # Acceder a las subtareas recursivamente
+    for subtarea in tarea.get('subtareas', []):
+        acceder_subtareas(subtarea)  # Llamada recursiva para cada subtarea
+
 def limpiar_consola():
     if os.name == 'nt':  # Para Windows
         os.system('cls')

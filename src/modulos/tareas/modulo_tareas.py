@@ -2,7 +2,7 @@ from datetime import datetime
 from src.misc.metodos_validacion import validar_fecha, validar_texto
 from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
-from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
+from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario, crear_subtarea
 from src.tablas.proyecto.metodos_proyecto import obtener_proyectos_por_usuario
 
 def menu_tareas(usuario):
@@ -25,7 +25,7 @@ def menu_tareas(usuario):
             mostrar_tareas_matriz(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
-            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
+            [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date, subtarea] = obtener_datos_tarea(usuario)
             
             tarea = {
                 "uuid" :  generar_uuid(),
@@ -34,7 +34,8 @@ def menu_tareas(usuario):
                 "uuid_usuario": uuid_usuario,
                 "uuid_proyecto": uuid_proyecto,
                 "created_at":  datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-                "end_date": end_date
+                "end_date": end_date,
+                "subtarea": subtarea
             }
             print("Datos de la tarea a guardar:", tarea)
             crear_tarea(tarea)
@@ -57,7 +58,7 @@ def menu_tareas(usuario):
 
                 print(tarea_a_modificar)
 
-                [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date] = obtener_datos_tarea(usuario)
+                [titulo_tarea, descripcion_tarea, uuid_usuario, uuid_proyecto, end_date, subtarea] = obtener_datos_tarea(usuario)
 
                 tarea = {
                     "uuid": tarea_a_modificar["uuid"],
@@ -66,7 +67,8 @@ def menu_tareas(usuario):
                     "uuid_usuario": uuid_usuario,
                     "uuid_proyecto": uuid_proyecto,
                     "created_at": tarea_a_modificar["created_at"],
-                    "end_date": end_date
+                    "end_date": end_date,
+                    "subtarea": subtarea
                 }
 
                 modificar_tarea(tarea)
@@ -125,6 +127,8 @@ def obtener_datos_tarea(usuario):
     while not validar_fecha(end_date):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
+    subtarea = obtener_subtarea()
+
     uuid_usuario = usuario['uuid']
     proyectos_del_equipo = obtener_proyectos_por_usuario(usuario["uuid_equipo"])
 
@@ -151,5 +155,27 @@ def obtener_datos_tarea(usuario):
         uuid_usuario,
         proyecto_seleccionado['uuid'],
         end_date,
+        subtarea,
     ]
 
+def obtener_subtarea():
+    subtarea = None
+
+    print('Queres crear una nueva subtarea?')
+    si_o_no =  input('s/n?: ')
+
+    if si_o_no.lower() == 's':
+        nombre = input('Ingrese nombre: ')
+        descripcion = input('Ingrese descripcion: ')
+        subtarea_subtarea = obtener_subtarea()
+
+        subtarea = {
+            'nombre': nombre,
+            'descripcion':  descripcion,
+            'subtarea':  subtarea_subtarea
+        }
+    elif  si_o_no.lower() == 'n':
+        return subtarea
+    else:
+        print('Opcion invalida')
+        return obtener_subtarea()

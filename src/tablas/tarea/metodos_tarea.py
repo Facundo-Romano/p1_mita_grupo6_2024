@@ -4,6 +4,22 @@ import json
   
 RUTA_ABSOLUTA_TAREAS = obtener_ruta('tareas.json')
 
+def crear_subtarea(subtarea, usuario):
+    try:
+        tarea = obtener_tareas_usuario(usuario)
+
+        # Agregar la subtarea a la lista de subtareas
+        tarea.setdefault('subtareas', []).append(subtarea)
+
+        # Guardar las tareas actualizadas
+        with open(RUTA_ABSOLUTA_TAREAS, 'w', encoding='UTF-8') as tareas_json:
+            json.dump(tarea, tareas_json, indent=4)
+
+        print("Subtarea creada con éxito.")
+        return True
+    except Exception as e:
+        raise Exception('Error al crear la subtarea: \n', e)
+
 def obtener_tareas():
     try:
         with open(RUTA_ABSOLUTA_TAREAS, 'r', encoding='UTF-8') as tareas_json:
