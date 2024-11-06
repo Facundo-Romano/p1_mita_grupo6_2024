@@ -9,7 +9,6 @@ from misc.metodos_visualizacion import mostrar_usuario_matriz
 def menu_principal():
     print('Hola')
 
-    #Llamar a login
     usuario = menu_login()
 
     limpiar_consola()
@@ -32,13 +31,10 @@ def menu_principal():
         opcion = input('Seleccione una opción: ')
 
         if opcion == '1':
-            
             menu_equipos(usuario)
         elif opcion == '2':
-            
             menu_proyectos(usuario)
         elif opcion == '3':
-            
             menu_tareas(usuario)
         elif opcion == '4':
             break

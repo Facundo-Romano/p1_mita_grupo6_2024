@@ -1,7 +1,6 @@
 import json
-from datetime import datetime
-from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_os import obtener_ruta
+from src.misc.metodos_formateo_datos import convertir_a_lista 
 
 RUTA_ABSOLUTA_PROYECTOS = obtener_ruta('proyectos.json')
 
@@ -18,7 +17,7 @@ def obtener_proyectos():
         print("Ha ocurrido un error:",e)
         return []
 
-def obtener_proyectos_por_usuario(uuid_equipo):
+def obtener_proyectos_por_equipo(uuid_equipo):
     try:
         proyectos = obtener_proyectos()
         proyectos_usuario = []  # Lista para almacenar las proyectos del usuario
@@ -44,50 +43,29 @@ def obtener_proyecto(id_proyecto):
                 return proyecto
         return None
 
-def crear_proyecto(nombre_proyecto, end_date, uuid_equipo):
+def crear_proyecto(proyecto):
     """
         Función para crear un proyecto y guardarlo en un archivo JSON.
         
     """
-
-    uuid_proyecto = generar_uuid()
-    created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-
-    #Diccionario proyecto
-    # Revisar si agregar equipo o no / pedir asignar equipo al proyecto
-    proyecto = {
-        "uuid": uuid_proyecto,
-        "nombre": nombre_proyecto,
-        "uuid_equipo": uuid_equipo,
-        "created_at": created_at,
-        "end_date": end_date,
-        "deleted_at": None
-    }
-    
     try:
+        proyectos_json = open(RUTA_ABSOLUTA_PROYECTOS, 'r+', encoding='UTF-8')
 
-        #  Abre el archivo y carga los proyectos desde el archivo JSON
-        with open(RUTA_ABSOLUTA_PROYECTOS, 'r', encoding='UTF-8') as archivo_json:
-            proyectos = json.load(archivo_json)
-            if not isinstance(proyectos, list):
-                print("Error: El archivo JSON no contiene una lista de proyectos.")
-                proyectos = []
+        proyectos = json.load(proyectos_json)
 
         proyectos.append(proyecto)
 
-        # Agregar el nuevo proyecto a la lista de proyectos
-        with open(RUTA_ABSOLUTA_PROYECTOS, 'w', encoding='UTF-8') as archivo_json:
-            json.dump(proyectos, archivo_json, ensure_ascii=False, indent =4) # "ensure_ascii" para evitar la codificación de los caracteres en formato Unicode
+        proyectos = convertir_a_lista(proyectos)
+        
+        proyectos_json.seek(0)
 
-    except json.JSONDecodeError as e:
-        print("El archivo JSON está mal formateado:", e)    
-    except (FileNotFoundError, OSError) as e:
-        print("Ocurrió un error:", e)
-    
-    else:
-        print("El proyecto se ha creado y guardado correctamente")
+        json.dump(proyectos, proyectos_json, indent=4)
 
-def modificar_proyecto(proyecto_nuevo):
+        return True
+    except Exception as e:
+        raise Exception('Error al crear el equipo: \n', e)
+
+def modificar_proyecto(proyecto):
     """
         Función para sobreescribir un proyecto especifico en la base de datos(JSON)
     """
@@ -97,18 +75,19 @@ def modificar_proyecto(proyecto_nuevo):
             proyectos = json.load(archivo_json)
         
             #Comparo los uuid
-            proyecto = next((proyecto for proyecto in proyectos if proyecto["uuid"]==proyecto_nuevo["uuid"]), None)
+            proyecto = next((proyecto for proyecto in proyectos if proyecto["uuid"] == proyecto["uuid"]), None)
 
             if not proyecto:
                 raise Exception("No se encontró el proyecto")
 
-            proyectos[proyectos.index(proyecto)] = proyecto_nuevo
+            proyectos[proyectos.index(proyecto)] = proyecto
 
             #Seek mueve el cursor ([cant bytes a moverse],[0=start; 1=cursor; 2=final])
             archivo_json.seek(0)
             
             # Escribo de nuevo la lista de proyectos en el archivo
             json.dump(proyectos, archivo_json, ensure_ascii=False, indent=4)
+            
             print("El proyecto se modificó correctamente")
 
             # Truncar el archivo para eliminar contenido restante
@@ -121,7 +100,6 @@ def modificar_proyecto(proyecto_nuevo):
     except Exception as e:
         print(f'Error al modificar el proyecto: {e}')
     
-
 def eliminar_proyecto(proyecto_elim):
     try:
         #Abro el archivo en modo lectura y escritura
