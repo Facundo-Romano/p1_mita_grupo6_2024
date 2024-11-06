@@ -95,12 +95,6 @@ def modificar_tarea(nueva_tarea):
     except Exception as e:
         raise Exception('Error al modificar la tarea: \n', e)
 
-def asignar_usuario_tarea(uuid_tarea, id_usuario):
-    return 'success'
-
-def asignar_proyecto_tarea(id_proyecto):
-    return 'success'
-
 def eliminar_tarea(uuid_tarea):
     try:
         with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:

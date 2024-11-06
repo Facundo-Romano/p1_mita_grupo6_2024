@@ -52,5 +52,14 @@
         "uuid_proyecto": "4t5gb254bv4twv4tw ",
         "created_at": "30-10-2024 16:12:52",
         "end_date": "11-11-1234"
+    },
+    {
+        "uuid": "442aa187-99e8-4e48-9327-80b2d589c461",
+        "titulo": "ytascfdtycas",
+        "descripcion": "ahvsdugtcasdyu",
+        "uuid_usuario": "1",
+        "uuid_proyecto": "test1",
+        "created_at": "06-11-2024 15:57:20",
+        "end_date": "11-11-2932"
     }
 ]

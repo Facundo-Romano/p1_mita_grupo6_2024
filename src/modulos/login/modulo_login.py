@@ -30,7 +30,7 @@ def menu_login():
                 "apellido": "De Prueba",
                 "mail": "asd@asd.com",
                 "contraseña": "123456",
-                "uuid_equipo": "1",
+                "uuid_equipo": "uuid_equipo_1",
                 "created_at": "2021-09-01 00:00:00",
                 "deleted_at": None
             }

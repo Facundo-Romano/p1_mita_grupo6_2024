@@ -38,5 +38,13 @@
         "created_at": "06-11-2024 15:11:00",
         "end_date": "11-11-2393",
         "deleted_at": null
+    },
+    {
+        "uuid": "d1af1057-08dc-4ad8-929b-0a2a97d3abd5",
+        "nombre": "proyecto juan",
+        "uuid_equipo": "uuid_equipo_2",
+        "created_at": "06-11-2024 15:21:14",
+        "end_date": "11-11-2025",
+        "deleted_at": null
     }
 ]

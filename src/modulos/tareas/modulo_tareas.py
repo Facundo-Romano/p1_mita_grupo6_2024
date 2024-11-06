@@ -3,6 +3,7 @@ from src.misc.metodos_validacion import validar_fecha, validar_texto
 from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
 from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario
+from src.tablas.proyecto.metodos_proyecto import obtener_proyectos_por_usuario
 
 def menu_tareas(usuario):
     while True:
@@ -125,30 +126,30 @@ def obtener_datos_tarea(usuario):
         end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
     
     uuid_usuario = usuario['uuid']
-    #proyectos_del_equipo = obtener_proyectos(usuario["uuid_equipo"])
+    proyectos_del_equipo = obtener_proyectos_por_usuario(usuario["uuid_equipo"])
 
-    #proyecto_seleccionado = None
+    proyecto_seleccionado = None
     
-    #while not proyecto_seleccionado:
-     #   print("Seleccione el proyecto al que desea asignar la tarea: ")
+    while not proyecto_seleccionado:
+        print("Seleccione el proyecto al que desea asignar la tarea: ")
 
-      #  for proyecto in proyectos_del_equipo:
-       #     print(f"Proyecto: {proyecto['nombre']}")
+        for proyecto in proyectos_del_equipo:
+            print(f"Proyecto: {proyecto['nombre']}")
 
-        #nombre_proyecto = input("Ingrese el nombre del proyecto: ")
+        nombre_proyecto = input("Ingrese el nombre del proyecto: ")
 
-        #for proyecto in proyectos_del_equipo:
-         ##      proyecto_seleccionado = proyecto
-           #     break
+        for proyecto in proyectos_del_equipo:
+            proyecto_seleccionado = proyecto
+            break
         
-       # if proyecto_seleccionado == None:
-        #    print("Proyecto no encontrado.")
+        if proyecto_seleccionado == None:
+            print("Proyecto no encontrado.")
 
     return [
         titulo_tarea,
         descripcion_tarea,
         uuid_usuario,
-        "4t5gb254bv4twv4tw ",
+        proyecto_seleccionado['uuid'],
         end_date,
     ]
 
