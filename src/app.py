@@ -32,13 +32,13 @@ def menu_principal():
         opcion = input('Seleccione una opción: ')
 
         if opcion == '1':
-            #Llamar menu equipos
-            """ menu_equipos(usuario) """
+            
+            menu_equipos(usuario)
         elif opcion == '2':
-            #Llamar menu proyectos
+            
             menu_proyectos(usuario)
         elif opcion == '3':
-            #Llamar menu tareas
+            
             menu_tareas(usuario)
         elif opcion == '4':
             break
