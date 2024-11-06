@@ -86,5 +86,15 @@
                 "subtarea": null
             }
         }
+    },
+    {
+        "uuid": "484c3ab9-224a-4520-a164-7e08156b8eb2",
+        "titulo": "Tarea nueve",
+        "descripcion": "asbdibas",
+        "uuid_usuario": "1",
+        "uuid_proyecto": "test1",
+        "created_at": "06-11-2024 16:50:42",
+        "end_date": "11-11-2034",
+        "subtarea": null
     }
 ]

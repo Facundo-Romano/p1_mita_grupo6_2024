@@ -28,20 +28,13 @@ def mostrar_tareas_matriz(tareas):
         return
 
     # Imprimir encabezados
-    print(f"{'UUID':<25} {'Título':<15} {'Descripción':<20} {'UUID Usuario':<15} {'UUID Proyecto':<25} {'Fecha de Creación':<25} {'Fecha de Fin':<25}")
+    print(f"{'Título':<15} {'Descripción':<20} {'Fecha de Creación':<25} {'Fecha de Fin':<25}")
     print("=" * 150)  # Línea de separación
 
     # Imprimir cada tarea
     for tarea in tareas:
-        print(f"{tarea['uuid']:<25} {tarea['titulo']:<15} {tarea['descripcion']:<20} {tarea['uuid_usuario']:<15} {tarea['uuid_proyecto']:<25} {tarea['created_at']:<25} {tarea['end_date']:<15}")
+        print(f"{tarea['titulo']:<15} {tarea['descripcion']:<20} {tarea['created_at']:<25} {tarea['end_date']:<15}")
 
-def mostrar_tareas(tareas):
-    for tarea in tareas:
-        print()
-        print(f"UUID: {tarea['uuid']}, Título: {tarea['titulo']}, Descripción: {tarea['descripcion']}, "
-      f"UUID Usuario: {tarea['uuid_usuario']}, UUID Proyecto: {tarea['uuid_proyecto']}, "
-      f"Fecha de Creación: {tarea['created_at']}, Fecha de Fin: {tarea['end_date']}")
-        print()  # Salto de línea para separar cada tarea
 
 def mostrar_equipos(equipos):
     for i in range(len(equipos)):

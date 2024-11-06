@@ -1,7 +1,7 @@
 from datetime import datetime
 from src.misc.metodos_validacion import validar_fecha, validar_texto
 from src.misc.metodos_uuid import generar_uuid
-from src.misc.metodos_visualizacion import mostrar_tareas, mostrar_tareas_matriz
+from src.misc.metodos_visualizacion import mostrar_tareas_matriz
 from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario, crear_subtarea
 from src.tablas.proyecto.metodos_proyecto import obtener_proyectos_por_usuario
 
@@ -174,8 +174,8 @@ def obtener_subtarea():
             'descripcion':  descripcion,
             'subtarea':  subtarea_subtarea
         }
-    elif  si_o_no.lower() == 'n':
-        return subtarea
-    else:
+    elif  si_o_no.lower() != 'n':
         print('Opcion invalida')
         return obtener_subtarea()
+    
+    return subtarea
