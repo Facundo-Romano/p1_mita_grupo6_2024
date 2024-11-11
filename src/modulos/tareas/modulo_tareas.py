@@ -21,7 +21,6 @@ def menu_tareas(usuario):
             print("Tareas: ")
             # Llamar a la función para obtener tarea
             tareas = obtener_tareas_usuario(usuario["uuid"])
-            print(type(tareas))
             mostrar_tareas_matriz(tareas)
         elif opcion == "2":
             # Llamar a la función para crear tarea
