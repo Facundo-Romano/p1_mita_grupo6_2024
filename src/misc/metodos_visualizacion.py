@@ -49,7 +49,7 @@ def mostrar_proyectos(proyectos):
 
     # Imprimir encabezados
     print(f"{'N°':<3}{'Nombre Proyecto':<25}{'Fecha de Creación':<20}{'Fecha de Fin':<15}")
-    print("=" * 63)
+    print("=" * 60)
 
     # Imprimir Proyectos
     for index, proyecto in enumerate(proyectos, start = 1):
