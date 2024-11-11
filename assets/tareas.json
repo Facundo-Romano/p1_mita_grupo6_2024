@@ -96,5 +96,19 @@
         "created_at": "06-11-2024 16:50:42",
         "end_date": "11-11-2034",
         "subtarea": null
+    },
+    {
+        "uuid": "10f2fb63-59ec-4877-931a-14521b0c6d77",
+        "titulo": "TareaDePrueba",
+        "descripcion": "prueba de equipo",
+        "uuid_usuario": "1",
+        "uuid_proyecto": "test1",
+        "created_at": "10-11-2024 23:14:17",
+        "end_date": "10-11-2024",
+        "subtarea": {
+            "nombre": "subtarea de Prueba",
+            "descripcion": "alugdsda",
+            "subtarea": null
+        }
     }
 ]

@@ -29,7 +29,7 @@ def mostrar_tareas_matriz(tareas):
 
     # Imprimir encabezados
     print(f"{'Título':<15} {'Descripción':<20} {'Fecha de Creación':<25} {'Fecha de Fin':<25}")
-    print("=" * 150)  # Línea de separación
+    print("=" * 75)  # Línea de separación
 
     # Imprimir cada tarea
     for tarea in tareas:

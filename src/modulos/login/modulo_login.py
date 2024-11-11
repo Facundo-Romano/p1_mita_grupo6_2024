@@ -148,6 +148,6 @@ def obtener_datos_usuario():
         apellido,
         mail,
         contraseña,
-        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
         None,
     ]

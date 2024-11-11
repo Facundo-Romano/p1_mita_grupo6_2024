@@ -134,7 +134,7 @@ def eliminar_tarea(uuid_tarea):
             # Truncar el archivo para eliminar el contenido restante
             tareas_json.truncate()
             
-            print("Tarea eliminada con exito.")
+            print("Tarea eliminada con éxito.")
             
         return True
     except Exception as e:

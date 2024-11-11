@@ -2,7 +2,7 @@ from datetime import datetime
 from src.misc.metodos_validacion import validar_fecha, validar_texto
 from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_visualizacion import mostrar_tareas_matriz
-from src.tablas.tarea.metodos_tarea import crear_tarea, obtener_tareas, modificar_tarea, obtener_tareas, eliminar_tarea, obtener_tareas_usuario, crear_subtarea
+from src.tablas.tarea.metodos_tarea import crear_tarea, modificar_tarea, eliminar_tarea, obtener_tareas_usuario
 from src.tablas.proyecto.metodos_proyecto import obtener_proyectos_por_usuario
 
 def menu_tareas(usuario):
@@ -41,7 +41,7 @@ def menu_tareas(usuario):
             crear_tarea(tarea)
         elif opcion == "3":
             tareas = obtener_tareas_usuario(usuario["uuid"])
-            mostrar_tareas(tareas)
+            mostrar_tareas_matriz(tareas)
 
             # Obtener el número de la tarea a modificar
             numero = input("Ingrese el numero de la tarea a modificar: ")
@@ -75,10 +75,10 @@ def menu_tareas(usuario):
                 
         elif opcion == "4":
             tareas = obtener_tareas_usuario(usuario["uuid"])
-            mostrar_tareas(tareas)
+            mostrar_tareas_matriz(tareas)
 
             # Obtener el número de la tarea a modificar
-            numero = input("Ingrese el numero de la tarea a modificar: ")
+            numero = input("Ingrese el numero de la tarea a eliminar: ")
 
             # Verificar que el input sea un número entero válido
             try:
@@ -91,7 +91,7 @@ def menu_tareas(usuario):
                 tarea_a_eliminar = tareas[numero]
 
             print('Se va a eliminar la tarea: ')
-            print(tarea_a_eliminar)
+            print(tarea_a_eliminar) #ver de mostrarlo mejor
             confirmacion = input('¿Está seguro que desea eliminar la tarea? (s/n)')
 
             if confirmacion == 's':
@@ -143,8 +143,9 @@ def obtener_datos_tarea(usuario):
         nombre_proyecto = input("Ingrese el nombre del proyecto: ")
 
         for proyecto in proyectos_del_equipo:
-            proyecto_seleccionado = proyecto
-            break
+            if proyecto['nombre'] == nombre_proyecto:
+                proyecto_seleccionado = proyecto
+                break
         
         if proyecto_seleccionado == None:
             print("Proyecto no encontrado.")
@@ -165,8 +166,8 @@ def obtener_subtarea():
     si_o_no =  input('s/n?: ')
 
     if si_o_no.lower() == 's':
-        nombre = input('Ingrese nombre: ')
-        descripcion = input('Ingrese descripcion: ')
+        nombre = input('Ingrese nombre de la subtarea: ')
+        descripcion = input('Ingrese descripcion de la subtarea: ')
         subtarea_subtarea = obtener_subtarea()
 
         subtarea = {
