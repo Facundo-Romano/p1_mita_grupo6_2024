@@ -46,5 +46,13 @@
         "created_at": "06-11-2024 15:21:14",
         "end_date": "11-11-2025",
         "deleted_at": null
+    },
+    {
+        "uuid": "1b1853c8-5c56-44e8-bf0c-3442e2a11d8f",
+        "nombre": "Prueba de Equipo",
+        "uuid_equipo": "uuid_equipo_1",
+        "created_at": "11-11-2024 01:08:28",
+        "end_date": "06-09-2001",
+        "deleted_at": null
     }
 ]

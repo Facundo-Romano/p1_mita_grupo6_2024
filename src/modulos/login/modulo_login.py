@@ -27,7 +27,7 @@ def menu_login():
             return {
                 "uuid": "1",
                 "nombre": "Usuario",
-                "apellido": "De Prueba",
+                "apellido": "Admin",
                 "mail": "asd@asd.com",
                 "contraseña": "123456",
                 "uuid_equipo": "uuid_equipo_1",

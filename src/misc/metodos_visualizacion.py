@@ -43,9 +43,18 @@ def mostrar_equipos(equipos):
         print()
 
 def mostrar_proyectos(proyectos):
+    if not proyectos:  # Si la lista de proyectos del usuario está vacía
+            print("No está asignado a ningún proyecto.")
+            return
+
+    # Imprimir encabezados
+    print(f"{'N°':<3}{'Nombre Proyecto':<25}{'Fecha de Creación':<20}{'Fecha de Fin':<15}")
+    print("=" * 63)
+
+    # Imprimir Proyectos
     for index, proyecto in enumerate(proyectos, start = 1):
-        print(f"{index}. Nombre: {proyecto['nombre']}, Creado: {proyecto['created_at']}, Finaliza: {proyecto['end_date']}")
-        print()
+        fecha_creacion = proyecto['created_at'].split(" ")[0]  # Tomar solo la fecha
+        print(f"{index:<3}{proyecto['nombre']:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
 
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.
