@@ -15,7 +15,6 @@ def crear_subtarea(subtarea, usuario):
         with open(RUTA_ABSOLUTA_TAREAS, 'w', encoding='UTF-8') as tareas_json:
             json.dump(tarea, tareas_json, indent=4)
 
-        print("Subtarea creada con éxito.")
         return True
     except Exception as e:
         raise Exception('Error al crear la subtarea: \n', e)
@@ -76,8 +75,6 @@ def crear_tarea(tarea):
             json.dump(tareas, tareas_json, indent=4)  # Guardar las tareas
 
             tareas_json.truncate()  # Asegúrate de truncar el archivo después de escribir
-
-            print("Tarea creada con exito.")
             
         return True
     except json.JSONDecodeError:
@@ -104,8 +101,6 @@ def modificar_tarea(nueva_tarea):
         tareas_json.seek(0)
 
         json.dump(tareas, tareas_json, indent=4)
-
-        print("Tarea modificada con exito.")
         
         return True
     except Exception as e:
@@ -133,8 +128,6 @@ def eliminar_tarea(uuid_tarea):
 
             # Truncar el archivo para eliminar el contenido restante
             tareas_json.truncate()
-            
-            print("Tarea eliminada con éxito.")
             
         return True
     except Exception as e:

@@ -18,8 +18,7 @@ def validar_fecha(fecha):
         return True
     except:
         print("Error: Formato de fecha incorrecto")
-        return False
-    
+        return False 
 
 def validar_mail(mail):
     """
@@ -56,15 +55,14 @@ def validar_contraseña(contraseña):
 def validar_texto(texto, tipo):
     """
         Funcion para validar texto,
-        si el texto es alfabético retorna True, si no, retorna False
-        si texto no es formato string retorna False
+        elimina los espacios en blanco y verifica si el texto no es vacio
 
         Retorna:
             booleano
     """
 
     try:
-        if texto.replace(" ", "").isalpha():
+        if isinstance(texto, str) and texto.strip().replace(" ", ""):
             return True
     
         print(f"Error: Formato de {tipo} incorrecto")

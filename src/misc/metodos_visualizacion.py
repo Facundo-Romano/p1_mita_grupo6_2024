@@ -22,18 +22,36 @@ def mostrar_usuario_matriz(usuario):
     # Imprimir cada tarea
     print(f"{usuario['nombre']:<15} {usuario['apellido']:<15} {usuario['mail']:<20}")
         
-def mostrar_tareas_matriz(tareas):
+def mostrar_tareas(tareas):
+    print('\n')
+
+    LONG_NUMERO = 10
+    LONG_TITULO = 25
+    LONG_DESCRIPCION = 30
+    LONG_CREACION = 25
+    LONG_FINALIZACION = 15
+
     if not tareas:  # Si la lista de tareas está vacía
         print("No hay tareas para mostrar.")
         return
 
     # Imprimir encabezados
-    print(f"{'Título':<15} {'Descripción':<20} {'Fecha de Creación':<25} {'Fecha de Fin':<25}")
-    print("=" * 75)  # Línea de separación
+    print(f"{'Nro.':<{LONG_NUMERO}}{'Título':<{LONG_TITULO}}{'Descripción':<{LONG_DESCRIPCION}}{'Creación':<{LONG_CREACION}}{'Finalización':<{LONG_FINALIZACION}}")
 
-    # Imprimir cada tarea
-    for tarea in tareas:
-        print(f"{tarea['titulo']:<15} {tarea['descripcion']:<20} {tarea['created_at']:<25} {tarea['end_date']:<15}")
+    # Línea de separación
+    print("=" * (LONG_NUMERO + LONG_TITULO + LONG_DESCRIPCION + LONG_CREACION + LONG_FINALIZACION))
+
+    for i, tarea in enumerate(tareas):
+            titulo = tarea['titulo'][:LONG_TITULO - 4] + '... ' if len(tarea['titulo']) >= LONG_TITULO else tarea['titulo']
+            descripcion = tarea['descripcion'][:LONG_DESCRIPCION - 4] + '... ' if len(tarea['descripcion']) >= LONG_DESCRIPCION else tarea['descripcion']
+            created_at = tarea['created_at'][:LONG_CREACION]
+            end_date = tarea['end_date'][:LONG_FINALIZACION]
+
+            print(f"{(str(i+1) + '.'):<{LONG_NUMERO}}"
+                f"{titulo:<{LONG_TITULO}}"
+                f"{descripcion:<{LONG_DESCRIPCION}}"
+                f"{created_at:<{LONG_CREACION}}"
+                f"{end_date:<{LONG_FINALIZACION}}")
 
 
 def mostrar_equipos(equipos):
