@@ -71,6 +71,7 @@ def menu_equipos(usuario):
             }
 
             modificar_equipo(equipo)
+            mostrar_equipos(equipos)
         elif opcion == '5':
             print("Equipos: ")
             equipos = obtener_equipos()
@@ -86,6 +87,7 @@ def menu_equipos(usuario):
             equipo = equipos[numero_equipo - 1]
 
             eliminar_equipo(equipo["uuid"])
+            mostrar_equipos(equipos)
         elif opcion == "6":
             print("Adiós!")
             break
