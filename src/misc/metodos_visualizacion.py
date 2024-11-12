@@ -110,8 +110,3 @@ def mostrar_proyectos(proyectos):
         fecha_creacion = proyecto['created_at'].split(" ")[0]  # Tomar solo la fecha
         print(f"{index:<3}{proyecto['nombre']:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
     print()
-
-visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
-#Convierte cada elemento de una fila en una cadena de texto.
-#Une los elementos de la fila en una sola cadena, separándolos por |.
-#Une todas las filas en una cadena de texto, separando cada fila con un salto de línea.
