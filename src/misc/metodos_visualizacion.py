@@ -73,6 +73,7 @@ def mostrar_proyectos(proyectos):
     for index, proyecto in enumerate(proyectos, start = 1):
         fecha_creacion = proyecto['created_at'].split(" ")[0]  # Tomar solo la fecha
         print(f"{index:<3}{proyecto['nombre']:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
+    print()
 
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.
