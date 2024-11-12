@@ -53,6 +53,21 @@ def mostrar_tareas(tareas):
                 f"{created_at:<{LONG_CREACION}}"
                 f"{end_date:<{LONG_FINALIZACION}}")
 
+def mostrar_subtarea(tarea, nivel = 0):
+    subtarea = tarea['subtarea']
+    if subtarea:
+        print(f"{' ' * nivel * 4}Subtarea: {subtarea['nombre']} - Descripción: {subtarea['descripcion']}")
+        mostrar_subtarea(subtarea, nivel + 1)
+
+def mostrar_detalle_tarea(tarea, proyecto):
+    print('\nTarea: \n')
+    print(f"Título: {tarea['titulo']}")
+    print(f"Descripción: {tarea['descripcion']}")
+    print(f"Proyecto: {proyecto['nombre']}")
+    print(f"Fecha de Creación: {tarea['created_at']}")
+    print(f"Fecha de Finalización: {tarea['end_date']}")
+    mostrar_subtarea(tarea)
+
 
 def mostrar_equipos(equipos):
     for i in range(len(equipos)):
