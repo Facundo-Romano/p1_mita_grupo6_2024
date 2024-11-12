@@ -45,7 +45,7 @@ def validar_contraseña(contraseña):
             booleano
     """
 
-    contraseña_regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+    contraseña_regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-zñÑ\d@$!%*?&]{8,}$"
 
     if not re.match(contraseña_regex, contraseña):
         print("Error: Formato de contraseña incorrecto\n" "Error: La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial (@, $, !, %, *, ?, &).")
