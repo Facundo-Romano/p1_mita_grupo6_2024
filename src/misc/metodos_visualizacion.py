@@ -21,7 +21,34 @@ def mostrar_usuario_matriz(usuario):
 
     # Imprimir cada tarea
     print(f"{usuario['nombre']:<15} {usuario['apellido']:<15} {usuario['mail']:<20}")
-        
+
+def mostrar_equipos(equipos):
+    print('\n')
+
+    LONG_NUMERO = 10
+    LONG_NOMBRE = 25
+    LONG_CREACION = 25
+
+    if not equipos:  # Si la lista de equipos está vacía
+        print("No hay equipos para mostrar.")
+        return
+
+    # Imprimir encabezados
+    print(f"{'Nro.':<{LONG_NUMERO}}{'Nombre':<{LONG_NOMBRE}}{'Creación':<{LONG_CREACION}}")
+
+    # Línea de separación
+    print("=" * (LONG_NUMERO + LONG_NOMBRE + LONG_CREACION))
+
+    for i, equipo in enumerate(equipos):
+            nombre = equipo['nombre'][:LONG_NOMBRE - 4] + '... ' if len(equipo['nombre']) >= LONG_NOMBRE else equipo['nombre']
+            created_at = equipo['created_at'][:LONG_CREACION]
+
+            print(f"{(str(i+1) + '.'):<{LONG_NUMERO}}"
+                f"{nombre:<{LONG_NOMBRE}}"
+                f"{created_at:<{LONG_CREACION}}")
+    print()        
+    
+
 def mostrar_tareas(tareas):
     print('\n')
 
@@ -53,12 +80,6 @@ def mostrar_tareas(tareas):
                 f"{created_at:<{LONG_CREACION}}"
                 f"{end_date:<{LONG_FINALIZACION}}")
 
-
-def mostrar_equipos(equipos):
-    for i in range(len(equipos)):
-        print()
-        print(f"{i+1}. Nombre: {equipos[i]['nombre']}, Fecha de Creación: {equipos[i]['created_at']}")
-        print()
 
 def mostrar_proyectos(proyectos):
     if not proyectos:  # Si la lista de proyectos del usuario está vacía
