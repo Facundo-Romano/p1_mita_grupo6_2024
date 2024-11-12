@@ -91,14 +91,15 @@ def modificar_tarea(nueva_tarea):
 
         tareas = json.load(tareas_json)
 
-        tarea = next((equipo for equipo in tareas if equipo['uuid'] == nueva_tarea["uuid"]), None)
+        tarea_a_modificar = next((tarea for tarea in tareas if tarea['uuid'] == nueva_tarea["uuid"]), None)
 
-        if (not tarea):
+        if (not tarea_a_modificar):
             raise Exception('No se encontró el equipo')
         
-        tareas[tareas.index(tarea)] = nueva_tarea
+        tareas[tareas.index(tarea_a_modificar)] = nueva_tarea
 
         tareas_json.seek(0)
+        tareas_json.truncate()
 
         json.dump(tareas, tareas_json, indent=4)
         
