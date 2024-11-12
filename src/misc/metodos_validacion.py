@@ -48,7 +48,7 @@ def validar_contraseña(contraseña):
     contraseña_regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
 
     if not re.match(contraseña_regex, contraseña):
-        print("Error: Formato de contraseña incorrecto")
+        print("Error: Formato de contraseña incorrecto\n" "Error: La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial (@, $, !, %, *, ?, &).")
         return False
 
     return True
