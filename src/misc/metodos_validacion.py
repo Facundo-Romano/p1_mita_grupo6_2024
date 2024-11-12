@@ -62,7 +62,8 @@ def validar_texto(texto, tipo):
     """
 
     try:
-        if isinstance(texto, str) and texto.strip().replace(" ", ""):
+        # Verifica que texto sea una cadena y que no esté vacío
+        if isinstance(texto, str) and texto.strip() and texto.replace(" ", "").isalpha():
             return True
     
         print(f"Error: Formato de {tipo} incorrecto")

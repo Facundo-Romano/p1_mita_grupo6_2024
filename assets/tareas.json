@@ -166,5 +166,15 @@
         "created_at": "12-11-2024 16:15:51",
         "end_date": "11-11-1111",
         "subtarea": null
+    },
+    {
+        "uuid": "c5918fe7-5b1b-479c-9758-46c5d4d953c3",
+        "titulo": "hoashoda",
+        "descripcion": "asdbuasbdo",
+        "uuid_usuario": "1",
+        "uuid_proyecto": "test1",
+        "created_at": "12-11-2024 16:24:50",
+        "end_date": "11-11-2323",
+        "subtarea": null
     }
 ]
