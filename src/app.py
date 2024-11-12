@@ -7,8 +7,6 @@ from modulos.proyectos.modulo_proyecto import menu_proyectos
 from misc.metodos_visualizacion import mostrar_usuario_matriz
 
 def menu_principal():
-    print('Hola')
-
     #Llamar a login
     usuario = menu_login()
 
@@ -44,6 +42,3 @@ def menu_principal():
             break
         else:
             print('Opción inválida')
-    
-
-menu_principal()
