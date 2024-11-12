@@ -110,9 +110,8 @@ def registrar():
         archivo.write("\n")  # Agrega un salto de línea antes de la nueva entrada
         archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
                       f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
-                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}\n")
-        archivo.close()
-    
+                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}")
+
     print("Usuario registrado exitosamente.")
     return nuevo_usuario
 
@@ -140,7 +139,6 @@ def obtener_datos_usuario():
         contraseña = input("Ingrese contraseña: ")
 
     #Logica de eleccion de equipo
-
 
     return [
         generar_uuid(),
