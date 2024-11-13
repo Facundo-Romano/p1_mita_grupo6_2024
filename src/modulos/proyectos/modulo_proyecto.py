@@ -16,7 +16,6 @@ def menu_proyectos(usuario):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Proyectos: ")
             # Llamar a la función para obtener todos los proyectos
             proyectos = obtener_proyectos_por_usuario(usuario["uuid_equipo"])
             mostrar_proyectos(proyectos)

@@ -25,7 +25,7 @@ def mostrar_usuario_matriz(usuario):
 def mostrar_equipos(equipos):
     print('\n')
 
-    LONG_NUMERO = 10
+    LONG_NUMERO = 5
     LONG_NOMBRE = 25
     LONG_CREACION = 25
 
@@ -48,11 +48,10 @@ def mostrar_equipos(equipos):
                 f"{created_at:<{LONG_CREACION}}")
     print()        
     
-
 def mostrar_tareas(tareas):
     print('\n')
 
-    LONG_NUMERO = 10
+    LONG_NUMERO = 5
     LONG_TITULO = 25
     LONG_DESCRIPCION = 30
     LONG_CREACION = 25
@@ -95,18 +94,34 @@ def mostrar_detalle_tarea(tarea, proyecto):
     print(f"Fecha de Finalización: {tarea['end_date']}")
     mostrar_subtarea(tarea)
 
-
 def mostrar_proyectos(proyectos):
+    print()
+    print("Proyectos: ")
+
+    LONG_NUMERO = 5
+    LONG_NOMBRE = 25
+    LONG_CREACION = 20
+    LONG_FINALIZACION = 15
+
     if not proyectos:  # Si la lista de proyectos del usuario está vacía
             print("No está asignado a ningún proyecto.")
             return
 
     # Imprimir encabezados
-    print(f"{'N°':<3}{'Nombre Proyecto':<25}{'Fecha de Creación':<20}{'Fecha de Fin':<15}")
-    print("=" * 60)
+    print(f"{'N°':<{LONG_NUMERO}}{'Nombre Proyecto':<{LONG_NOMBRE}}{'Fecha de Creación':<{LONG_CREACION}}{'Fecha de Fin':<{LONG_FINALIZACION}}")
 
-    # Imprimir Proyectos
-    for index, proyecto in enumerate(proyectos, start = 1):
+    # Línea de Separación
+    print("=" * (LONG_NUMERO + LONG_NOMBRE + LONG_CREACION + LONG_FINALIZACION))
+
+    # Formateamos cada Proyectos
+    for index, proyecto in enumerate(proyectos, start=1):
+        nombre = proyecto['nombre'][:LONG_NOMBRE - 4] + '...' if len(proyecto['nombre']) >= LONG_NOMBRE else proyecto['nombre']
         fecha_creacion = proyecto['created_at'].split(" ")[0]  # Tomar solo la fecha
-        print(f"{index:<3}{proyecto['nombre']:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
+        end_date = proyecto['end_date'][:LONG_FINALIZACION] if proyecto['end_date'] else "No definida"
+
+        # Imprimir Proyectos
+        print(f"{(str(index) + '.'):<{LONG_NUMERO}}"
+              f"{nombre:<{LONG_NOMBRE}}"
+              f"{fecha_creacion:<{LONG_CREACION}}"
+              f"{end_date:<{LONG_FINALIZACION}}")
     print()
