@@ -10,49 +10,41 @@
     {
         "uuid": "test2",
         "nombre": "proyecto2",
+        "uuid_equipo": "uuid_equipo_2",
+        "end_date": "09-08-2025",
+        "created_at": "2021-08-09 12:00:00",
+        "deleted_at": null
+    },
+    {
+        "uuid": "test3",
+        "nombre": "proyecto3",
+        "uuid_equipo": "uuid_equipo_3",
+        "end_date": "09-08-2025",
+        "created_at": "2021-08-09 12:00:00",
+        "deleted_at": null
+    },
+    {
+        "uuid": "test4",
+        "nombre": "proyecto4",
         "uuid_equipo": "uuid_equipo_1",
         "end_date": "09-08-2025",
         "created_at": "2021-08-09 12:00:00",
         "deleted_at": null
     },
     {
-        "uuid": "063c68b1-b7d8-496e-84ee-da5eca96fea5",
-        "nombre": "pruebaConEquipo",
-        "uuid_equipo": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
-        "created_at": "30-10-2024 23:55:41",
-        "end_date": "19-08-1938",
-        "deleted_at": null
-    },
-    {
-        "uuid": "cdedd944-1181-4f53-9a31-7abb4e6f69d9",
-        "nombre": "pruebaSinEquipo",
-        "uuid_equipo": null,
-        "created_at": "31-10-2024 01:52:04",
-        "end_date": "24-10-1995",
-        "deleted_at": null
-    },
-    {
-        "uuid": "74e25360-d970-4d4e-81e7-cc0993fdb9b6",
-        "nombre": "proyecto bla bla",
-        "uuid_equipo": "a405e61d-d971-4f72-903f-8758e12baa2e",
-        "created_at": "06-11-2024 15:11:00",
-        "end_date": "11-11-2393",
-        "deleted_at": null
-    },
-    {
-        "uuid": "d1af1057-08dc-4ad8-929b-0a2a97d3abd5",
-        "nombre": "proyecto juan",
+        "uuid": "test5",
+        "nombre": "proyecto5",
         "uuid_equipo": "uuid_equipo_2",
-        "created_at": "06-11-2024 15:21:14",
-        "end_date": "11-11-2025",
+        "end_date": "09-08-2025",
+        "created_at": "2021-08-09 12:00:00",
         "deleted_at": null
     },
     {
-        "uuid": "1b1853c8-5c56-44e8-bf0c-3442e2a11d8f",
-        "nombre": "Prueba de Equipo",
-        "uuid_equipo": "uuid_equipo_1",
-        "created_at": "11-11-2024 01:08:28",
-        "end_date": "06-09-2001",
+        "uuid": "test6",
+        "nombre": "proyecto6",
+        "uuid_equipo": "uuid_equipo_3",
+        "end_date": "09-08-2025",
+        "created_at": "2021-08-09 12:00:00",
         "deleted_at": null
     }
 ]

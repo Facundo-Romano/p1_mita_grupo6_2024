@@ -2,7 +2,7 @@
     {
         "uuid": "9p8uwheqc97g48d1v",
         "titulo": "primer tarea",
-        "descripcion": "la mejor tarea",
+        "descripcion": "Tarea 1",
         "uuid_usuario": "uuid",
         "uuid_proyecto": "4t5gb254bv4twv4tw",
         "created_at": "2024-09-17 18:35:11",
@@ -12,7 +12,7 @@
     {
         "uuid": "90asdhf9asdf9",
         "titulo": "segunda tarea",
-        "descripcion": "la mejor tarea",
+        "descripcion": "Tarea 2",
         "uuid_usuario": "uuid2",
         "uuid_proyecto": "4t5gb254bv4twv4tw",
         "created_at": "2024-09-17 18:35:11",
@@ -22,7 +22,7 @@
     {
         "uuid": "8a7sdyahbsdgahsd",
         "titulo": "tercera tarea",
-        "descripcion": "la mejor tarea",
+        "descripcion": "Tarea 3",
         "uuid_usuario": "uuid3",
         "uuid_proyecto": "4t5gb254bv4twv4tw",
         "created_at": "2024-09-17 18:35:11",
@@ -31,150 +31,48 @@
     },
     {
         "uuid": "agsd789ghas89dh89a",
-        "titulo": "cuarta tarea",
-        "descripcion": "la mejor tarea",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "4t5gb254bv4twv4tw",
+        "titulo": "segunda tarea",
+        "descripcion": "Tarea Dos",
+        "uuid_usuario": "uuid",
+        "uuid_proyecto": "test1",
         "created_at": "2024-09-17 18:35:11",
-        "end_date": "12-12-2024",
-        "subtarea": null
+        "end_date": "11-11-1111",
+        "subtarea": {
+            "nombre": "Subtarea",
+            "descripcion": "Subtarea 1",
+            "subtarea": {
+                "nombre": "Subtarea",
+                "descripcion": "Subtarea 2",
+                "subtarea": null
+            }
+        }
     },
     {
         "uuid": "iouqbwui123bvui21b34",
-        "titulo": "modificada",
-        "descripcion": "modificada",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test2",
+        "titulo": "quinta tarea",
+        "descripcion": "Tarea 5",
+        "uuid_usuario": "uuid2",
+        "uuid_proyecto": "test5",
         "created_at": "2024-09-17 18:35:11",
         "end_date": "11-11-1111",
-        "subtarea": null
+        "subtarea": {
+            "nombre": "Subtarea",
+            "descripcion": "subtarea 1",
+            "subtarea": {
+                "nombre": "Segunda Subtarea",
+                "descripcion": "subtarea 2",
+                "subtarea": null
+            }
+        }
     },
     {
         "uuid": "e0ad61e3-97db-4130-98c3-70b0bcfc8d4a",
-        "titulo": "septima tarea",
-        "descripcion": "nose si la mejor tarea",
-        "uuid_usuario": "uuid2",
+        "titulo": "sexta tarea",
+        "descripcion": "Tarea 6",
+        "uuid_usuario": "uuid3",
         "uuid_proyecto": "4t5gb254bv4twv4tw ",
         "created_at": "30-10-2024 16:12:52",
         "end_date": "11-11-1234",
-        "subtarea": null
-    },
-    {
-        "uuid": "442aa187-99e8-4e48-9327-80b2d589c461",
-        "titulo": "ytascfdtycas",
-        "descripcion": "ahvsdugtcasdyu",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "06-11-2024 15:57:20",
-        "end_date": "11-11-2932",
-        "subtarea": null
-    },
-    {
-        "uuid": "a62711fa-c0bd-408a-ad8a-06d9c266c44c",
-        "titulo": "tarea ocho",
-        "descripcion": "asyidasyd",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "06-11-2024 16:45:25",
-        "end_date": "11-11-2392",
-        "subtarea": {
-            "nombre": "subtarea 1",
-            "descripcion": "asdadasd",
-            "subtarea": {
-                "nombre": "subtarea 2",
-                "descripcion": "ashdvaisdv",
-                "subtarea": null
-            }
-        }
-    },
-    {
-        "uuid": "484c3ab9-224a-4520-a164-7e08156b8eb2",
-        "titulo": "Tarea nueve",
-        "descripcion": "asbdibas",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "06-11-2024 16:50:42",
-        "end_date": "11-11-2034",
-        "subtarea": null
-    },
-    {
-        "uuid": "10f2fb63-59ec-4877-931a-14521b0c6d77",
-        "titulo": "TareaDePrueba",
-        "descripcion": "prueba de equipo",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "10-11-2024 23:14:17",
-        "end_date": "10-11-2024",
-        "subtarea": {
-            "nombre": "subtarea de Prueba",
-            "descripcion": "alugdsda",
-            "subtarea": null
-        }
-    },
-    {
-        "uuid": "dd25c906-54a4-4127-ac00-4fa1dfba672f",
-        "titulo": "Tarea de Facu",
-        "descripcion": "tarea de prueba",
-        "uuid_usuario": "2ee0f4d9-e97f-4c8b-9f43-35d4eac19b5f",
-        "uuid_proyecto": "1b1853c8-5c56-44e8-bf0c-3442e2a11d8f",
-        "created_at": "12-11-2024 08:41:27",
-        "end_date": "13-11-2024",
-        "subtarea": {
-            "nombre": "primer subtarea",
-            "descripcion": "",
-            "subtarea": {
-                "nombre": "segunda subtarea",
-                "descripcion": "",
-                "subtarea": null
-            }
-        }
-    },
-    {
-        "uuid": "78c53d95-3cbd-4549-b47c-6cc286adedf2",
-        "titulo": "Nueva tarea de Facu",
-        "descripcion": "tarea de prueba",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "1b1853c8-5c56-44e8-bf0c-3442e2a11d8f",
-        "created_at": "12-11-2024 09:23:52",
-        "end_date": "13-11-2024",
-        "subtarea": {
-            "nombre": "primer subtarea",
-            "descripcion": "1",
-            "subtarea": {
-                "nombre": "segunda subtarea",
-                "descripcion": "2",
-                "subtarea": null
-            }
-        }
-    },
-    {
-        "uuid": "1afd68ec-4dad-4dcc-b189-d727f85057c7",
-        "titulo": "Nuevo titulo 00000000000000",
-        "descripcion": "Nueva descripcion 000000000000",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test2",
-        "created_at": "12-11-2024 09:34:36",
-        "end_date": "12-12-1111",
-        "subtarea": null
-    },
-    {
-        "uuid": "63ad317e-c666-43d2-b4d4-d454d96dfa90",
-        "titulo": "vamo",
-        "descripcion": "vamo",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "12-11-2024 16:15:51",
-        "end_date": "11-11-1111",
-        "subtarea": null
-    },
-    {
-        "uuid": "c5918fe7-5b1b-479c-9758-46c5d4d953c3",
-        "titulo": "hoashoda",
-        "descripcion": "asdbuasbdo",
-        "uuid_usuario": "1",
-        "uuid_proyecto": "test1",
-        "created_at": "12-11-2024 16:24:50",
-        "end_date": "11-11-2323",
         "subtarea": null
     }
 ]

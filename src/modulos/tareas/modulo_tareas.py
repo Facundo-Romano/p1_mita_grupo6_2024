@@ -54,9 +54,6 @@ def obtener_datos_tarea(usuario):
         
     descripcion_tarea = input("Ingrese descripcion de la tarea: ")
 
-    while (not validar_texto(descripcion_tarea, "descripción")):
-        descripcion_tarea = input("Ingresar descripción de la tarea: ")
-
     end_date = input("Ingrese fecha finalizacion proyecto (dd-mm-yyyy): ")
 
     while not validar_fecha(end_date):
@@ -102,6 +99,8 @@ def obtener_subtarea():
 
     if si_o_no.lower() == 's':
         nombre = input('Ingrese nombre de la subtarea: ')
+        while (not validar_texto(nombre, 'nombre')):
+            nombre = input('Ingrese nombre de la subtarea: ')
         descripcion = input('Ingrese descripcion de la subtarea: ')
         subtarea_subtarea = obtener_subtarea()
 
