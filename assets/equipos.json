@@ -1,23 +1,5 @@
 [
     {
-        "uuid": "uuid_equipo_1",
-        "nombre": "Equipo 1",
-        "created_at": "2021-01-01T00:00:00.000Z",
-        "deleted_at": null
-    },
-    {
-        "uuid": "uuid_equipo_2",
-        "nombre": "Equipo 2",
-        "created_at": "2021-01-01T00:00:00.000Z",
-        "deleted_at": null
-    },
-    {
-        "uuid": "a405e61d-d971-4f72-903f-8758e12baa2e",
-        "nombre": "Equipo de prueba 1",
-        "created_at": "2021-01-01T00:00:00.000Z",
-        "deleted_at": null
-    },
-    {
         "uuid": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
         "nombre": "Equipo de prueba 2",
         "created_at": "2022-01-01T00:00:00.000Z",
@@ -27,6 +9,30 @@
         "uuid": "5988d299-8407-45f7-acfa-c74d5c04e401",
         "nombre": "Equipo de prueba 3",
         "created_at": "2023-01-01T00:00:00.000Z",
+        "deleted_at": null
+    },
+    {
+        "uuid": "6c51d8e0-9a2b-4876-9968-3652381f8fd9",
+        "nombre": "Equipo asdad",
+        "created_at": "12-11-2024 16:43:04",
+        "deleted_at": null
+    },
+    {
+        "uuid": "271084d5-0f78-4ea9-80ca-2d08bfb6df2a",
+        "nombre": "asdasd",
+        "created_at": "12-11-2024 16:43:17",
+        "deleted_at": null
+    },
+    {
+        "uuid": "7f994aa1-aee1-4129-bf40-3cad7c9fe3a0",
+        "nombre": "Equipo 1",
+        "created_at": "12-11-2024 16:48:40",
+        "deleted_at": null
+    },
+    {
+        "uuid": "19bc5f3f-81a3-4439-8a8d-28844843a7a8",
+        "nombre": "Equipo 2",
+        "created_at": "12-11-2024 16:51:27",
         "deleted_at": null
     }
 ]

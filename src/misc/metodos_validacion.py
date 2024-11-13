@@ -18,8 +18,7 @@ def validar_fecha(fecha):
         return True
     except:
         print("Error: Formato de fecha incorrecto")
-        return False
-    
+        return False 
 
 def validar_mail(mail):
     """
@@ -45,10 +44,10 @@ def validar_contraseña(contraseña):
             booleano
     """
 
-    contraseña_regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+    contraseña_regex = r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-zñÑ\d@$!%*?&]{8,}$"
 
     if not re.match(contraseña_regex, contraseña):
-        print("Error: Formato de contraseña incorrecto")
+        print("Error: Formato de contraseña incorrecto\n" "Error: La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial (@, $, !, %, *, ?, &).")
         return False
 
     return True
@@ -56,15 +55,15 @@ def validar_contraseña(contraseña):
 def validar_texto(texto, tipo):
     """
         Funcion para validar texto,
-        si el texto es alfabético retorna True, si no, retorna False
-        si texto no es formato string retorna False
+        elimina los espacios en blanco y verifica si el texto no es vacio
 
         Retorna:
             booleano
     """
 
     try:
-        if texto.replace(" ", "").isalpha():
+        # Verifica que texto sea una cadena y que no esté vacío
+        if isinstance(texto, str) and texto.strip() and texto.replace(" ", "").isalpha():
             return True
     
         print(f"Error: Formato de {tipo} incorrecto")

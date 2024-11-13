@@ -16,7 +16,6 @@ def menu_proyectos(usuario):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            print("Proyectos: ")
             # Llamar a la función para obtener todos los proyectos
             proyectos = obtener_proyectos_por_usuario(usuario["uuid_equipo"])
             mostrar_proyectos(proyectos)
@@ -34,7 +33,7 @@ def menu_proyectos(usuario):
             eleccion = int(input("Seleccione el número de proyecto que desea elegir: "))
             if 1 <= eleccion <= len(proyectos):
                 proyecto_a_editar = proyectos[eleccion - 1]
-                print("Editando proyecto")
+                print(f"Editando proyecto:{proyecto_a_editar['nombre']}")
                 uuid_proyecto = proyecto_a_editar["uuid"]
                 nombre_proyecto, end_date, uuid_equipo_seleccionado = obtener_datos_proyecto(usuario)
                 created_at = proyecto_a_editar["created_at"]
@@ -57,7 +56,7 @@ def menu_proyectos(usuario):
             print("Proyectos: ")
             mostrar_proyectos(proyectos)
 
-            eleccion = int(input("Seleccione el número de proyecto que desea elegir: "))
+            eleccion = int(input("Seleccione el número de proyecto que desea eliminar: "))
             if 1 <= eleccion <= len(proyectos):
                 proyecto_a_eliminar = proyectos[eleccion - 1]
                 eliminar_proyecto(proyecto_a_eliminar)

@@ -3,3 +3,6 @@ uuid2;santi;wein;asd2@asd.com;password;uuid_equipo_1;12-12-1999;None
 uuid3;facu;roamno;asd3@asd.com;password;uuid_equipo_1;12-12-1999;None
 a5f779c6-24e8-4b90-af79-88b2e98bd37b;Paolo;Maffei;polo@magnetico.com;password;uuid_equipo_1;05-11-2024;None
 c9884ac7-0bc4-4516-aad6-aa796b437702;Juan Pablo;Nardoni;juan@pablo.com;password;uuid_equipo1;06-11-2024;None
+2ee0f4d9-e97f-4c8b-9f43-35d4eac19b5f;Facundo;Romano;facuromano121299@gmail.com;Contraseñ@1234;uuid_equipo_1;12-11-2024;None
+24383d92-1214-4c14-8287-211a12e63413;32u4032;324324;asdasda@gmail.com;Santi2805@;a405e61d-d971-4f72-903f-8758e12baa2e;12-11-2024;None
+6390f1fa-4d1b-4521-8ea3-a2552ab02156;Santi;Wein;asdsa@asd.commm;asbdaiu1!A;5988d299-8407-45f7-acfa-c74d5c04e401;12-11-2024;None

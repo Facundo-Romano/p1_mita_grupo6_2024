@@ -1,8 +1,9 @@
 from datetime import datetime
 from src.misc.metodos_os import obtener_ruta
 from src.misc.metodos_uuid import generar_uuid
-from src.misc.metodos_visualizacion import limpiar_consola, mostrar_usuario_matriz
+from src.misc.metodos_visualizacion import limpiar_consola, mostrar_equipos
 from src.misc.metodos_validacion import validar_texto, validar_contraseña, validar_mail
+from src.tablas.equipo.metodos_equipo import obtener_equipos
 
 RUTA_USUARIOS = obtener_ruta('usuarios.txt')
 
@@ -78,12 +79,8 @@ def login():
 
 def registrar():
     # Solicitar los datos al usuario
-    nombre = input("Ingrese su nombre: ")
-    apellido = input("Ingrese su apellido: ")
-    mail = input("Ingrese su correo electrónico: ")
-    contraseña = input("Ingrese su contraseña: ")
-    uuid_equipo = input("Ingrese el UUID del equipo: ")
-    
+    nombre, apellido, mail, contraseña, uuid_equipo= obtener_datos_usuario()
+
     # Generar un UUID para el nuevo usuario
     nuevo_uuid = str(generar_uuid())
     
@@ -110,9 +107,8 @@ def registrar():
         archivo.write("\n")  # Agrega un salto de línea antes de la nueva entrada
         archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
                       f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
-                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}\n")
-        archivo.close()
-    
+                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}")
+
     print("Usuario registrado exitosamente.")
     return nuevo_usuario
 
@@ -140,14 +136,28 @@ def obtener_datos_usuario():
         contraseña = input("Ingrese contraseña: ")
 
     #Logica de eleccion de equipo
-
+    print("Equipos: ")
+    equipos = obtener_equipos()
+    mostrar_equipos(equipos)
+    equipo_seleccionado = elegir_equipo(equipos)
 
     return [
-        generar_uuid(),
         nombre,
         apellido,
         mail,
         contraseña,
-        datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-        None,
+        equipo_seleccionado
     ]
+
+def elegir_equipo(equipos):
+    while True:
+        try:
+            numero = int(input("Elige el número del equipo: "))
+            if 1 <= numero <= len(equipos):
+                equipo_seleccionado = equipos[numero - 1]
+                print(f"Has seleccionado: {equipo_seleccionado['nombre']}")
+                return equipo_seleccionado['uuid']
+            else:
+                print("Número no válido. Intenta nuevamente.")
+        except ValueError:
+            print("Entrada no válida. Por favor, ingresa un número.")
