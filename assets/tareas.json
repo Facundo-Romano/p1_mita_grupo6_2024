@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "uuid": "f221bb14-3aa7-4c9c-bdb2-62feb24c1e1e",
+        "titulo": "Tarea prueba",
+        "descripcion": "Tarea 1",
+        "uuid_usuario": "4998aea6-d009-43a8-8cf2-0525389e1323",
+        "uuid_proyecto": "a146dde0-0397-4d1d-96e3-61ec42478ddc",
+        "created_at": "13-11-2024 14:17:37",
+        "end_date": "11-11-1111",
+        "subtarea": {
+            "nombre": "Subtarea prueba",
+            "descripcion": "Subtarea 1",
+            "subtarea": {
+                "nombre": "Subtarea segunda prueba",
+                "descripcion": "Subtarea 2",
+                "subtarea": null
+            }
+        }
+    }
+]

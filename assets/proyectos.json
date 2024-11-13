@@ -6,5 +6,13 @@
         "created_at": "13-11-2024 12:44:47",
         "end_date": "11-11-1111",
         "deleted_at": null
+    },
+    {
+        "uuid": "a146dde0-0397-4d1d-96e3-61ec42478ddc",
+        "nombre": "Proyecto prueba",
+        "uuid_equipo": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
+        "created_at": "13-11-2024 14:15:03",
+        "end_date": "11-11-1111",
+        "deleted_at": null
     }
 ]

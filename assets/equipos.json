@@ -2,7 +2,13 @@
     {
         "uuid": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
         "nombre": "Equipo de prueba",
-        "created_at": "2022-01-01T00:00:00.000Z",
+        "created_at": "13-11-2024 14:14:29",
+        "deleted_at": null
+    },
+    {
+        "uuid": "05c20d55-b5b3-4381-8600-6c156252ef5e",
+        "nombre": "Equipo prueba dos",
+        "created_at": "13-11-2024 14:14:11",
         "deleted_at": null
     }
 ]

@@ -116,7 +116,7 @@ def mostrar_proyectos(proyectos):
     for index, proyecto in enumerate(proyectos, start=1):
         nombre = proyecto['nombre'][:LONG_NOMBRE - 4] + '...' if len(proyecto['nombre']) >= LONG_NOMBRE else proyecto['nombre']
         fecha_creacion = proyecto['created_at'].split(" ")[0]
-        print(f"{index:<3}{nombre:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
+        print(f"{index:<5}{nombre:<25}{fecha_creacion:<20}{proyecto['end_date']:<15}")
 
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.
