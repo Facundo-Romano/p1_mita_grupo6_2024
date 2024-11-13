@@ -1,20 +1,8 @@
 [
     {
-        "uuid": "uuid_equipo_1",
-        "nombre": "Equipo 1",
+        "uuid": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
+        "nombre": "Equipo de prueba",
         "created_at": "2022-01-01T00:00:00.000Z",
-        "deleted_at": null
-    },
-    {
-        "uuid": "uuid_equipo_2",
-        "nombre": "Equipo 2",
-        "created_at": "2023-01-01T00:00:00.000Z",
-        "deleted_at": null
-    },
-    {
-        "uuid": "uuid_equipo_3",
-        "nombre": "Equipo 3",
-        "created_at": "12-11-2024 16:43:04",
         "deleted_at": null
     }
 ]

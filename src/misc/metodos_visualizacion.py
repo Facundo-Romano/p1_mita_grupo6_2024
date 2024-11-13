@@ -45,8 +45,7 @@ def mostrar_equipos(equipos):
 
             print(f"{(str(i+1) + '.'):<{LONG_NUMERO}}"
                 f"{nombre:<{LONG_NOMBRE}}"
-                f"{created_at:<{LONG_CREACION}}")
-    print()        
+                f"{created_at:<{LONG_CREACION}}")     
     
 def mostrar_tareas(tareas):
     print('\n')
@@ -59,7 +58,7 @@ def mostrar_tareas(tareas):
 
     if not tareas:  # Si la lista de tareas está vacía
         print("No hay tareas para mostrar.")
-        return
+        return False
 
     # Imprimir encabezados
     print(f"{'Nro.':<{LONG_NUMERO}}{'Título':<{LONG_TITULO}}{'Descripción':<{LONG_DESCRIPCION}}{'Creación':<{LONG_CREACION}}{'Finalización':<{LONG_FINALIZACION}}")
@@ -96,7 +95,7 @@ def mostrar_detalle_tarea(tarea, proyecto):
 
 def mostrar_proyectos(proyectos):
     print()
-    print("Proyectos: ")
+    print("\nProyectos: ")
 
     LONG_NUMERO = 5
     LONG_NOMBRE = 25
@@ -104,7 +103,7 @@ def mostrar_proyectos(proyectos):
     LONG_FINALIZACION = 15
 
     if not proyectos:  # Si la lista de proyectos del usuario está vacía
-            print("No está asignado a ningún proyecto.")
+            print("\nNo está asignado a ningún proyecto.")
             return
 
     # Imprimir encabezados
@@ -116,8 +115,8 @@ def mostrar_proyectos(proyectos):
     # Formateamos cada Proyectos
     for index, proyecto in enumerate(proyectos, start=1):
         nombre = proyecto['nombre'][:LONG_NOMBRE - 4] + '...' if len(proyecto['nombre']) >= LONG_NOMBRE else proyecto['nombre']
-        fecha_creacion = proyecto['created_at'].split(" ")[0]  # Tomar solo la fecha
-        print(f"{index:<3}{proyecto['nombre']:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
+        fecha_creacion = proyecto['created_at'].split(" ")[0]
+        print(f"{index:<3}{nombre:<25}{fecha_creacion:<20}{proyecto['end_date']:<20}")
 
 visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
 #Convierte cada elemento de una fila en una cadena de texto.

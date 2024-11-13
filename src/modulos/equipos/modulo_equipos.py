@@ -6,7 +6,7 @@ from src.tablas.equipo.metodos_equipo import obtener_equipos, obtener_equipo, cr
 def menu_equipos(usuario):
     limpiar_consola()
     while True:
-        print("Menú de equipos")
+        print("\n\n\nMenú de equipos")
         print("1. Equipos")
         print("2. Mi equipo")
         print("3. Crear nuevo equipo")
@@ -17,18 +17,21 @@ def menu_equipos(usuario):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
+            limpiar_consola()
             print("Equipos: ")
             equipos = obtener_equipos()
             mostrar_equipos(equipos)
         elif opcion == "2":
+            limpiar_consola()
             equipo = obtener_equipo(usuario["uuid_equipo"])
 
             if (equipo == None):
-                print("No perteneces a ningún equipo.")
+                print("\n\nNo perteneces a ningún equipo.\n\n")
                 continue
 
             mostrar_equipos([equipo])
         elif opcion == "3":
+            limpiar_consola()
             uuid = generar_uuid()
             nombre = obtener_datos_equipo()
             created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -43,25 +46,26 @@ def menu_equipos(usuario):
 
             crear_equipo(equipo)
         elif opcion == "4":
+            limpiar_consola()
             print("Equipos: ")
             equipos = obtener_equipos()
             mostrar_equipos(equipos)
 
             #El número del equipo seleccionado por el usuario es la posición en la lista de equipos + 1
-            numero_equipo = int(input("Seleccione el número del equipo que desea editar: "))
+            numero_equipo = int(input("\nSeleccione el número del equipo que desea editar: "))
             
             if numero_equipo < 1 or numero_equipo > len(equipos):
-                print("Número de equipo inválido. Intente nuevamente.")
+                print("\nNúmero de equipo inválido. Intente nuevamente.")
                 continue
 
             equipo = equipos[numero_equipo - 1]
 
-            print("Nuevos datos de equipo: \n")
+            print("\nNuevos datos de equipo: \n")
 
             uuid = equipo["uuid"]
             nombre = obtener_datos_equipo()
             created_at = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-            deleted_at = input("Ingrese la fecha de eliminación del equipo: ")
+            deleted_at = equipo["deleted_at"]
 
             equipo = {
                 "uuid": uuid,
@@ -70,26 +74,31 @@ def menu_equipos(usuario):
                 "deleted_at": deleted_at
             }
 
+            limpiar_consola()
+            print("Modificando equipo... ")
             modificar_equipo(equipo)
-            mostrar_equipos(equipos)
+            print("\nEquipo modificado exitosamente!\n")
         elif opcion == '5':
+            limpiar_consola()
             print("Equipos: ")
             equipos = obtener_equipos()
             mostrar_equipos(equipos)
 
             #El número del equipo seleccionado por el usuario es la posición en la lista de equipos + 1
-            numero_equipo = int(input("Seleccione el número del equipo que desea eliminar: "))
+            numero_equipo = int(input("\nSeleccione el número del equipo que desea eliminar: "))
             
             if numero_equipo < 1 or numero_equipo > len(equipos):
-                print("Número de equipo inválido. Intente nuevamente.")
+                print("\nNúmero de equipo inválido. Intente nuevamente.")
                 continue
 
             equipo = equipos[numero_equipo - 1]
 
+            limpiar_consola()
+            print("Eliminando equipo... ")
             eliminar_equipo(equipo["uuid"])
-            mostrar_equipos(equipos)
+            print("\nEquipo eliminado exitosamente!\n")
         elif opcion == "6":
-            print("Adiós!")
+            print("\n\nAdiós!")
             break
         else:
             print("Opción inválida. Intente nuevamente.")

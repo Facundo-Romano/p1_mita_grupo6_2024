@@ -1,50 +1,10 @@
 [
     {
-        "uuid": "test1",
-        "nombre": "proyecto1",
-        "uuid_equipo": "uuid_equipo_1",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
-        "deleted_at": null
-    },
-    {
-        "uuid": "test2",
-        "nombre": "proyecto2",
-        "uuid_equipo": "uuid_equipo_2",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
-        "deleted_at": null
-    },
-    {
-        "uuid": "test3",
-        "nombre": "proyecto3",
-        "uuid_equipo": "uuid_equipo_3",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
-        "deleted_at": null
-    },
-    {
-        "uuid": "test4",
-        "nombre": "proyecto4",
-        "uuid_equipo": "uuid_equipo_1",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
-        "deleted_at": null
-    },
-    {
-        "uuid": "test5",
-        "nombre": "proyecto5",
-        "uuid_equipo": "uuid_equipo_2",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
-        "deleted_at": null
-    },
-    {
-        "uuid": "test6",
-        "nombre": "proyecto6",
-        "uuid_equipo": "uuid_equipo_3",
-        "end_date": "09-08-2025",
-        "created_at": "2021-08-09 12:00:00",
+        "uuid": "73556170-a2e3-4ce3-bc09-f0d1a2b34c4c",
+        "nombre": "nuevo",
+        "uuid_equipo": "ae054623-3338-4b07-8d6a-5df2f0d801d5",
+        "created_at": "13-11-2024 12:44:47",
+        "end_date": "11-11-1111",
         "deleted_at": null
     }
 ]

@@ -7,30 +7,26 @@ from modulos.proyectos.modulo_proyecto import menu_proyectos
 from misc.metodos_visualizacion import mostrar_usuario_matriz
 
 def menu_principal():
-    #Llamar a login
+    limpiar_consola()
     usuario = menu_login()
 
-    limpiar_consola()
-
     if not usuario:
-        print('chauuuu')
+        print('Adios.\n')
         return
-    print()
-    print("Bienvenido: ")
-    mostrar_usuario_matriz(usuario)
-    print()
-
+    
     while True:
-        print('Menú principal')
+        limpiar_consola()
+        print("\nBienvenido: \n")
+        mostrar_usuario_matriz(usuario)
+        print('\nMenú principal')
         print('1. Equipos')
         print('2. Proyectos')
         print('3. Tareas')
         print('4. Salir')
 
-        opcion = input('Seleccione una opción: ')
+        opcion = input('\nSeleccione una opción: ')
 
         if opcion == '1':
-            
             menu_equipos(usuario)
         elif opcion == '2':
             

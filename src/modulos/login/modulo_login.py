@@ -9,14 +9,13 @@ RUTA_USUARIOS = obtener_ruta('usuarios.txt')
 
 def menu_login():
     limpiar_consola()
-    print('Menú login')
 
     while True:
+        print('\n\n\nMenú login')
         print('1. Iniciar sesión')
         print('2. Registrarse')
         print('3. Salir')
-        print('4. Saltear login')
-        opcion = input('Elija una opción: ')
+        opcion = input('\nElija una opción: ')
 
         if opcion == '1':
             return login()
@@ -24,20 +23,8 @@ def menu_login():
             registrar()
         elif opcion == '3':
             break
-        elif opcion == '4':
-            return {
-                "uuid": "1",
-                "nombre": "Usuario",
-                "apellido": "Admin",
-                "mail": "asd@asd.com",
-                "contraseña": "123456",
-                "uuid_equipo": "uuid_equipo_1",
-                "created_at": "2021-09-01 00:00:00",
-                "deleted_at": None
-            }
         else:
-            print('Opción no válida')
-
+            print('\nOpción no válida')
 
 def login():
     try:
@@ -75,11 +62,10 @@ def login():
 
     finally:
         archivo_usuarios.close()
-    
 
 def registrar():
     # Solicitar los datos al usuario
-    nombre, apellido, mail, contraseña, uuid_equipo= obtener_datos_usuario()
+    (nombre, apellido, mail, contraseña, uuid_equipo) = obtener_datos_usuario()
 
     # Generar un UUID para el nuevo usuario
     nuevo_uuid = str(generar_uuid())
@@ -104,60 +90,57 @@ def registrar():
     
     # Guardar el usuario en el archivo txt
     with open(RUTA_USUARIOS, 'a', encoding='UTF-8') as archivo:
-        archivo.write("\n")  # Agrega un salto de línea antes de la nueva entrada
         archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
                       f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
                       f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}")
 
-    print("Usuario registrado exitosamente.")
+    print("\nUsuario registrado exitosamente.")
     return nuevo_usuario
 
-
-
 def obtener_datos_usuario():
-    nombre = input("Ingrese nombre: ")
+    nombre = input("\nIngrese nombre: ")
 
     while (not validar_texto(nombre, "nombre")):
-        nombre = input("Ingrese nombre: ")
+        nombre = input("\nIngrese nombre: ")
 
-    apellido = input("Ingrese apellido: ")
+    apellido = input("\nIngrese apellido: ")
 
     while (not validar_texto(apellido, "apellido")):
-        apellido = input("Ingrese apellido: ")
+        apellido = input("\nIngrese apellido: ")
 
-    mail = input("Ingrese mail: ")
+    mail = input("\nIngrese mail: ")
 
     while (not validar_mail(mail)):
-        mail = input("Ingrese mail: ")
+        mail = input("\nIngrese mail: ")
         
-    contraseña = input("Ingrese contraseña: ")
+    contraseña = input("\nIngrese contraseña: ")
 
     while (not validar_contraseña(contraseña)):
-        contraseña = input("Ingrese contraseña: ")
+        contraseña = input("\nIngrese contraseña: ")
 
     #Logica de eleccion de equipo
-    print("Equipos: ")
+    print("\nSeleccione un equipo para su usuario: ")
     equipos = obtener_equipos()
     mostrar_equipos(equipos)
     equipo_seleccionado = elegir_equipo(equipos)
 
-    return [
+    return (
         nombre,
         apellido,
         mail,
         contraseña,
         equipo_seleccionado
-    ]
+    )
 
 def elegir_equipo(equipos):
     while True:
         try:
-            numero = int(input("Elige el número del equipo: "))
+            numero = int(input("\nElige el número del equipo: "))
             if 1 <= numero <= len(equipos):
                 equipo_seleccionado = equipos[numero - 1]
-                print(f"Has seleccionado: {equipo_seleccionado['nombre']}")
+                print(f"\nHas seleccionado: {equipo_seleccionado['nombre']}")
                 return equipo_seleccionado['uuid']
             else:
-                print("Número no válido. Intenta nuevamente.")
+                print("\nNúmero no válido. Intenta nuevamente.")
         except ValueError:
-            print("Entrada no válida. Por favor, ingresa un número.")
+            print("\nEntrada no válida. Por favor, ingresa un número.")

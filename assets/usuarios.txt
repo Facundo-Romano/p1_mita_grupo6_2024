@@ -1,3 +1,1 @@
-uuid;mati;fernandez;asd@asd.com;password;uuid_equipo_1;12-12-1999;None
-uuid2;santi;wein;asd2@asd.com;password;uuid_equipo_2;12-12-1999;None
-uuid3;facu;roamno;asd3@asd.com;password;uuid_equipo_3;12-12-1999;None
+4998aea6-d009-43a8-8cf2-0525389e1323;facu;romano;test@test.com;Contraseñ@123;ae054623-3338-4b07-8d6a-5df2f0d801d5;13-11-2024;None

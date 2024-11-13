@@ -39,10 +39,11 @@ def crear_equipo(equipo):
         equipos = convertir_a_lista(equipos)
         
         equipos_json.seek(0)
+        equipos_json.truncate()
 
         json.dump(equipos, equipos_json, indent=4)
 
-        print("Equipo creado exitosamente")
+        print("\nEquipo creado exitosamente\n")
         return True
     except Exception as e:
         raise Exception('Error al crear el equipo: \n', e)
@@ -61,10 +62,10 @@ def modificar_equipo(nuevo_equipo):
         equipos[equipos.index(equipo)] = nuevo_equipo
 
         equipos_json.seek(0)
+        equipos_json.truncate()
 
         json.dump(equipos, equipos_json, indent=4)
 
-        print("Equipo modificado exitosamente")
         return True
     except Exception as e:
         raise Exception('Error al modificar el equipo: \n', e)
@@ -89,7 +90,6 @@ def eliminar_equipo(uuid_equipo):
 
         json.dump(equipos, equipos_json, indent=4)
 
-        print("Equipo eliminado exitosamente")
         return True
     except Exception as e:
         raise Exception('Error al eliminar el equipo: \n', e)

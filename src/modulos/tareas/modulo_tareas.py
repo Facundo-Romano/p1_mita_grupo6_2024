@@ -127,6 +127,9 @@ def detalle_de_tarea(usuario):
     print("Mis tareas: ")
     mostrar_tareas(tareas)
 
+    if (len(tareas) == 0):
+        return
+
     numero = obtener_numero("\n\nIngrese el número de la tarea a ver en detalle: ", 1, len(tareas))
     
     tarea = tareas[numero - 1]
