@@ -70,9 +70,8 @@ def menu_proyectos(usuario):
         else:
             print("Opción inválida. Intente nuevamente.")
 
-def obtener_datos_proyecto(usuario):
+def obtener_datos_proyecto():
 
-    # Ver que pedir con Usuario
     """
     Obtiene los datos necesarios para crear un proyecto.
     Retorna una lista con los elementos introducidos.

@@ -3,12 +3,6 @@ from src.tablas.equipo.metodos_equipo import obtener_equipos
 from src.misc.metodos_uuid import generar_uuid
 from src.misc.metodos_validacion import validar_mail, validar_contraseña, validar_texto
 
-def obtener_usuarios():
-    return 'usuarios'
-
-def obtener_usuario(id_usuario):
-    return 'usuario'
-
 def crear_usuario():
     """
     Funcion para crear usuario usando diccionario, le ingresamos el nombre y la contrasena y 
@@ -92,12 +86,3 @@ def modificar_usuario(usuario):
         print("Opción no válida.")
 
     return usuario
-
-def asignar_rol_usuario(id_usuario, id_rol):
-    return 'success'
-
-def asignar_equipo_usuario(id_usuario, id_equipo):
-    return 'success'
-
-def eliminar_usuario(id_usuario):  
-    return 'success'
