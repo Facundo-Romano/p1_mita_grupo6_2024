@@ -64,6 +64,7 @@ def login():
         archivo_usuarios.close()
 
 def registrar():
+    #PENDIENTE: Agregar try except
     # Solicitar los datos al usuario
     (nombre, apellido, mail, contraseña, uuid_equipo) = obtener_datos_usuario()
 
