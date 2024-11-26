@@ -1,1 +1,2 @@
-4998aea6-d009-43a8-8cf2-0525389e1323;facu;romano;test@test.com;Contraseñ@123;ae054623-3338-4b07-8d6a-5df2f0d801d5;13-11-2024;None
+012b74b3-84bb-496d-8c29-cb4e6439d760;nuevi;nuevoi;nuevo@nuevo.com;Nuevo@1234;ae054623-3338-4b07-8d6a-5df2f0d801d5;26-11-2024;None
+1807ebf2-ec73-4b1f-aa85-2a098a97426c;nuevodos;nuevodos;nuevo@nuevodos.com;NUevo@124;ae054623-3338-4b07-8d6a-5df2f0d801d5;26-11-2024;None

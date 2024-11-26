@@ -64,40 +64,43 @@ def login():
         archivo_usuarios.close()
 
 def registrar():
-    #PENDIENTE: Agregar try except
-    #PENDIENTE: Agregar salto de linea 
-    # Solicitar los datos al usuario
-    (nombre, apellido, mail, contraseña, uuid_equipo) = obtener_datos_usuario()
+    try:
+        # Solicitar los datos al usuario
+        (nombre, apellido, mail, contraseña, uuid_equipo) = obtener_datos_usuario()
 
-    # Generar un UUID para el nuevo usuario
-    nuevo_uuid = str(generar_uuid())
-    
-    # Obtener la fecha actual para 'created_at'
-    created_at = datetime.now().strftime("%d-%m-%Y")
-    
-    # 'deleted_at' se establece como None por defecto
-    deleted_at = None
-    
-    # Crear el diccionario del nuevo usuario
-    nuevo_usuario = {
-        "uuid": nuevo_uuid,
-        "nombre": nombre,
-        "apellido": apellido,
-        "mail": mail,
-        "contraseña": contraseña,
-        "uuid_equipo": uuid_equipo,
-        "created_at": created_at,
-        "deleted_at": deleted_at
-    }
-    
-    # Guardar el usuario en el archivo txt
-    with open(RUTA_USUARIOS, 'a', encoding='UTF-8') as archivo:
-        archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
-                      f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
-                      f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}")
+        # Generar un UUID para el nuevo usuario
+        nuevo_uuid = str(generar_uuid())
+        
+        # Obtener la fecha actual para 'created_at'
+        created_at = datetime.now().strftime("%d-%m-%Y")
+        
+        # 'deleted_at' se establece como None por defecto
+        deleted_at = None
+        
+        # Crear el diccionario del nuevo usuario
+        nuevo_usuario = {
+            "uuid": nuevo_uuid,
+            "nombre": nombre,
+            "apellido": apellido,
+            "mail": mail,
+            "contraseña": contraseña,
+            "uuid_equipo": uuid_equipo,
+            "created_at": created_at,
+            "deleted_at": deleted_at
+        }
+        
+        # Guardar el usuario en el archivo txt
+        with open(RUTA_USUARIOS, 'a', encoding='UTF-8') as archivo:
+            archivo.write(f"{nuevo_usuario['uuid']};{nuevo_usuario['nombre']};{nuevo_usuario['apellido']};"
+                        f"{nuevo_usuario['mail']};{nuevo_usuario['contraseña']};{nuevo_usuario['uuid_equipo']};"
+                        f"{nuevo_usuario['created_at']};{nuevo_usuario['deleted_at']}\n")
 
-    print("\nUsuario registrado exitosamente.")
-    return nuevo_usuario
+        print("\nUsuario registrado exitosamente.")
+        return nuevo_usuario
+    except Exception as e :
+        print(e)
+        return False
+    
 
 def obtener_datos_usuario():
     nombre = input("\nIngrese nombre: ")
