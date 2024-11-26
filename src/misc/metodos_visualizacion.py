@@ -21,31 +21,21 @@ def mostrar_usuario_matriz(usuario):
 
     # Imprimir cada tarea
     print(f"{usuario['nombre']:<15} {usuario['apellido']:<15} {usuario['mail']:<20}")
-
+    
 def mostrar_equipos(equipos):
-    print('\n')
-
-    LONG_NUMERO = 5
-    LONG_NOMBRE = 25
-    LONG_CREACION = 25
-
-    if not equipos:  # Si la lista de equipos está vacía
-        print("No hay equipos para mostrar.")
-        return
-
-    # Imprimir encabezados
-    print(f"{'Nro.':<{LONG_NUMERO}}{'Nombre':<{LONG_NOMBRE}}{'Creación':<{LONG_CREACION}}")
-
-    # Línea de separación
-    print("=" * (LONG_NUMERO + LONG_NOMBRE + LONG_CREACION))
-
-    for i, equipo in enumerate(equipos):
-            nombre = equipo['nombre'][:LONG_NOMBRE - 4] + '... ' if len(equipo['nombre']) >= LONG_NOMBRE else equipo['nombre']
-            created_at = equipo['created_at'][:LONG_CREACION]
-
-            print(f"{(str(i+1) + '.'):<{LONG_NUMERO}}"
-                f"{nombre:<{LONG_NOMBRE}}"
-                f"{created_at:<{LONG_CREACION}}")     
+    # Encabezados para la tabla
+    encabezados = ["N°", "Nombre", "Fecha de Creación"]
+    
+    # Mostrar la tabla con los equipos enumerados
+    print("\n" + "-" * 60)
+    print(f"{encabezados[0]:<5} {encabezados[1]:<25} {encabezados[2]:<25}")
+    print("-" * 60)
+    #Enumerate para mostrar el número de equipo y el start para que empiece por el 1
+    for i, equipo in enumerate(equipos, start=1):
+        print(f"{i:<5} {equipo['nombre']:<25} {equipo['created_at']:<25}")
+    
+    print("-" * 60)
+     
     
 def mostrar_tareas(tareas):
     print('\n')
@@ -94,31 +84,28 @@ def mostrar_detalle_tarea(tarea, proyecto):
     mostrar_subtarea(tarea)
 
 def mostrar_proyectos(proyectos):
-    print()
-    print("\nProyectos: ")
+    # Convertir los proyectos a una matriz
+    matriz_proyectos = []
 
-    LONG_NUMERO = 5
-    LONG_NOMBRE = 25
-    LONG_CREACION = 20
-    LONG_FINALIZACION = 15
+    # Agregar encabezados
+    encabezados = ["UUID", "Nombre", "Fecha de Creación", "Fecha de Finalización"]
+    matriz_proyectos.append(encabezados)
 
-    if not proyectos:  # Si la lista de proyectos del usuario está vacía
-            print("\nNo está asignado a ningún proyecto.")
-            return
+    # Agregar cada proyecto a la matriz
+    for proyecto in proyectos:
+        fila_proyecto = [
+            proyecto["nombre"],
+            proyecto["created_at"],
+            proyecto["end_date"]
+        ]
+        matriz_proyectos.append(fila_proyecto)
 
-    # Imprimir encabezados
-    print(f"{'N°':<{LONG_NUMERO}}{'Nombre Proyecto':<{LONG_NOMBRE}}{'Fecha de Creación':<{LONG_CREACION}}{'Fecha de Fin':<{LONG_FINALIZACION}}")
+    # Mostrar la matriz de proyectos de forma ordenada
+    print("\n" + "-" * 70)
+    print(f"{'Nombre':<25} {'Fecha de Creación':<25} {'Fecha de Finalización':<20}")
+    print("-" * 70)
 
-    # Línea de Separación
-    print("=" * (LONG_NUMERO + LONG_NOMBRE + LONG_CREACION + LONG_FINALIZACION))
+    for fila in matriz_proyectos[1:]:  # Excluir encabezados
+        print(f"{fila[0]:<25} {fila[1]:<25} {fila[2]:<20}")
 
-    # Formateamos cada Proyectos
-    for index, proyecto in enumerate(proyectos, start=1):
-        nombre = proyecto['nombre'][:LONG_NOMBRE - 4] + '...' if len(proyecto['nombre']) >= LONG_NOMBRE else proyecto['nombre']
-        fecha_creacion = proyecto['created_at'].split(" ")[0]
-        print(f"{index:<5}{nombre:<25}{fecha_creacion:<20}{proyecto['end_date']:<15}")
-
-visualizar_matriz = lambda matrix: print("\n".join([" | ".join([str(element) for element in row]) for row in matrix]))
-#Convierte cada elemento de una fila en una cadena de texto.
-#Une los elementos de la fila en una sola cadena, separándolos por |.
-#Une todas las filas en una cadena de texto, separando cada fila con un salto de línea.
+    print("-" * 70)
