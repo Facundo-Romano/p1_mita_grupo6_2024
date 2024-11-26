@@ -16,7 +16,8 @@ def menu_tareas(usuario):
         print("3. Crear nueva tarea")
         print("4. Editar tarea")
         print("5. Eliminar tarea")
-        print("6. Salir")
+        print("6. Filtrar tarea por fecha")
+        print("7. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -31,6 +32,8 @@ def menu_tareas(usuario):
         elif opcion == "5":
             eliminacion_tarea(usuario["uuid"])
         elif opcion == "6":
+            filtrar_tareas_por_fecha(usuario["uuid"])
+        elif opcion == "7":
             limpiar_consola()
             break
         else:
@@ -217,3 +220,23 @@ def eliminacion_tarea(uuid_usuario):
     else:
         print('Opción inválida')
         eliminar_tarea(uuid_usuario)
+
+def filtrar_tareas_por_fecha(uuid_usuario):
+    # Obtener todas las tareas
+    tareas = obtener_tareas_usuario(uuid_usuario)
+    
+    # Solicitar la fecha de finalización al usuario
+    fecha_especifica = input("Ingrese la fecha de finalización (dd-mm-yyyy): ")
+
+    # Validar la fecha ingresada
+    while not validar_fecha(fecha_especifica):
+        fecha_especifica = input("Fecha inválida. Ingrese la fecha de finalización (dd-mm-yyyy): ")
+
+    # Filtrar las tareas que coinciden con la fecha específica
+    tareas_filtradas = list(filter(lambda tarea: tarea['end_date'] == fecha_especifica, tareas))
+
+    # Mostrar las tareas filtradas
+    if tareas_filtradas:
+        mostrar_tareas(tareas_filtradas)
+    else:
+        print("No se encontraron tareas para la fecha especificada.")
