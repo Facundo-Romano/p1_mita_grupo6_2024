@@ -28,34 +28,32 @@ def menu_login():
 
 def login():
     try:
-        archivo_usuarios = open(RUTA_USUARIOS, 'r', encoding='UTF-8')
+        with open(RUTA_USUARIOS, 'r', encoding='UTF-8') as archivo_usuarios:
+            mail = input('Ingrese su mail: ')
 
-        mail = input('Ingrese su mail: ')
+            contraseña = input('Ingrese su contraseña: ')
 
-        contraseña = input('Ingrese su contraseña: ')
-
-        linea = archivo_usuarios.readline()
-
-        while linea:
-            usuario = linea.strip().split(';')
-
-            if mail == usuario[3] and contraseña == usuario[4]:
-                return {
-                    "uuid": usuario[0],
-                    "nombre": usuario[1],
-                    "apellido": usuario[2],
-                    "mail": usuario[3],
-                    "contraseña": usuario[4],
-                    "uuid_equipo": usuario[5],
-                    "created_at": usuario[6],
-                    "deleted_at": usuario[7]
-                }
-            
             linea = archivo_usuarios.readline()
 
-        raise Exception('Usuario no encontrado')
+            while linea:
+                usuario = linea.strip().split(';')
 
- 
+                if mail == usuario[3] and contraseña == usuario[4]:
+                    return {
+                        "uuid": usuario[0],
+                        "nombre": usuario[1],
+                        "apellido": usuario[2],
+                        "mail": usuario[3],
+                        "contraseña": usuario[4],
+                        "uuid_equipo": usuario[5],
+                        "created_at": usuario[6],
+                        "deleted_at": usuario[7]
+                    }
+                
+                linea = archivo_usuarios.readline()
+
+            raise Exception('Usuario no encontrado')
+
     except Exception as e:
         print(e)
         return False

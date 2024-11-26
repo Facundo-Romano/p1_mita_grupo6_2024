@@ -10,8 +10,6 @@ def obtener_tareas():
             return tareas
     except Exception as e:
         raise Exception('Error al obtener las tareas: \n', e)
-    finally:
-        tareas_json.close()
 
 def obtener_tarea(uuid_tarea):
     try:
@@ -71,22 +69,21 @@ def crear_tarea(tarea):
 
 def modificar_tarea(nueva_tarea):  
     try:
-        tareas_json = open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8')
+        with open(RUTA_ABSOLUTA_TAREAS, 'r+', encoding='UTF-8') as tareas_json:
+            tareas = json.load(tareas_json)
 
-        tareas = json.load(tareas_json)
+            tarea_a_modificar = next((tarea for tarea in tareas if tarea['uuid'] == nueva_tarea["uuid"]), None)
 
-        tarea_a_modificar = next((tarea for tarea in tareas if tarea['uuid'] == nueva_tarea["uuid"]), None)
+            if (not tarea_a_modificar):
+                raise Exception('No se encontró el equipo')
+            
+            tareas[tareas.index(tarea_a_modificar)] = nueva_tarea
 
-        if (not tarea_a_modificar):
-            raise Exception('No se encontró el equipo')
-        
-        tareas[tareas.index(tarea_a_modificar)] = nueva_tarea
+            tareas_json.seek(0)
+            tareas_json.truncate()
 
-        tareas_json.seek(0)
-        tareas_json.truncate()
-
-        json.dump(tareas, tareas_json, indent=4)
-        
+            json.dump(tareas, tareas_json, indent=4)
+            
         return True
     except Exception as e:
         raise Exception('Error al modificar la tarea: \n', e)
