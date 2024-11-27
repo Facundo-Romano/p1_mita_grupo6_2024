@@ -101,11 +101,11 @@ def mostrar_proyectos(proyectos):
         matriz_proyectos.append(fila_proyecto)
 
     # Mostrar la matriz de proyectos de forma ordenada
-    print("\n" + "-" * 70)
+    print("\n" + "-" * 73)
     print(f"{'Nombre':<25} {'Fecha de Creación':<25} {'Fecha de Finalización':<20}")
-    print("-" * 70)
+    print("-" * 73)
 
     for fila in matriz_proyectos[1:]:  # Excluir encabezados
         print(f"{fila[0]:<25} {fila[1]:<25} {fila[2]:<20}")
 
-    print("-" * 70)
+    print("-" * 73)
